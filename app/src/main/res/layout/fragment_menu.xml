@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/button_grief"
+            android:id="@+id/griefText"
             android:layout_marginLeft="20dp"
             android:textColor="#FFFFFF"/>
 
@@ -85,6 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_health"
+            android:id="@+id/healthText"
             android:layout_marginLeft="20dp"
             android:textColor="#FFFFFF"/>
 
@@ -110,6 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_motivation"
+            android:id="@+id/motivationText"
             android:layout_marginLeft="10dp"
             android:textColor="#FFFFFF"/>
 
@@ -131,6 +134,7 @@
             android:layout_height="wrap_content"
             android:text="@string/button_ideas"
             android:layout_marginLeft="25dp"
+            android:id="@+id/ideasText"
             android:textColor="#FFFFFF"/>
 
         <ImageView
