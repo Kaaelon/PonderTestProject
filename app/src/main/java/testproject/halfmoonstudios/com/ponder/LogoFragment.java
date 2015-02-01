@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import testproject.halfmoonstudios.com.ponder.R;
+
 
 public class LogoFragment extends Fragment {
 

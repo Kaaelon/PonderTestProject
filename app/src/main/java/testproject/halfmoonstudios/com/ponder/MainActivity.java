@@ -9,6 +9,8 @@ import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ImageView;
 
+import testproject.halfmoonstudios.com.ponder.R;
+
 
 public class MainActivity extends ActionBarActivity {
 
