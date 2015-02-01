@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal">
+
+    <TextView android:text="@string/welcome" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:layout_marginBottom="80dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal" />
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="3">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:src="@drawable/hmslogo"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/litView"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/literature_menu"
+                android:layout_alignParentBottom="true"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/circleView" />
+
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:src="@drawable/hmslogo"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/historyView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/history_menu"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/textView" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:src="@drawable/hmslogo"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/popView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pop_menu"
+                android:layout_alignParentBottom="true"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/textView2" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
