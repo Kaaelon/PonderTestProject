@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 
@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/wellbeingText"
             android:text="@string/button_wellbeing"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textColor="#FFFFFF"/>
 
         <ImageView
             android:layout_width="80dp"
@@ -54,7 +55,8 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/button_grief"
-            android:layout_marginLeft="25dp" />
+            android:layout_marginLeft="20dp"
+            android:textColor="#FFFFFF"/>
 
         <ImageView
             android:layout_width="80dp"
@@ -83,7 +85,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_health"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:textColor="#FFFFFF"/>
 
 
     </LinearLayout>
@@ -107,7 +110,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_motivation"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textColor="#FFFFFF"/>
 
 
         </LinearLayout>
@@ -126,12 +130,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_ideas"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="25dp"
+            android:textColor="#FFFFFF"/>
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageView"
+            android:id="@+id/ideasView"
             android:src="@drawable/ideas_button" />
 
     </LinearLayout>
@@ -154,17 +159,6 @@
         android:layout_centerHorizontal="true" />
 
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_info"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:clickable="true"
-        android:background="@drawable/info"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/info_button" />
 
 
 </RelativeLayout>

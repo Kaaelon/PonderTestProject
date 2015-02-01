@@ -9,9 +9,11 @@ import android.widget.ImageView;
 
 public class MenuFragment extends Fragment {
 
-    private ImageView histView;
-    private ImageView popView;
-    private ImageView litView;
+    private ImageView mWellbeingView;
+    private ImageView mGriefView;
+    private ImageView mHealthView;
+    private ImageView mIdeasView;
+    private ImageView mMotivationView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +25,13 @@ public class MenuFragment extends Fragment {
         //Could be a problem moving into seperate method
 
         //Assigns values to buttons
-        histView = (ImageView)v.findViewById(R.id.historyView);
-        popView = (ImageView)v.findViewById(R.id.popView);
-        litView = (ImageView)v.findViewById(R.id.litView);
+       mWellbeingView = (ImageView)v.findViewById(R.id.wellbeingView);
+       mGriefView = (ImageView)v.findViewById(R.id.griefView);
+       mHealthView = (ImageView)v.findViewById(R.id.healthView);
+       mIdeasView = (ImageView)v.findViewById(R.id.ideasView);
+       mMotivationView = (ImageView)v.findViewById(R.id.motivationView);
 
-        histView.setOnClickListener(new View.OnClickListener(){
+        mWellbeingView.setOnClickListener(new View.OnClickListener(){
 
                                         @Override
                                     public void onClick(View v){
