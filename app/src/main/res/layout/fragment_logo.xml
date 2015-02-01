@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
@@ -67,3 +68,39 @@
        />
 
 </LinearLayout>
+||||||| merged common ancestors
+=======
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal">
+
+    <TextView android:text="@string/welcome" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:layout_marginBottom="80dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal" />
+
+
+    <ImageView
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:src="@drawable/hmslogo"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Halfmoon Studios"
+        android:layout_alignParentBottom="true"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
+>>>>>>> c57501f11eaf391fec1bde860204031ecf6c0a7f
