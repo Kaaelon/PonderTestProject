@@ -15,4 +15,9 @@
     <string name="history_menu">History</string>
     <string name="literature_menu">Literature</string>
     <string name="pop_menu">Pop-culture</string>
+    <string name="button_wellbeing">Wellbeing</string>
+    <string name="button_grief">Grief</string>
+    <string name="button_health">Health</string>
+    <string name="button_motivation">Motivation</string>
+    <string name="button_ideas">Ideas</string>
 </resources>

@@ -1,108 +1,171 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_gravity="center_horizontal">
+    android:layout_height="match_parent">
 
-    <TextView android:text="@string/welcome" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:layout_marginBottom="80dp"
+    <ImageView
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:id="@+id/circleMenu"
+        android:src="@drawable/largecircle"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal" />
-
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="3">
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_marginTop="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:id="@+id/wellbeingText"
+            android:text="@string/button_wellbeing"
+            android:layout_marginLeft="10dp" />
 
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:src="@drawable/hmslogo"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/litView"/>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/wellbeingView"
+            android:src="@drawable/wellbeing_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignBottom="@+id/linearLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/literature_menu"
-                android:layout_alignParentBottom="true"
-                android:textColor="#FFFFFF"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/circleView" />
-
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:src="@drawable/hmslogo"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/historyView" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:textColor="#FFFFFF"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/history_menu"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/textView" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:src="@drawable/hmslogo"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/popView" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pop_menu"
-                android:layout_alignParentBottom="true"
-                android:textColor="#FFFFFF"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/textView2" />
-        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_alignTop="@+id/circleMenu"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
+        android:id="@+id/linearLayout2">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/button_grief"
+            android:layout_marginLeft="25dp" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/griefView"
+            android:src="@drawable/grief_button"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="79dp"
+        android:id="@+id/linearLayout3"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignLeft="@+id/circleMenu"
+        android:layout_alignStart="@+id/circleMenu">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/healthView"
+            android:src="@drawable/health_button"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_health"
+            android:layout_marginLeft="20dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/linearLayout3"
+        android:layout_alignRight="@+id/circleMenu"
+        android:layout_alignEnd="@+id/circleMenu"
+        android:id="@+id/linearLayout4">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/motivationView"
+            android:src="@drawable/motivation_button"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_motivation"
+            android:layout_marginLeft="10dp" />
+
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="21dp"
+        android:layout_marginEnd="21dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_ideas"
+            android:layout_marginLeft="20dp" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/ideas_button" />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/collapseButton"
+        android:src="@drawable/collapse_button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/expand_button"
+        android:layout_alignTop="@+id/collapseButton"
+        android:layout_centerHorizontal="true" />
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_info"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:background="@drawable/info"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/info_button" />
+
+
+</RelativeLayout>
+
