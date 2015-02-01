@@ -9,6 +9,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
 
+import testproject.halfmoonstudios.com.ponder.R;
+
 import java.util.Random;
 
 

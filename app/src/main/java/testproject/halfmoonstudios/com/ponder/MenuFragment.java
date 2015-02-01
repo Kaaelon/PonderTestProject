@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import testproject.halfmoonstudios.com.ponder.R;
+
 public class MenuFragment extends Fragment {
 
     private ImageView mWellbeingView;
