@@ -8,7 +8,8 @@
         android:id="@+id/circleMenu"
         android:src="@drawable/largecircle"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/lilypadCircle" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -25,6 +26,7 @@
             android:id="@+id/wellbeingText"
             android:text="@string/button_wellbeing"
             android:layout_marginLeft="10dp"
+            android:contentDescription="@string/button_wellbeing"
             android:textColor="#FFFFFF"/>
 
         <ImageView
@@ -33,9 +35,8 @@
             android:id="@+id/wellbeingView"
             android:src="@drawable/wellbeing_button"
             android:layout_gravity="center_horizontal"
-            android:layout_alignBottom="@+id/linearLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp" />
+            android:layout_marginBottom="40dp"
+            android:contentDescription="@string/button_wellbeing" />
 
     </LinearLayout>
 
@@ -57,12 +58,14 @@
             android:text="@string/button_grief"
             android:id="@+id/griefText"
             android:layout_marginLeft="20dp"
+            android:contentDescription="@string/button_grief"
             android:textColor="#FFFFFF"/>
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:id="@+id/griefView"
+            android:contentDescription="@string/button_grief"
             android:src="@drawable/grief_button"/>
     </LinearLayout>
 
@@ -80,6 +83,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:id="@+id/healthView"
+            android:contentDescription="@string/button_health"
             android:src="@drawable/health_button"/>
 
         <TextView
@@ -88,6 +92,7 @@
             android:text="@string/button_health"
             android:id="@+id/healthText"
             android:layout_marginLeft="20dp"
+            android:contentDescription="@string/button_health"
             android:textColor="#FFFFFF"/>
 
 
@@ -106,6 +111,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:id="@+id/motivationView"
+            android:contentDescription="@string/button_motivation"
             android:src="@drawable/motivation_button"/>
 
         <TextView
@@ -114,6 +120,7 @@
             android:text="@string/button_motivation"
             android:id="@+id/motivationText"
             android:layout_marginLeft="10dp"
+            android:contentDescription="@string/button_motivation"
             android:textColor="#FFFFFF"/>
 
 
@@ -135,12 +142,14 @@
             android:text="@string/button_ideas"
             android:layout_marginLeft="25dp"
             android:id="@+id/ideasText"
+            android:contentDescription="@string/button_ideas"
             android:textColor="#FFFFFF"/>
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:id="@+id/ideasView"
+            android:contentDescription="@string/button_ideas"
             android:src="@drawable/ideas_button" />
 
     </LinearLayout>
@@ -152,7 +161,8 @@
         android:id="@+id/collapseButton"
         android:src="@drawable/collapse_button"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/button_collapse" />
 
     <ImageView
         android:layout_width="30dp"
@@ -160,7 +170,8 @@
         android:id="@+id/imageView2"
         android:src="@drawable/expand_button"
         android:layout_alignTop="@+id/collapseButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/button_expand" />
 
 
 

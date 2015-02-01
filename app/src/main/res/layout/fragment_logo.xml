@@ -11,8 +11,6 @@
         android:textSize="60sp"
         android:id="@+id/ponderText"
         android:layout_marginTop="70dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal" />
 
     <ImageView
@@ -20,17 +18,15 @@
         android:layout_height="73dp"
         android:src="@drawable/droplet"
         android:id="@+id/ponder_img"
+        android:contentDescription="@string/ponderLogo"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="45dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"/>
     <TextView
         android:id="@+id/inspText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="an inspiration app created by"
-        android:layout_alignParentBottom="true"
+        android:text="@string/subtitle"
         android:textColor="#FFFFFF"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="10dp"
@@ -40,8 +36,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="h a l f m o o n"
-        android:layout_alignParentBottom="true"
+        android:text="@string/studioFirstName"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:layout_marginLeft="2dp"
@@ -51,8 +46,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="S t u d i os"
-        android:layout_alignParentBottom="true"
+        android:text="@string/studioLastName"
         android:textColor="#FFFFFF"
         android:layout_marginLeft="2dp"
         android:layout_marginBottom="10dp"
@@ -63,6 +57,7 @@
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:src="@drawable/hmslogo"
+        android:contentDescription="@string/studioLogo"
         android:layout_gravity="center_horizontal"
        />
 
