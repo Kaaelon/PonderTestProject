@@ -17,7 +17,7 @@ import java.util.Random;
  * DONE:
  * Variable declaration
  * Variable assignment
- * assignCateogry method 
+ * assignCateogry method
  * TODO:
  * Access singleton
  * Populate relative arrayList(through getting data from singleton)
