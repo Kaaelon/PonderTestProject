@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -42,34 +43,12 @@
         android:gravity="center_vertical|center_horizontal"
         android:layout_gravity="center" />
 
-    <RelativeLayout
-        android:layout_width="110dp"
+    <fragment
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:name="testproject.halfmoonstudios.com.ponder.OptionsFragment"
+        android:id="@+id/fragment2"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="65dp">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/infoView"
-            android:src="@drawable/info_button"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.47"
-            android:contentDescription="@string/info_button"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/addView"
-            android:src="@drawable/expand_button"
-            android:layout_weight="0.44"
-            android:contentDescription="@string/menu_button"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
+        tools:layout="@layout/fragment_options" />
 
 </LinearLayout>

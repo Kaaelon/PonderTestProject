@@ -8,6 +8,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:paddingRight="10dp"
             android:id="@+id/imageView"
             android:src="@drawable/info_button"
             android:contentDescription="@string/info_button">
@@ -16,6 +17,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:paddingLeft="10dp"
             android:id="@+id/imageView3"
             android:src="@drawable/expand_button"
             android:contentDescription="@string/menu_button">
