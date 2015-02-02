@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
             fragmentLogo = new LogoFragment();
             fm.beginTransaction().add(R.id.fragmentContainer, fragmentLogo).commit();
 
-        cd = new CountDownTimer(1000,10000) {
+        cd = new CountDownTimer(2000,10000) {
             @Override
             public void onTick(long millisUntilFinished) {
 

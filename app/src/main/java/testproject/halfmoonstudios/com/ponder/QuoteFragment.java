@@ -31,11 +31,12 @@ public class QuoteFragment extends Fragment {
     private TextView mAuthorView;
     private ImageView mCategoryView;
     private int curNumber = 0;
-    @Override
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {
