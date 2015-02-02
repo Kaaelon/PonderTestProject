@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MenuFragment extends Fragment {
@@ -22,6 +23,7 @@ public class MenuFragment extends Fragment {
     private TextView mHealthText;
     private TextView mIdeasText;
     private TextView mMotivationText;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
