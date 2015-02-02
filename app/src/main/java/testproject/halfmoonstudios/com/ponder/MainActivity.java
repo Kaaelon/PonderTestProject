@@ -9,13 +9,12 @@ import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ImageView;
 
-import testproject.halfmoonstudios.com.ponder.R;
-
 
 public class MainActivity extends ActionBarActivity {
 
     private CountDownTimer cd;
     private FragmentManager fm = getFragmentManager();
+    private int menuSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +71,27 @@ public class MainActivity extends ActionBarActivity {
         cd.start();
         }
     }
+
+    public void replaceFragment(){
+        //Allows fragment replacements calls from within other fragments (must cast activity object)
+        FragmentManager fm = getFragmentManager();
+        Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
+        newFragment = new QuoteFragment();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
+        transaction.replace(R.id.fragmentContainer,newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+   public void setSelection(int selection){
+       //Sets menuSelection variables (must reference int id of menu view) this allows for flexible manipulation
+       this.menuSelection = selection;
+   }
+
+  public int getSelection(){
+     //Allows for the retrieval of the current menuSelection
+      return this.menuSelection;
+  }
 
 
 

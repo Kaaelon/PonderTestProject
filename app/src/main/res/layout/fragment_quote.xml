@@ -5,12 +5,30 @@
     android:layout_gravity="center_vertical|center_horizontal"
     android:gravity="center">
 
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/categoryView"
+        android:layout_marginBottom="80dp"/>
+
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/quote_text"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
         android:text="QuoteTest"
+        android:layout_gravity="center" />
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seperator_text"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="30sp"
+        android:text="-"
         android:layout_gravity="center" />
 
     <TextView android:layout_width="wrap_content"
@@ -18,8 +36,37 @@
         android:id="@+id/quote_author"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="90dp"
         android:text="AuthorTest"
         android:gravity="center_vertical|center_horizontal"
         android:layout_gravity="center" />
+
+    <RelativeLayout
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/infoView"
+            android:src="@drawable/info_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.47"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/addView"
+            android:src="@drawable/expand_button"
+            android:layout_weight="0.44"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 
 </LinearLayout>

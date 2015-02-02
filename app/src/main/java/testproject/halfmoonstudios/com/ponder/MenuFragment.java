@@ -66,6 +66,10 @@ public class MenuFragment extends Fragment {
 
       @Override
       public void onClick(View v){
+          //Passes menu choice id to menuSelection variable in main activity
+          ((MainActivity)getActivity()).setSelection(R.drawable.wellbeing_button);
+          //Calls fragmentReplace() method from mainActivity to transition fragments
+          ((MainActivity)getActivity()).replaceFragment();
 
             }
         });
@@ -74,6 +78,10 @@ public class MenuFragment extends Fragment {
 
         @Override
         public void onClick(View v){
+            //Passes menu choice id to menuSelection variable in main activity
+            ((MainActivity)getActivity()).setSelection(R.drawable.grief_button);
+           //Calls fragmentReplace() method from mainActivity to transition fragments
+            ((MainActivity)getActivity()).replaceFragment();
 
         }
     });
@@ -82,7 +90,10 @@ public class MenuFragment extends Fragment {
 
        @Override
        public void onClick(View v){
-
+           //Passes menu choice id to menuSelection variable in main activity
+           ((MainActivity)getActivity()).setSelection(R.drawable.health_button);
+           //Calls fragmentReplace() method from mainActivity to transition fragments
+           ((MainActivity)getActivity()).replaceFragment();
             }
         });
 
@@ -90,14 +101,20 @@ public class MenuFragment extends Fragment {
 
        @Override
        public void onClick(View v){
-
+           //Passes menu choice id to menuSelection variable in main activity
+           ((MainActivity)getActivity()).setSelection(R.drawable.ideas_button);
+           //Calls fragmentReplace() method from mainActivity to transition fragments
+           ((MainActivity)getActivity()).replaceFragment();
             }
         });
      mMotivationView.setOnClickListener(new View.OnClickListener(){
 
      @Override
      public void onClick(View v){
-
+         //Passes menu choice id to menuSelection variable in main activity
+         ((MainActivity)getActivity()).setSelection(R.drawable.motivation_button);
+         //Calls fragmentReplace() method from mainActivity to transition fragments
+         ((MainActivity)getActivity()).replaceFragment();
             }
         });
     }
