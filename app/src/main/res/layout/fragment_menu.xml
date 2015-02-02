@@ -174,7 +174,5 @@
         android:contentDescription="@string/button_expand" />
 
 
-
-
 </RelativeLayout>
 
