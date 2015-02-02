@@ -7,7 +7,6 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
-import android.widget.ImageView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -21,25 +20,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupLogo();
-        setupButton();
-
     }
 
-    private void setupButton() {
-        //get reference to button
-        ImageView mPonderView = (ImageView) findViewById(R.id.ponder_img);
-       /* mPonderView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
-                if(fragment == null){
-                    fragment = new QuoteFragment();
-                    fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
-                }
-            }
-        });*/
-
-    }
     private void setupLogo(){
         FragmentManager fm = getFragmentManager();
         Fragment fragmentLogo = fm.findFragmentById(R.id.fragmentContainer);

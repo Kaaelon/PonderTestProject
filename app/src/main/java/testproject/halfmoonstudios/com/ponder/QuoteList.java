@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class QuoteList {
     private static QuoteList mQuoteList;
-    private ArrayList<Quote> mQuoteArray = new ArrayList<>();
+    private static ArrayList<Quote> mQuoteArray = new ArrayList<>();
     private Context mAppContext;
 
     private QuoteList(Context mAppContext){
@@ -24,7 +24,7 @@ public class QuoteList {
 
     public static QuoteList get(Context c){
         if(mQuoteList == null){
-            mQuoteList = new QuoteList(c.getApplicationContext());
+            mQuoteList = new QuoteList(c);
         }
         return mQuoteList;
     }
@@ -39,7 +39,7 @@ public class QuoteList {
         return mRetList;
     }
 
-    public ArrayList<Quote> getArray(int stringRes){
+    public static ArrayList<Quote> getArray(int stringRes){
         ArrayList<Quote> retList = new ArrayList<>();
         for(Quote q : mQuoteArray){
             if(q.getmCategory().equals(stringRes)){

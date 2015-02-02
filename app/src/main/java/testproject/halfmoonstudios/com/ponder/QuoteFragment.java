@@ -10,26 +10,23 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * QUOTE FRAGMENT UNDER CONSTRUCTION IN CURRENT APP VERSION NOT MUCH OF THIS CODE IS RELAVENT ANYMORE!
- * DONE:
- * Variable declaration
- * Variable assignment
- * assignCateogry method
- * TODO:
- * Access singleton
- * Populate relative arrayList(through getting data from singleton)
- * Onclicklistener for menu button
- * Onclicklistener for information button
- */
+* Quote Fragment
+ * Populates an arrayList of quotes through accessing QuoteList singleton and cycles through quotes
+ * TODO
+ * generate author
+ * onclick listener to change quote
+ * */
 
 public class QuoteFragment extends Fragment {
     //Create Views for quote fragment
     private TextView mQuoteView;
     private TextView mAuthorView;
     private ImageView mCategoryView;
+    private ArrayList<Quote> mQuoteList = new ArrayList<>();
     private int curNumber = 0;
 
     @Override
@@ -46,8 +43,15 @@ public class QuoteFragment extends Fragment {
         mQuoteView = (TextView)v.findViewById(R.id.quote_text);
         mAuthorView = (TextView)v.findViewById(R.id.quote_author);
         mCategoryView = (ImageView)v.findViewById(R.id.categoryView);
-
+    //Call to assign category method
+        assignCategory();
+    //Call to populateList() method
+        populateList();
+    //Call to setUpAnimation() method
         setUpAnimation(v);
+
+
+
         return v;
     }
 
@@ -65,7 +69,7 @@ public class QuoteFragment extends Fragment {
         final Animation out = new AlphaAnimation(1.0f, 0.0f);
         out.setDuration(3000);
 
-        mQuoteView.setOnClickListener(new View.OnClickListener() {
+        mCategoryView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 mQuoteView.startAnimation(out);
@@ -95,11 +99,20 @@ public class QuoteFragment extends Fragment {
         int randomNum = 0;
         Random random = new Random();
         while (randomNum == curNumber) {
-            //randomNum = random.nextInt(mQuoteList.length);
+            randomNum = random.nextInt(mQuoteList.size());
         }
         curNumber = randomNum;
-        //return mQuoteList[randomNum].getmQoute();
-        return 0;
+        return mQuoteList.get(randomNum).getmQoute();
     }
+   public int generateAuthor(){
+
+       return mQuoteList.get(curNumber).getmAuthor();
+   }
+
+  public void populateList(){
+      //Populates mQuoeList with quotes that match menu/category choice
+      QuoteList.get(((MainActivity)getActivity()));
+      mQuoteList = QuoteList.getArray(((MainActivity)getActivity()).getSelection());
+  }
 
 }
