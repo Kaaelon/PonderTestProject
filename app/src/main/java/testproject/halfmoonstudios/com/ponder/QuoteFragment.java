@@ -2,6 +2,7 @@ package testproject.halfmoonstudios.com.ponder;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,9 @@ public class QuoteFragment extends Fragment {
         populateList();
     //Call to setUpAnimation() method
         setUpAnimation(v);
+    //Sets initial value of quoteFragment
+        mQuoteView.setText(generateQuote());
+        mAuthorView.setText(generateAuthor());
 
 
 
@@ -71,9 +75,8 @@ public class QuoteFragment extends Fragment {
 
         mCategoryView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 mQuoteView.startAnimation(out);
-
+                mAuthorView.startAnimation(out);
             }
         });
 
@@ -86,7 +89,9 @@ public class QuoteFragment extends Fragment {
             @Override
             public void onAnimationEnd(Animation animation) {
                 mQuoteView.setText(generateQuote());
+                mAuthorView.setText((generateAuthor()));
                 mQuoteView.startAnimation(in);
+                mAuthorView.startAnimation(in);
             }
 
             @Override
@@ -95,6 +100,10 @@ public class QuoteFragment extends Fragment {
             }
         });
     }
+    public int generateAuthor(){
+        return mQuoteList.get(curNumber).getmAuthor();
+    }
+
     public int generateQuote(){
         int randomNum = 0;
         Random random = new Random();
@@ -104,15 +113,13 @@ public class QuoteFragment extends Fragment {
         curNumber = randomNum;
         return mQuoteList.get(randomNum).getmQoute();
     }
-   public int generateAuthor(){
-
-       return mQuoteList.get(curNumber).getmAuthor();
-   }
 
   public void populateList(){
       //Populates mQuoeList with quotes that match menu/category choice
       QuoteList.get(((MainActivity)getActivity()));
+      Log.v("Main",""+((MainActivity)getActivity()).getSelection());
       mQuoteList = QuoteList.getArray(((MainActivity)getActivity()).getSelection());
+     Log.v("HERE","" + mQuoteList.size());
   }
 
 }

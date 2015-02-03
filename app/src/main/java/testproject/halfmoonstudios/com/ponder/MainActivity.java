@@ -54,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    public void replaceFragment(){
+    public void replaceQuoteFragment(){
         //Allows fragment replacements calls from within other fragments (must cast activity object)
         FragmentManager fm = getFragmentManager();
         Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
@@ -65,6 +65,17 @@ public class MainActivity extends ActionBarActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+    public void replaceMenuFragment(){
+        //Allows fragment replacements calls from within other fragments (must cast activity object)
+        FragmentManager fm = getFragmentManager();
+        Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
+        newFragment = new MenuFragment();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
+        transaction.replace(R.id.fragmentContainer,newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();}
+
    public void setSelection(int selection){
        //Sets menuSelection variables (must reference int id of menu view) this allows for flexible manipulation
        this.menuSelection = selection;

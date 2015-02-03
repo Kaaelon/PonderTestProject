@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MenuFragment extends Fragment {
@@ -71,7 +70,7 @@ public class MenuFragment extends Fragment {
           //Passes menu choice id to menuSelection variable in main activity
           ((MainActivity)getActivity()).setSelection(R.drawable.wellbeing_button);
           //Calls fragmentReplace() method from mainActivity to transition fragments
-          ((MainActivity)getActivity()).replaceFragment();
+          ((MainActivity)getActivity()).replaceQuoteFragment();
 
             }
         });
@@ -83,7 +82,7 @@ public class MenuFragment extends Fragment {
             //Passes menu choice id to menuSelection variable in main activity
             ((MainActivity)getActivity()).setSelection(R.drawable.grief_button);
            //Calls fragmentReplace() method from mainActivity to transition fragments
-            ((MainActivity)getActivity()).replaceFragment();
+            ((MainActivity)getActivity()).replaceQuoteFragment();
 
         }
     });
@@ -95,7 +94,7 @@ public class MenuFragment extends Fragment {
            //Passes menu choice id to menuSelection variable in main activity
            ((MainActivity)getActivity()).setSelection(R.drawable.health_button);
            //Calls fragmentReplace() method from mainActivity to transition fragments
-           ((MainActivity)getActivity()).replaceFragment();
+           ((MainActivity)getActivity()).replaceQuoteFragment();
             }
         });
 
@@ -106,7 +105,7 @@ public class MenuFragment extends Fragment {
            //Passes menu choice id to menuSelection variable in main activity
            ((MainActivity)getActivity()).setSelection(R.drawable.ideas_button);
            //Calls fragmentReplace() method from mainActivity to transition fragments
-           ((MainActivity)getActivity()).replaceFragment();
+           ((MainActivity)getActivity()).replaceQuoteFragment();
             }
         });
      mMotivationView.setOnClickListener(new View.OnClickListener(){
@@ -116,7 +115,7 @@ public class MenuFragment extends Fragment {
          //Passes menu choice id to menuSelection variable in main activity
          ((MainActivity)getActivity()).setSelection(R.drawable.motivation_button);
          //Calls fragmentReplace() method from mainActivity to transition fragments
-         ((MainActivity)getActivity()).replaceFragment();
+         ((MainActivity)getActivity()).replaceQuoteFragment();
             }
         });
     }
