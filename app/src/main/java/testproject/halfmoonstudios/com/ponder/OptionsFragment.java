@@ -11,10 +11,11 @@ import android.widget.ImageView;
  * Fragment holds the menu button and the info button to be displayed on both the menu and quote pages
  *
  * TODO:
- * Onclicklistener for information button
+ * Functionality for infoButton
  */
 public class OptionsFragment extends Fragment {
-    private ImageView rMenuView;
+    private ImageView mMenuView;
+    private ImageView mInfoView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,18 +26,19 @@ public class OptionsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_options, parent, false);
-    //Assign value to rMenuView
-        rMenuView = (ImageView)view.findViewById(R.id.menuView);
+    //Assign value to rMenuView and rInfoButton
+        mMenuView = (ImageView)view.findViewById(R.id.menuView);
+        mInfoView = (ImageView)view.findViewById(R.id.infoView);
         setupMenuView();
         return view;
     }
 
     public void setupMenuView(){
         /*Sets onClickListener to menuView and calls replaceMenuFragment() from host activity */
-        rMenuView.setOnClickListener(new View.OnClickListener(){
+        mMenuView.setOnClickListener(new View.OnClickListener() {
             @Override
-        public void onClick(View v){
-                ((MainActivity)getActivity()).replaceMenuFragment();
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).replaceMenuFragment();
             }
 
 
@@ -44,5 +46,17 @@ public class OptionsFragment extends Fragment {
 
 
     }
+  public void setupInfoButton(){
+      //Sets onclicklistener to mInfoview, functionality to be added later
+      mInfoView.setOnClickListener(new View.OnClickListener(){
+          @Override
+          public void onClick(View v){
+
+          }
+
+
+      });
+
+  }
 }
 
