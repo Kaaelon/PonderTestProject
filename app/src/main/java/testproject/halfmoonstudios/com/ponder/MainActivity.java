@@ -1,15 +1,24 @@
 package testproject.halfmoonstudios.com.ponder;
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Window;
+import android.view.WindowManager;
 
+/**
+ * MainActivity - default activity containing setup information for the app, plus management of fragments
+ *
+ * TODO
+ * Might be a better way of managing fragments - lots of repeated code
+ */
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     private CountDownTimer cd;
     private FragmentManager fm = getFragmentManager();
@@ -17,6 +26,11 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //remove title bar from app
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //flag as fullscreen for layout parameters
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupLogo();
@@ -75,6 +89,17 @@ public class MainActivity extends ActionBarActivity {
         transaction.replace(R.id.fragmentContainer,newFragment);
         transaction.addToBackStack(null);
         transaction.commit();}
+
+    public void replaceInfoFragment(){
+        FragmentManager fm = getFragmentManager();
+        Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
+        newFragment = new InfoFragment();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
+        transaction.replace(R.id.fragmentContainer,newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
    public void setSelection(int selection){
        //Sets menuSelection variables (must reference int id of menu view) this allows for flexible manipulation

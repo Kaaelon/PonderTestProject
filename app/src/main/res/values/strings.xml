@@ -8,6 +8,8 @@
     <string name="studioFirstName">h a l f m o o n</string>
     <string name="studioLastName">S t u d i o s</string>
     <string name="title_activity_quote">QuoteActivity</string>
+    <string name="info_title">Info Title</string>
+    <string name="info_body">Info Body</string>
     <!-- View content descriptions -->
     <string name="ponderLogo">Ponder Logo</string>
     <string name="lilypadCircle">Lilypad Circle</string>

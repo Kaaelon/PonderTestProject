@@ -2,20 +2,24 @@ package testproject.halfmoonstudios.com.ponder;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 /**
- * Fragment holds the menu button and the info button to be displayed on both the menu and quote pages
+ * Fragment holds the menu button and the info button to be displayed on menu, quote and info pages
  *
  * TODO:
- * Functionality for infoButton
+ * Fixing error menu button not working
+ * Fixing error when on same page as what is selected (ie clicking info button while on info page
  */
 public class OptionsFragment extends Fragment {
     private ImageView mMenuView;
     private ImageView mInfoView;
+    private String type;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,7 @@ public class OptionsFragment extends Fragment {
         mMenuView = (ImageView)view.findViewById(R.id.menuView);
         mInfoView = (ImageView)view.findViewById(R.id.infoView);
         setupMenuView();
+        setupInfoButton();
         return view;
     }
 
@@ -38,25 +43,39 @@ public class OptionsFragment extends Fragment {
         mMenuView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) getActivity()).replaceMenuFragment();
+                //adjust type to check current fragment
+                type = "MenuFragment";
+                if (!isCurrentFragment(type)) {
+                    ((MainActivity) getActivity()).replaceMenuFragment();
+                }
             }
-
-
         });
-
-
     }
   public void setupInfoButton(){
-      //Sets onclicklistener to mInfoview, functionality to be added later
+      //Sets onclicklistener for infoButton
       mInfoView.setOnClickListener(new View.OnClickListener(){
           @Override
           public void onClick(View v){
-
+              //adjust type to check current fragment
+              type = "InfoFragment";
+              //check if already on InfoFragment
+              if (!isCurrentFragment(type)) {
+                  ((MainActivity) getActivity()).replaceInfoFragment();
+              }
           }
-
-
       });
+  }
 
+  public boolean isCurrentFragment(String type) {
+      boolean isCurrent = false;
+      Fragment f = getActivity().getFragmentManager().findFragmentByTag(type);
+      if (f instanceof InfoFragment && type.equals("InfoFragment")) {
+         isCurrent = true;
+      }
+      if (f instanceof MenuFragment && type.equals("MenuFragment")) {
+          isCurrent = true;
+      }
+      return isCurrent;
   }
 }
 
