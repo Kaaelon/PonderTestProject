@@ -12,15 +12,14 @@
         android:id="@+id/categoryView"
         android:layout_marginBottom="80dp"/>
 
-    <TextView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:id="@+id/quote_text"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="8dp"
-        android:text="QuoteTest"
-        android:layout_gravity="center" />
+        android:text="QuoteTest" />
 
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +27,7 @@
         android:textColor="#FFFFFF"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="8dp"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:text="-"
         android:layout_gravity="center" />
 
@@ -36,7 +35,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/quote_author"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_marginTop="10dp"
         android:text="AuthorTest"
         android:gravity="center_vertical|center_horizontal"
