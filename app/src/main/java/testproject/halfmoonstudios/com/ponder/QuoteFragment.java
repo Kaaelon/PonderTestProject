@@ -143,7 +143,7 @@ public class QuoteFragment extends Fragment {
         paint.getTextBounds(text,0,text.length(),textBounds);
         //TrueBounds is a rect I thought we could use that takes all dimensions of the quote object minus the bottom which is from the textbounds object
         trueBounds = new Rect(mQuoteView.getLeft(),mQuoteView.getTop(),mQuoteView.getRight(),textBounds.bottom);
-        //The idea for this loop is that while the height of viewBounds is greater than the height of truebounds, the textsize is decreased, the textpaint object has it's textsize set to the new textsize and we recall getTextBounds as to create the smaller rect object 
+        //The idea for this loop is that while the height of viewBounds is greater than the height of truebounds, the textsize is decreased, the textpaint object has it's textsize set to the new textsize and we recall getTextBounds as to create the smaller rect object
         while(viewBounds.height() > trueBounds.height()){
             textSize--;
             paint.setTextSize(textSize);
