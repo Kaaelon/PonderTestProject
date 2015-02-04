@@ -16,7 +16,7 @@
         android:layout_height="200dp"
         android:id="@+id/quote_text"
         android:textColor="#FFFFFF"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="8dp"
         android:text="QuoteTest" />
