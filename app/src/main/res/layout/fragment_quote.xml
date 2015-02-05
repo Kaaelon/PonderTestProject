@@ -14,10 +14,11 @@
         android:id="@+id/categoryView"
         android:layout_marginBottom="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp" />
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="60dp" />
 
-    <TextView android:layout_width="334dp"
-        android:layout_height="123dp"
+    <TextView android:layout_width="344dp"
+        android:layout_height="250dp"
         android:id="@+id/quote_text"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
@@ -26,12 +27,12 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:layout_weight="0.06" />
+       
 
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/seperator_text"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="8dp"
         android:textSize="25sp"
         android:text="-"
@@ -43,6 +44,7 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
+        android:textSize="25sp"
         android:text="AuthorTest"
         android:gravity="center_vertical|center_horizontal"
         android:layout_gravity="center" />
