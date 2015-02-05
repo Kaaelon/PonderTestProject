@@ -12,10 +12,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:id="@+id/categoryView"
-        android:layout_marginBottom="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="60dp"
-        android:layout_marginTop="60dp" />
+        android:layout_gravity="center_horizontal" />
 
     <TextView android:layout_width="344dp"
         android:layout_height="250dp"
@@ -26,7 +23,8 @@
         android:text="QuoteTest"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:layout_weight="0.06" />
+        android:layout_weight="0.06"
+        android:gravity="center" />
        
 
     <TextView android:layout_width="wrap_content"
@@ -42,7 +40,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/quote_author"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:textSize="25sp"
         android:text="AuthorTest"
@@ -50,13 +47,14 @@
         android:layout_gravity="center" />
 
     <fragment
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:name="testproject.halfmoonstudios.com.ponder.OptionsFragment"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:id="@+id/fragment2"
         tools:layout="@layout/fragment_options"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginTop="60dp" />
 
 </LinearLayout>

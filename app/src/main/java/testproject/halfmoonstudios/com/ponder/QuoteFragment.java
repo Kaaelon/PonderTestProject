@@ -146,6 +146,7 @@ public class QuoteFragment extends Fragment {
         float textSize = 40; //(int)mQuoteView.getTextSize();
         //Creates rectangle object to be used in getTextBounds, which essentially takes a string, the starting index and ending index and returns the smallest
         Rect textBounds = new Rect();
+        //I added trueBounds when I started running into trouble and realizing that it was hard to measure the rectangles against eachother, my idea for trubounds is that we create it with the Top,Left and Right of the TextView but the bottom of the textBounds Rect()
         Rect trueBounds;
         //Creates Rect() object that covers the bounds of the mQuoteView, this code works 100% perfectly, essentially passing the preset bounds of the TextView and creating a rectangle from it
         Rect viewBounds= new Rect(mQuoteView.getLeft(),mQuoteView.getTop(),mQuoteView.getRight(),mQuoteView.getBottom());
@@ -157,9 +158,7 @@ public class QuoteFragment extends Fragment {
         //Rect trueBounds;
         //TrueBounds is a rect I thought we could use that takes all dimensions of the quote object minus the bottom which is from the textbounds object
         //trueBounds = new Rect(mQuoteView.getLeft(),mQuoteView.getTop(),mQuoteView.getRight(),textBounds.bottom);
-		
-        //I added trueBounds when I started running into trouble and realizing that it was hard to measure the rectangles against eachother, my idea for trubounds is that we create it with the Top,Left and Right of the TextView but the bottom of the textBounds Rect()
-        Rect trueBounds;
+
         //Gets the text from the current quote and changes it to a string (originally a charset)
         String text = mQuoteView.getText().toString();
         //TextPaint object instantiated so we can use getTextBounds() method mentioned earlier
@@ -176,10 +175,6 @@ public class QuoteFragment extends Fragment {
             targetSize = Math.max(targetSize - 1, 25);
             textHeight = getTextHeight(text,paint,mQuoteView.getWidth(),targetSize);
         }*/
-
-        float targetSize = paint.getTextSize();
-
-        int textHeight = getTextHeight(text,paint,mQuoteView.getWidth(),targetSize);
 
         while (textHeight > mQuoteView.getHeight() && targetSize > 25) {
             targetSize = Math.max(targetSize - 1, 25);
@@ -305,12 +300,5 @@ public class QuoteFragment extends Fragment {
 
         mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"myriadproregular.otf");
         mAuthorView.setTypeface(mtypeFace);
-    }
-
-    //separate function for getTextHeight
-   private int getTextHeight(CharSequence source, TextPaint paint, int width, float textSize) {
-        paint.setTextSize(textSize);
-        StaticLayout layout = new StaticLayout(source, paint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
-        return layout.getHeight();
     }
 }
