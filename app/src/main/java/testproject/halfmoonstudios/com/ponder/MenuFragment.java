@@ -22,6 +22,7 @@ public class MenuFragment extends Fragment {
     private TextView mHealthText;
     private TextView mIdeasText;
     private TextView mMotivationText;
+    private TextView mCenterText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class MenuFragment extends Fragment {
         mHealthText = (TextView)v.findViewById(R.id.healthText);
         mIdeasText = (TextView)v.findViewById(R.id.ideasText);
         mMotivationText = (TextView)v.findViewById(R.id.motivationText);
+        mCenterText = (TextView)v.findViewById(R.id.centerText);
 
         //Create TypeFaceObject and assign font
         Typeface mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
@@ -56,6 +58,12 @@ public class MenuFragment extends Fragment {
         mHealthText.setTypeface(mtypeFace);
         mIdeasText.setTypeface(mtypeFace);
         mMotivationText.setTypeface(mtypeFace);
+
+        //Creates typeFaceObject for mCenterText
+        mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"myriadproregular.otf");
+
+        //Sets text of CenterView
+        mCenterText.setTypeface(mtypeFace);
 
         //Set onclick listeners for textviews
         setListeners();
