@@ -58,11 +58,6 @@ public class MenuFragment extends Fragment {
         mHealthText.setTypeface(mtypeFace);
         mIdeasText.setTypeface(mtypeFace);
         mMotivationText.setTypeface(mtypeFace);
-
-        //Creates typeFaceObject for mCenterText
-        mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"myriadproregular.otf");
-
-        //Sets text of CenterView
         mCenterText.setTypeface(mtypeFace);
 
         //Set onclick listeners for textviews

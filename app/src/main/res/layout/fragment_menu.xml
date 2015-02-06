@@ -3,174 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="280dp"
-        android:layout_height="280dp"
-        android:id="@+id/circleMenu"
-        android:src="@drawable/largecircle"
-        android:contentDescription="@string/lilypadCircle"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout"
-        android:layout_marginTop="90dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/wellbeingText"
-            android:text="@string/button_wellbeing"
-            android:layout_marginLeft="10dp"
-            android:contentDescription="@string/button_wellbeing"
-            android:textColor="#FFFFFF"/>
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/wellbeingView"
-            android:src="@drawable/wellbeing_button"
-            android:layout_marginBottom="40dp"
-            android:contentDescription="@string/button_wellbeing" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_alignTop="@+id/circleMenu"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp"
-        android:id="@+id/linearLayout2">
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="@string/button_grief"
-            android:id="@+id/griefText"
-            android:layout_marginLeft="20dp"
-            android:contentDescription="@string/button_grief"
-            android:textColor="#FFFFFF"/>
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/griefView"
-            android:contentDescription="@string/button_grief"
-            android:src="@drawable/grief_button"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="79dp"
-        android:id="@+id/linearLayout3"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_alignLeft="@+id/circleMenu"
-        android:layout_alignStart="@+id/circleMenu">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/healthView"
-            android:contentDescription="@string/button_health"
-            android:src="@drawable/health_button"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_health"
-            android:id="@+id/healthText"
-            android:layout_marginLeft="20dp"
-            android:contentDescription="@string/button_health"
-            android:textColor="#FFFFFF"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/linearLayout3"
-        android:layout_alignRight="@+id/circleMenu"
-        android:layout_alignEnd="@+id/circleMenu"
-        android:id="@+id/linearLayout4">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/motivationView"
-            android:contentDescription="@string/button_motivation"
-            android:src="@drawable/motivation_button"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_motivation"
-            android:id="@+id/motivationText"
-            android:layout_marginLeft="10dp"
-            android:contentDescription="@string/button_motivation"
-            android:textColor="#FFFFFF"/>
-
-
-        </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="21dp"
-        android:layout_marginEnd="21dp"
-        android:id="@+id/linearLayout5">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_ideas"
-            android:layout_marginLeft="25dp"
-            android:id="@+id/ideasText"
-            android:contentDescription="@string/button_ideas"
-            android:textColor="#FFFFFF"/>
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/ideasView"
-            android:contentDescription="@string/button_ideas"
-            android:src="@drawable/ideas_button" />
-
-    </LinearLayout>
-
 
     <TextView
-        android:layout_width="160dp"
-        android:layout_height="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/centerText"
-        android:text="How do you \n want to be \n inspired today?"
-        android:lineSpacingMultiplier="1.5"
+        android:text="How would you like to be inspired?"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
-        android:minLines="3"
-        android:maxLines="3"
-        android:contentDescription="@string/button_collapse"
-        android:layout_below="@+id/linearLayout"
-        android:layout_toRightOf="@+id/linearLayout2"
-        android:layout_toEndOf="@+id/linearLayout2"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_marginBottom="57dp"
+        android:layout_above="@+id/linearLayout6"
+        android:layout_centerHorizontal="true" />
 
     <fragment
         android:layout_width="wrap_content"
@@ -178,8 +22,158 @@
         android:name="testproject.halfmoonstudios.com.ponder.OptionsFragment"
         android:id="@+id/fragment"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         tools:layout="@layout/fragment_options" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="0"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:id="@+id/linearLayout6">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/linearLayout2"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp">
+
+            <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:id="@+id/griefView"
+                android:contentDescription="@string/button_grief"
+                android:src="@drawable/grief_white"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/button_grief"
+                android:id="@+id/griefText"
+                android:layout_marginLeft="13dp"
+                android:contentDescription="@string/button_grief"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:id="@+id/wellbeingView"
+                android:src="@drawable/wellbeing_white"
+                android:contentDescription="@string/button_wellbeing" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wellbeingText"
+                android:text="@string/button_wellbeing"
+                android:layout_marginLeft="0dp"
+                android:contentDescription="@string/button_wellbeing"
+                android:textColor="#FFFFFF"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout3"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:id="@+id/healthView"
+                android:contentDescription="@string/button_health"
+                android:src="@drawable/health_white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_health"
+                android:id="@+id/healthText"
+                android:layout_marginLeft="8dp"
+                android:contentDescription="@string/button_health"
+                android:textColor="#FFFFFF"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/linearLayout3"
+            android:id="@+id/linearLayout4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp">
+
+            <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:id="@+id/motivationView"
+                android:contentDescription="@string/button_motivation"
+                android:src="@drawable/motivation_white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_motivation"
+                android:id="@+id/motivationText"
+                android:contentDescription="@string/button_motivation"
+                android:textColor="#FFFFFF"
+                android:gravity="left" />
+
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linearLayout3"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/linearLayout5"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:id="@+id/ideasView"
+                android:contentDescription="@string/button_ideas"
+                android:src="@drawable/ideas_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_ideas"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/ideasText"
+                android:contentDescription="@string/button_ideas"
+                android:textColor="#FFFFFF"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </RelativeLayout>
