@@ -124,7 +124,8 @@
             android:layout_alignTop="@+id/linearLayout3"
             android:id="@+id/linearLayout4"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="3dp">
 
             <ImageView
                 android:layout_width="55dp"
