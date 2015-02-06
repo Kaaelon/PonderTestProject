@@ -71,7 +71,7 @@ public class MenuFragment extends Fragment {
       @Override
       public void onClick(View v){
           //Passes menu choice id to menuSelection variable in main activity
-          ((MainActivity)getActivity()).setSelection(R.drawable.wellbeing_button);
+          ((MainActivity)getActivity()).setSelection(R.drawable.wellbeing_white);
           //Calls fragmentReplace() method from mainActivity to transition fragments
           ((MainActivity)getActivity()).replaceQuoteFragment();
 
@@ -83,7 +83,7 @@ public class MenuFragment extends Fragment {
         @Override
         public void onClick(View v){
             //Passes menu choice id to menuSelection variable in main activity
-            ((MainActivity)getActivity()).setSelection(R.drawable.grief_button);
+            ((MainActivity)getActivity()).setSelection(R.drawable.grief_white);
            //Calls fragmentReplace() method from mainActivity to transition fragments
             ((MainActivity)getActivity()).replaceQuoteFragment();
 
@@ -95,7 +95,7 @@ public class MenuFragment extends Fragment {
        @Override
        public void onClick(View v){
            //Passes menu choice id to menuSelection variable in main activity
-           ((MainActivity)getActivity()).setSelection(R.drawable.health_button);
+           ((MainActivity)getActivity()).setSelection(R.drawable.health_white);
            //Calls fragmentReplace() method from mainActivity to transition fragments
            ((MainActivity)getActivity()).replaceQuoteFragment();
             }
@@ -106,7 +106,7 @@ public class MenuFragment extends Fragment {
        @Override
        public void onClick(View v){
            //Passes menu choice id to menuSelection variable in main activity
-           ((MainActivity)getActivity()).setSelection(R.drawable.ideas_button);
+           ((MainActivity)getActivity()).setSelection(R.drawable.ideas_white);
            //Calls fragmentReplace() method from mainActivity to transition fragments
            ((MainActivity)getActivity()).replaceQuoteFragment();
             }
@@ -116,7 +116,7 @@ public class MenuFragment extends Fragment {
      @Override
      public void onClick(View v){
          //Passes menu choice id to menuSelection variable in main activity
-         ((MainActivity)getActivity()).setSelection(R.drawable.motivation_button);
+         ((MainActivity)getActivity()).setSelection(R.drawable.motivation_white);
          //Calls fragmentReplace() method from mainActivity to transition fragments
          ((MainActivity)getActivity()).replaceQuoteFragment();
             }

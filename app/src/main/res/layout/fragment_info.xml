@@ -8,26 +8,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/info_title"
-        android:text="@string/info_title"
+        android:text="@string/infoTitle"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="105dp"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/info_body"
-        android:layout_alignStart="@+id/info_body"
-        android:layout_marginTop="56dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:id="@+id/info_body"
-        android:text="@string/info_body"
+        android:text="@string/ponderInfoPt1"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="83dp"
+        android:layout_marginTop="40dp"
         android:layout_below="@+id/info_title"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:lineSpacingMultiplier="1.25"
+        android:paddingLeft="40dp"
+        android:paddingRight="30dp"
+        android:maxLines="12"
+        android:minLines="12"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:id="@+id/info_Body_End"
+        android:text="@string/ponderInfoPt3"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:lineSpacingMultiplier="1.25"
+        android:paddingLeft="40dp"
+        android:paddingRight="30dp"
+        android:maxLines="12"
+        android:minLines="12"
+        android:layout_below="@+id/info_body"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <fragment
         android:layout_width="wrap_content"

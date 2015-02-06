@@ -50,7 +50,8 @@
                 android:layout_height="55dp"
                 android:id="@+id/griefView"
                 android:contentDescription="@string/button_grief"
-                android:src="@drawable/grief_white"/>
+                android:src="@drawable/grief_white"
+                android:layout_marginBottom="5dp" />
 
             <TextView
                 android:layout_height="wrap_content"
@@ -76,7 +77,8 @@
                 android:layout_height="55dp"
                 android:id="@+id/wellbeingView"
                 android:src="@drawable/wellbeing_white"
-                android:contentDescription="@string/button_wellbeing" />
+                android:contentDescription="@string/button_wellbeing"
+                android:layout_marginBottom="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -103,7 +105,8 @@
                 android:layout_height="55dp"
                 android:id="@+id/healthView"
                 android:contentDescription="@string/button_health"
-                android:src="@drawable/health_white"/>
+                android:src="@drawable/health_white"
+                android:layout_marginBottom="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -132,7 +135,8 @@
                 android:layout_height="55dp"
                 android:id="@+id/motivationView"
                 android:contentDescription="@string/button_motivation"
-                android:src="@drawable/motivation_white"/>
+                android:src="@drawable/motivation_white"
+                android:layout_marginBottom="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -161,13 +165,14 @@
                 android:layout_height="55dp"
                 android:id="@+id/ideasView"
                 android:contentDescription="@string/button_ideas"
-                android:src="@drawable/ideas_white" />
+                android:src="@drawable/ideas_white"
+                android:layout_marginBottom="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/button_ideas"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="12dp"
                 android:id="@+id/ideasText"
                 android:contentDescription="@string/button_ideas"
                 android:textColor="#FFFFFF"/>
