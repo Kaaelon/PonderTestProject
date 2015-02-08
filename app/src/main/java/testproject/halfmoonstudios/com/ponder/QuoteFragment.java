@@ -1,14 +1,9 @@
 package testproject.halfmoonstudios.com.ponder;
 
 import android.app.Fragment;
-import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,15 +71,18 @@ public class QuoteFragment extends Fragment {
     public void setUpAnimation(View v) {
 
         final Animation in = new AlphaAnimation(0.0f, 1.0f);
-        in.setDuration(3000);
+        in.setDuration(2250);
 
         final Animation out = new AlphaAnimation(1.0f, 0.0f);
-        out.setDuration(3000);
+        out.setDuration(2250);
 
         mCategoryView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+
+                if(out.hasEnded() || !out.hasStarted()){
                 mQuoteView.startAnimation(out);
-                mAuthorView.startAnimation(out);
+                mAuthorView.startAnimation(out);}
             }
         });
 
@@ -104,8 +102,9 @@ public class QuoteFragment extends Fragment {
                 //mQuoteView.setTextSize(formatTextSize());
 
                 mAuthorView.setText((generateAuthor()));
+                if(!in.hasStarted()){
                 mQuoteView.startAnimation(in);
-                mAuthorView.startAnimation(in);
+                mAuthorView.startAnimation(in);}
             }
 
             @Override
@@ -123,6 +122,7 @@ public class QuoteFragment extends Fragment {
         int randomNum = 0;
         Random random = new Random();
         while (randomNum == curNumber) {
+            Log.v("HERE", ""+mQuoteList.size());
             randomNum = random.nextInt(mQuoteList.size());
         }
         curNumber = randomNum;
@@ -138,117 +138,7 @@ public class QuoteFragment extends Fragment {
 
 
 
-    public float formatTextSize(){
 
-        //Sets initial text size, higher to test scale down working
-        mQuoteView.setTextSize(TypedValue.COMPLEX_UNIT_SP,40);
-        //saving textSize as sp to variable, getTextSize() returns dp not sp
-        float textSize = 40; //(int)mQuoteView.getTextSize();
-        //Creates rectangle object to be used in getTextBounds, which essentially takes a string, the starting index and ending index and returns the smallest
-        Rect textBounds = new Rect();
-        //I added trueBounds when I started running into trouble and realizing that it was hard to measure the rectangles against eachother, my idea for trubounds is that we create it with the Top,Left and Right of the TextView but the bottom of the textBounds Rect()
-        Rect trueBounds;
-        //Creates Rect() object that covers the bounds of the mQuoteView, this code works 100% perfectly, essentially passing the preset bounds of the TextView and creating a rectangle from it
-        Rect viewBounds= new Rect(mQuoteView.getLeft(),mQuoteView.getTop(),mQuoteView.getRight(),mQuoteView.getBottom());
-        //TrueBounds is a rect I thought we could use that takes all dimensions of the quote object minus the bottom which is from the textbounds object
-        trueBounds = new Rect(mQuoteView.getLeft(),mQuoteView.getTop(),mQuoteView.getRight(),textBounds.bottom);
-        //I added trueBounds when I started running into trouble and realizing that it was hard to measure the rectangles against eachother, my idea for trubounds is that we create it with the Top,Left and Right of the TextView but the bottom of the textBounds Rect()
-        Log.v("getX and Y",": " + mQuoteView.getX() + " " + mQuoteView.getY() + " and maxHeight: " + mQuoteView.getMaxHeight());
-
-        //Rect trueBounds;
-        //TrueBounds is a rect I thought we could use that takes all dimensions of the quote object minus the bottom which is from the textbounds object
-        //trueBounds = new Rect(mQuoteView.getLeft(),mQuoteView.getTop(),mQuoteView.getRight(),textBounds.bottom);
-
-        //Gets the text from the current quote and changes it to a string (originally a charset)
-        String text = mQuoteView.getText().toString();
-        //TextPaint object instantiated so we can use getTextBounds() method mentioned earlier
-        TextPaint paint = new TextPaint();
-        //TrueBounds is a rect I thought we could use that takes all dimensions of the quote object minus the bottom which is from the textbounds object
-        paint.getTextBounds(text,0,text.length(),textBounds);
-        //TrueBounds is a rect I thought we could use that takes all dimensions of the quote object minus the bottom which is from the textbounds object
-
-        float targetSize = paint.getTextSize();
-
-        int textHeight = getTextHeight(text,paint,mQuoteView.getWidth(),targetSize);
-
-        /*while (textHeight > mQuoteView.getHeight() && targetSize > 25) {
-            targetSize = Math.max(targetSize - 1, 25);
-            textHeight = getTextHeight(text,paint,mQuoteView.getWidth(),targetSize);
-        }*/
-
-        while (textHeight > mQuoteView.getHeight() && targetSize > 25) {
-            targetSize = Math.max(targetSize - 1, 25);
-            textHeight = getTextHeight(text,paint,mQuoteView.getWidth(),targetSize);
-        }
-
-
-        //getTextBounds() returns the smallest fitting Rect() object, is passed the string, the starting index (always 0 in this case) and the end index (string.length() so it covers the whole string) and the rect to be created
-
-        //paint.getTextBounds(text,0,text.length(),textBounds);
-
-        /*while ((viewBounds.bottom > textBounds.bottom) && textSize > 20) {
-           textSize--;
-          mQuoteView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
-            Log.v("new textSize :","" + mQuoteView.getTextSize());
-           Log.v("viewBounds bottom",": " + viewBounds.bottom);
-           Log.v("textbounds bottom ", ": " + textBounds.bottom);
-
-       }*/
-
-
-
-        //The idea for this loop is that while the height of viewBounds is greater than the height of truebounds, the textsize is decreased, the textpaint object has it's textsize set to the new textsize and we recall getTextBounds as to create the smaller rect object
-        while((viewBounds.centerY() > trueBounds.centerY()) && textSize > 0){
-            textSize--;
-            paint.setTextSize(textSize);
-            paint.getTextBounds(text,0,text.length(),textBounds);
-            trueBounds = new Rect(mQuoteView.getLeft(),mQuoteView.getTop(),mQuoteView.getRight(),textBounds.bottom);
-           Log.v("textBottom", "" + textBounds.bottom + "textSize " + textSize + " viewBounds height " + viewBounds.height() + " truebounds height " + trueBounds.height());
-       }
-
-        //paint.getTextBounds(text,0,text.length(),textBounds);
-
-//        while ((viewBounds.bottom > textBounds.bottom) && textSize > 20) {
-//            textSize--;
-//            mQuoteView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
-//            Log.v("new textSize :","" + mQuoteView.getTextSize());
-//            Log.v("viewBounds bottom",": " + viewBounds.bottom);
-//            Log.v("textbounds bottom ", ": " + textBounds.bottom);
-//
-//        }
-
-
-
-//        //The idea for this loop is that while the height of viewBounds is greater than the height of truebounds, the textsize is decreased, the textpaint object has it's textsize set to the new textsize and we recall getTextBounds as to create the smaller rect object
-//        while((viewBounds.height() > trueBounds.height()) && textSize > 0){
-//            textSize--;
-//            paint.setTextSize(textSize);
-//            paint.getTextBounds(text,0,text.length(),textBounds);
-//            trueBounds = new Rect(mQuoteView.getLeft(),mQuoteView.getTop(),mQuoteView.getRight(),textBounds.bottom);
-//            Log.v("textBottom", "" + textBounds.bottom + "textSize " + textSize + " viewBounds height " + viewBounds.height() + " truebounds height " + trueBounds.height());
-//        }
-
-        paint.getTextBounds(text,0,text.length(),textBounds);
-        //TrueBounds is a rect I thought we could use that takes all dimensions of the quote object minus the bottom which is from the textbounds object
-        trueBounds = new Rect(mQuoteView.getLeft(),mQuoteView.getTop(),mQuoteView.getRight(),textBounds.bottom);
-        //The idea for this loop is that while the height of viewBounds is greater than the height of truebounds, the textsize is decreased, the textpaint object has it's textsize set to the new textsize and we recall getTextBounds as to create the smaller rect object
-        while((viewBounds.height() > trueBounds.height()) && textSize > 0){
-            textSize--;
-            paint.setTextSize(textSize);
-            paint.getTextBounds(text,0,text.length(),textBounds);
-            trueBounds = new Rect(mQuoteView.getLeft(),mQuoteView.getTop(),mQuoteView.getRight(),textBounds.bottom);
-            Log.v("textBottom", "" + textBounds.bottom + "textSize " + textSize + " viewBounds height " + viewBounds.height() + " truebounds height " + trueBounds.height());
-        }
-
-        return textSize;
-    }
-
-    //separate function for getTextHeight
-   private int getTextHeight(CharSequence source, TextPaint paint, int width, float textSize) {
-        paint.setTextSize(textSize);
-        StaticLayout layout = new StaticLayout(source, paint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
-        return layout.getHeight();
-    }
     public float clunkyTextFormat(){
         String text = mQuoteView.getText().toString();
 
@@ -256,37 +146,18 @@ public class QuoteFragment extends Fragment {
 
             return 28;
 
-        }else if(text.length() < 60){
+        }else if(text.length() < 90){
 
             return 26;
 
-        }else if(text.length() < 90){
-
-            return 25;
-
-        }else if(text.length() < 120){
-
-            return 23;
-
         }else if (text.length() < 150){
 
-            return 21;
+            return 24;
 
-        }else if (text.length() < 180){
-
-            return 20;
-
-        }else if (text.length() < 210){
-
-            return 18;
 
         }else if (text.length() < 240){
 
-            return 17;
-
-        }else if (text.length() > 270){
-
-            return 15;
+            return 21;
 
         }
         return 20;
@@ -298,7 +169,7 @@ public class QuoteFragment extends Fragment {
         Typeface mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
         mQuoteView.setTypeface(mtypeFace);
 
-        mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"myriadproregular.otf");
+        mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
         mAuthorView.setTypeface(mtypeFace);
     }
 }

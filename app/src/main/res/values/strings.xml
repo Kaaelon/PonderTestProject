@@ -8,8 +8,6 @@
     <string name="studioFirstName">h a l f m o o n</string>
     <string name="studioLastName">S t u d i o s</string>
     <string name="title_activity_quote">QuoteActivity</string>
-    <string name="info_title">Info Title</string>
-    <string name="info_body">Info Body</string>
     <!-- View content descriptions -->
     <string name="ponderLogo">Ponder Logo</string>
     <string name="lilypadCircle">Lilypad Circle</string>
@@ -20,6 +18,13 @@
     <string name="info_button">Info Button</string>
     <string name="quote_button">Show Quote</string>
     <string name="menu_button">Menu</string>
+
+    <!-- Info page strings  -->
+    <string name="infoTitle">What is Ponder ?</string>
+    <string name="ponderInfoPt1">Ponder is your mobile source of written inspiration. Designed for moments where you need a change in mood, our team at</string>
+    <string name="halfmoonStudios"> Halfmoon Studios</string>
+    <string name="ponderInfoPt2"> has sourced powerful quotes from notable figures, literary and texts. Whether it be finding inner peace or motivating yourself, Ponder is an app designed for the human condition.</string>
+    <string name="ponderInfoPt3">What will you ponder today?</string>
     <!--Quote string resources, please follow format quote_# -> author_# -->
     <!--Wellbeing -->
     <string name="wellbeing_quote_1">A grateful heart is a beginning of greatness. It is an expression of humility. It is a foundation for the development of such virtues as prayer, faith, courage, contentment, happiness, love, and well-being.</string>
