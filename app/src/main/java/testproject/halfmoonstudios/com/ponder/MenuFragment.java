@@ -3,9 +3,13 @@ package testproject.halfmoonstudios.com.ponder;
 import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +27,12 @@ public class MenuFragment extends Fragment {
     private TextView mIdeasText;
     private TextView mMotivationText;
     private TextView mCenterText;
+
+    //Variables to be used in the centerText animation, declared at class level scope due to being needed in an inner class
+    private String mCharText = "";
+    private int mCountIndex = 0;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +69,10 @@ public class MenuFragment extends Fragment {
         mIdeasText.setTypeface(mtypeFace);
         mMotivationText.setTypeface(mtypeFace);
         mCenterText.setTypeface(mtypeFace);
+
+        //Animate centerText
+
+        animateTextView();
 
         //Set onclick listeners for textviews
         setListeners();
@@ -123,5 +137,89 @@ public class MenuFragment extends Fragment {
         });
     }
 
+    public void animateTextView(){
+
+       setCharacterDelay(40);
+       animateText(mCenterText.getText());
+
+    }
+
+
+    //The following code declares a handler object that adds and displays chars one at at a time to the textview
+    private Handler mHandler = new Handler();
+    int mIndex = 0;
+    CharSequence mText;
+    long mDelay;
+
+
+
+
+    private Runnable characterAdder = new Runnable() {
+        View v = getView();
+
+        @Override
+        public void run() {
+
+
+            mCenterText.setText(mText.subSequence(0, mIndex++));
+            if(mIndex <= mText.length()) {
+                mHandler.postDelayed(characterAdder, mDelay);
+
+            }
+        }
+    };
+    //animateText, setsUp mHandler through assign required values to mText and mIndex, also flushed mHandler through the use of removeCallBacks
+    public void animateText(CharSequence text) {
+
+        mText = text;
+        mIndex = 0;
+
+        mCenterText.setText("");
+        mHandler.removeCallbacks(characterAdder);
+        mHandler.postDelayed(characterAdder, mDelay);
+    }
+    //Sets delay between each characters appearance
+    public void setCharacterDelay(long millis) {
+        mDelay = millis;
+    }
+
+
+    public void animateViews(){
+
+        CountDownTimer cd;
+        final Animation in = new AlphaAnimation(1.0f,0.0f);
+
+        for(int i = 0;i < 5;i++){
+            cd = new CountDownTimer(300,1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                viewVisibility().startAnimation(in);
+                }
+
+                @Override
+                public void onFinish() {
+
+
+                }
+            };
+        }
+
+    }
+
+   private ImageView viewVisibility(){
+
+       if(mGriefView.isShown()){
+           return mWellbeingView;
+       }else if(mWellbeingView.isShown()){
+           return mHealthView;
+       }else if (mHealthView.isShown()){
+           return mIdeasView;
+       }else if (mIdeasView.isShown()){
+           return mMotivationView;
+       }else if (mMotivationView.isShown()){
+           return null;
+       }
+    return mGriefView;
+   }
 
 }
