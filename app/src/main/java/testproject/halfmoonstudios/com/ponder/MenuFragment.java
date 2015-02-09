@@ -1,16 +1,16 @@
 package testproject.halfmoonstudios.com.ponder;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -185,115 +185,50 @@ public class MenuFragment extends Fragment {
 
     public void animateViews(){
 
-        CountDownTimer cd;
 
-            final Animation in = new AlphaAnimation(0.0f,1.0f);
-            in.setDuration(1000);
+        ValueAnimator fadeGrief = ObjectAnimator.ofFloat(mGriefView,"alpha",0.0f,1.0f);
+        fadeGrief.setDuration(850);
+        ValueAnimator fadeGriefTitle = ObjectAnimator.ofFloat(mGriefText,"alpha",0.0f,1.0f);
+        fadeGriefTitle.setDuration(850);
 
-            cd = new CountDownTimer(1500,100) {
-                @Override
-                public void onTick(long millisUntilFinished) {
+        ValueAnimator fadeWellbeing = ObjectAnimator.ofFloat(mWellbeingView,"alpha",0.0f,1.0f);
+        fadeWellbeing.setDuration(850);
+        ValueAnimator fadeWellbeingTitle = ObjectAnimator.ofFloat(mWellbeingText,"alpha",0.0f,1.0f);
+        fadeWellbeingTitle.setDuration(850);
 
+        ValueAnimator fadeHealth = ObjectAnimator.ofFloat(mHealthView,"alpha",0.0f,1.0f);
+        fadeHealth.setDuration(850);
+        ValueAnimator fadeHealthTitle = ObjectAnimator.ofFloat(mHealthText,"alpha",0.0f,1.0f);
+        fadeHealthTitle.setDuration(850);
 
+        ValueAnimator fadeIdeas = ObjectAnimator.ofFloat(mIdeasView,"alpha",0.0f,1.0f);
+        fadeIdeas.setDuration(850);
+        ValueAnimator fadeIdeasTitle = ObjectAnimator.ofFloat(mIdeasText,"alpha",0.0f,1.0f);
+        fadeIdeasTitle.setDuration(850);
 
-                }
+        ValueAnimator fadeMotivation = ObjectAnimator.ofFloat(mMotivationView,"alpha",0.0f,1.0f);
+        fadeMotivation.setDuration(850);
+        ValueAnimator fadeMotivationTitle = ObjectAnimator.ofFloat(mMotivationText,"alpha",0.0f,1.0f);
+        fadeMotivationTitle.setDuration(850);
 
-                @Override
-                public void onFinish() {
-                    if(viewVisibility() != null){
-                    viewVisibility().startAnimation(in);}
-                    Log.v("TIMER ON FINISH", "ON FINISH");
-                    in.reset();
-                    this.start();
+        AnimatorSet fadeGroup = new AnimatorSet();
+        fadeGroup.play(fadeGrief).after(1200);
+        fadeGroup.play(fadeGriefTitle).after(1200);
 
+        fadeGroup.play(fadeWellbeing).after(fadeGrief);
+        fadeGroup.play(fadeWellbeingTitle).after(fadeGrief);;
 
+        fadeGroup.play(fadeHealth).after(fadeWellbeing);
+        fadeGroup.play(fadeHealthTitle).after(fadeWellbeing);
 
-                    in.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-                            Log.v("ANIMATION START","START");
-                            if(curView != null){
-                            curView.setVisibility(View.VISIBLE);
-                            if(!getTitle().isShown()){
-                                getTitle().setVisibility(View.VISIBLE);
-                                getTitle().startAnimation(in);
-                            }}
+        fadeGroup.play(fadeMotivation).after(fadeHealth);
+        fadeGroup.play(fadeMotivationTitle).after(fadeHealth);
 
-
-
-
-
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-
+        fadeGroup.play(fadeIdeas).after(fadeMotivation);
+        fadeGroup.play(fadeIdeasTitle).after(fadeMotivation);
 
 
-
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-
-
-                        }
-                    });
-
-
-                }
-            };
-                cd.start();
-
-        }
-
-
-
-   private ImageView viewVisibility(){
-
-       if(mGriefView.getVisibility() == View.VISIBLE && mWellbeingView.getVisibility() == View.INVISIBLE){
-            curView = mWellbeingView;
-           return mWellbeingView;}
-
-       if(mGriefView.getVisibility() == View.VISIBLE && mWellbeingView.getVisibility() == View.VISIBLE && mHealthView.getVisibility() == View.INVISIBLE){
-           Log.v("WELL","RETURNING HEALTH");
-           curView = mHealthView;
-           return mHealthView;}
-
-       if (mGriefView.getVisibility() == View.VISIBLE && mHealthView.getVisibility() == View.VISIBLE){
-           Log.v("WELL","RETURNING IDEAS");
-           curView = mIdeasView;
-           return mIdeasView;}
-
-       if (mGriefView.getVisibility() == View.VISIBLE && mIdeasView.getVisibility() == View.VISIBLE){
-           Log.v("WELL","RETURNING MOTIVATION");
-           curView = mMotivationView;
-           return mMotivationView;}
-
-        if (mGriefView.getVisibility() == View.VISIBLE && mMotivationView.getVisibility() == View.VISIBLE){
-           Log.v("NULL","JERE");
-           return null;
-       }
-       Log.v("GREIF","JERE");
-       curView = mGriefView;
-    return mGriefView;
-   }
-
-   private TextView getTitle(){
-       if(curView == mGriefView){
-           return mGriefText;
-       }else if(curView == mWellbeingView){
-           return mWellbeingText;
-       }else if(curView == mHealthView){
-           return mHealthText;
-       }else if (curView == mIdeasView){
-           return mIdeasText;
-       }else if (curView == mMotivationView){
-           return mMotivationText;
-       }
-      return null;
-
-   };
+        fadeGroup.start();
 
 
 }
