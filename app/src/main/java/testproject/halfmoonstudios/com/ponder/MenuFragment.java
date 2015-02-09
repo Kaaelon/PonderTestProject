@@ -138,8 +138,15 @@ public class MenuFragment extends Fragment {
 
     public void animateTextView() {
 
-        setCharacterDelay(40);
-        animateText(mCenterText.getText());
+        ValueAnimator centreText = ObjectAnimator.ofFloat(mCenterText, "alpha", 0.0f, 1.0f);
+        centreText.setDuration(1000);
+        centreText.start();
+        ValueAnimator centreSlide = ObjectAnimator.ofFloat(mCenterText,"x",0,100);
+        centreSlide.setDuration(1000);
+        centreSlide.start();
+
+        //setCharacterDelay(40);
+        //animateText(mCenterText.getText());
 
     }
 
