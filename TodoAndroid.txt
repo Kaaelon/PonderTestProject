@@ -1,2 +1,3 @@
 TODO ANDROID 
 - Menu fade in first time 
+- If views touched when loading in, it is buggy 

@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MenuFragment extends Fragment {
     //Declares imageviews
     private ImageView mWellbeingView;
@@ -86,6 +88,8 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 //Passes menu choice id to menuSelection variable in main activity
                 ((MainActivity) getActivity()).setSelection(R.drawable.wellbeing_white);
+                //Animate selection
+                animateSelection(mWellbeingView,mWellbeingText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
                 ((MainActivity) getActivity()).replaceQuoteFragment();
 
@@ -98,8 +102,22 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 //Passes menu choice id to menuSelection variable in main activity
                 ((MainActivity) getActivity()).setSelection(R.drawable.grief_white);
+                //Animate selection
+                animateSelection(mGriefView,mGriefText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
-                ((MainActivity) getActivity()).replaceQuoteFragment();
+                CountDownTimer cd = new CountDownTimer(2500,1) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        ((MainActivity) getActivity()).replaceQuoteFragment();
+                    }
+                };
+                cd.start();
+
 
             }
         });
@@ -110,6 +128,8 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 //Passes menu choice id to menuSelection variable in main activity
                 ((MainActivity) getActivity()).setSelection(R.drawable.health_white);
+                //Animate selection
+                animateSelection(mHealthView,mHealthText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
                 ((MainActivity) getActivity()).replaceQuoteFragment();
             }
@@ -121,6 +141,8 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 //Passes menu choice id to menuSelection variable in main activity
                 ((MainActivity) getActivity()).setSelection(R.drawable.ideas_white);
+                //Animate selection
+                animateSelection(mIdeasView,mIdeasText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
                 ((MainActivity) getActivity()).replaceQuoteFragment();
             }
@@ -131,6 +153,8 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 //Passes menu choice id to menuSelection variable in main activity
                 ((MainActivity) getActivity()).setSelection(R.drawable.motivation_white);
+                //Animate selection
+                animateSelection(mMotivationView,mMotivationText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
                 ((MainActivity) getActivity()).replaceQuoteFragment();
             }
@@ -253,6 +277,82 @@ public class MenuFragment extends Fragment {
 
 
         fadeGroup.start();
+
+
+    }
+
+    public void animateSelection(ImageView v,TextView vText){
+
+        //Populate arraylist with ImageView objects
+        ArrayList<ImageView> imageViewList = new ArrayList<>();
+        imageViewList.add(mGriefView);
+        imageViewList.add(mMotivationView);
+        imageViewList.add(mWellbeingView);
+        imageViewList.add(mIdeasView);
+        imageViewList.add(mHealthView);
+
+        //Populate arrayList with textView objects
+        ArrayList<TextView> textViewList = new ArrayList<>();
+        textViewList.add(mGriefText);
+        textViewList.add(mMotivationText);
+        textViewList.add(mWellbeingText);
+        textViewList.add(mIdeasText);
+        textViewList.add(mHealthText);
+
+
+        //Remove passed in imageView
+        imageViewList.remove(v);
+        textViewList.remove(vText);
+
+        //Create animators from imageViews
+        ValueAnimator fade1 = ObjectAnimator.ofFloat(imageViewList.get(0),"alpha",1.0f,0.0f);
+        fade1.setDuration(1000);
+        ValueAnimator fade2 = ObjectAnimator.ofFloat(imageViewList.get(1),"alpha",1.0f,0.0f);
+        fade2.setDuration(1000);
+        ValueAnimator fade3 = ObjectAnimator.ofFloat(imageViewList.get(2),"alpha",1.0f,0.0f);
+        fade3.setDuration(1000);
+        ValueAnimator fade4 = ObjectAnimator.ofFloat(imageViewList.get(3),"alpha",1.0f,0.0f);
+        fade4.setDuration(1000);
+        //Create animators for textViews
+        ValueAnimator textFade1 = ObjectAnimator.ofFloat(textViewList.get(0),"alpha",1.0f,0.0f);
+        textFade1.setDuration(1000);
+        ValueAnimator textFade2 = ObjectAnimator.ofFloat(textViewList.get(1),"alpha",1.0f,0.0f);
+        textFade2.setDuration(1000);
+        ValueAnimator textFade3 = ObjectAnimator.ofFloat(textViewList.get(2),"alpha",1.0f,0.0f);
+        textFade3.setDuration(1000);
+        ValueAnimator textFade4 = ObjectAnimator.ofFloat(textViewList.get(3),"alpha",1.0f,0.0f);
+        textFade4.setDuration(1000);
+        AnimatorSet fadeGroup = new AnimatorSet();
+
+        fadeGroup.play(fade1).after(100);
+        fadeGroup.play(fade2).with(fade1);
+        fadeGroup.play(fade3).with(fade1);
+        fadeGroup.play(fade4).with(fade1);
+        fadeGroup.play(textFade1).with(fade1);
+        fadeGroup.play(textFade2).with(fade1);
+        fadeGroup.play(textFade3).with(fade1);
+        fadeGroup.play(textFade4).with(fade1);
+
+        fadeGroup.start();
+
+        //Starts animation for slide down
+
+
+        ValueAnimator slideImage = ObjectAnimator.ofFloat(v, "y", 2000f);
+        slideImage.setDuration(1000);
+        ValueAnimator slideText = ObjectAnimator.ofFloat(vText,"y",2000f);
+        slideText.setDuration(1000);
+        ValueAnimator slideCenterText = ObjectAnimator.ofFloat(mCenterText,"y",2000f);
+        slideCenterText.setDuration(1000);
+
+
+        AnimatorSet slideSet = new AnimatorSet();
+        slideSet.play(slideImage).after(1800);
+        slideSet.play(slideText).after(1800);
+        slideSet.play(slideCenterText).after(1800);
+
+        slideSet.start();
+
 
 
     }

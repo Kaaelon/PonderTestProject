@@ -21,17 +21,18 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="320dp"
         android:weightSum="0"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="false"
-        android:id="@+id/linearLayout6">
+        android:id="@+id/linearLayout6"
+        android:baselineAligned="false"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/griefLayout"
@@ -65,7 +66,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/wellbeingLayout"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -98,7 +99,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/healthLayout"
             android:layout_below="@+id/griefLayout"
             android:layout_centerHorizontal="true"
@@ -133,7 +134,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignTop="@+id/healthLayout"
             android:id="@+id/motivationLayout"
             android:layout_centerHorizontal="true"
@@ -168,7 +169,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_above="@+id/healthLayout"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
