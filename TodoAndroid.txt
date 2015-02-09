@@ -1,0 +1,2 @@
+TODO ANDROID 
+- Menu fade in first time 

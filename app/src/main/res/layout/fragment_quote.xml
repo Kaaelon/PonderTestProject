@@ -48,13 +48,6 @@
         android:layout_gravity="center"
         android:layout_marginBottom="100dp" />
 
-    <fragment
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:name="testproject.halfmoonstudios.com.ponder.OptionsFragment"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/fragment2"
-        tools:layout="@layout/fragment_options" />
+
 
 </LinearLayout>
