@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_gravity="center_vertical|center_horizontal"
     android:gravity="center"
+    android:weightSum="1"
     android:layout_weight="1">
 
     <ImageView
