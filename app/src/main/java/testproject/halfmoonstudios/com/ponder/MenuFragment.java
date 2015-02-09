@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -138,12 +139,26 @@ public class MenuFragment extends Fragment {
 
     public void animateTextView() {
 
-        ValueAnimator centreText = ObjectAnimator.ofFloat(mCenterText, "alpha", 0.0f, 1.0f);
-        centreText.setDuration(1000);
-        centreText.start();
-        ValueAnimator centreSlide = ObjectAnimator.ofFloat(mCenterText,"x",0,100);
-        centreSlide.setDuration(1000);
-        centreSlide.start();
+        CountDownTimer cd = new CountDownTimer(775,20) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                ValueAnimator centreText = ObjectAnimator.ofFloat(mCenterText, "alpha", 0.0f, 1.0f);
+                centreText.setDuration(1000);
+                centreText.start();
+                ValueAnimator centreSlide = ObjectAnimator.ofFloat(mCenterText,"x",0,100);
+                centreSlide.setDuration(1000);
+                centreSlide.start();
+
+
+            }
+        };
+        cd.start();
 
         //setCharacterDelay(40);
         //animateText(mCenterText.getText());

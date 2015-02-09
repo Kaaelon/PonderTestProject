@@ -14,7 +14,8 @@
         android:gravity="center"
         android:layout_above="@+id/linearLayout6"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="54dp" />
+        android:layout_marginBottom="54dp"
+        android:alpha="0"/>
 
 
     <LinearLayout
