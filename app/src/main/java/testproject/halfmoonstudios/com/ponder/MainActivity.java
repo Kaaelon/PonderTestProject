@@ -58,6 +58,7 @@ public class MainActivity extends Activity {
                 transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
                 transaction.replace(R.id.fragmentContainer,menuFragment);
                 transaction.commit();
+                replaceOptionsFragment();
 
 
             }
@@ -98,6 +99,34 @@ public class MainActivity extends Activity {
         transaction.replace(R.id.fragmentContainer,newFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public void replaceOptionsFragment() {
+
+        CountDownTimer cd = new CountDownTimer(4400, 1) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                FragmentManager fm = getFragmentManager();
+                Fragment newFragment = fm.findFragmentById(R.id.optionsContainer);
+                newFragment = new OptionsFragment();
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.setCustomAnimations(R.animator.slide_up, R.animator.slide_down);
+                transaction.replace(R.id.optionsContainer, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+
+            ;
+
+
+        };
+        cd.start();
     }
 
    public void setSelection(int selection){

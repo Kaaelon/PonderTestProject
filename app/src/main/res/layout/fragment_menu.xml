@@ -16,13 +16,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="54dp" />
 
-    <fragment
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:name="testproject.halfmoonstudios.com.ponder.OptionsFragment"
-        android:id="@+id/fragment"
-        android:layout_alignParentBottom="true"
-        tools:layout="@layout/fragment_options" />
 
     <LinearLayout
         android:orientation="horizontal"
