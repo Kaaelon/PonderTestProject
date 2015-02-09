@@ -91,7 +91,19 @@ public class MenuFragment extends Fragment {
                 //Animate selection
                 animateSelection(mWellbeingView,mWellbeingText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
-                ((MainActivity) getActivity()).replaceQuoteFragment();
+                CountDownTimer cd = new CountDownTimer(2500,1) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        ((MainActivity) getActivity()).replaceQuoteFragment();
+                    }
+                };
+                cd.start();
+
 
             }
         });
@@ -131,7 +143,19 @@ public class MenuFragment extends Fragment {
                 //Animate selection
                 animateSelection(mHealthView,mHealthText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
-                ((MainActivity) getActivity()).replaceQuoteFragment();
+                CountDownTimer cd = new CountDownTimer(2500,1) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        ((MainActivity) getActivity()).replaceQuoteFragment();
+                    }
+                };
+                cd.start();
+
             }
         });
 
@@ -144,7 +168,19 @@ public class MenuFragment extends Fragment {
                 //Animate selection
                 animateSelection(mIdeasView,mIdeasText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
-                ((MainActivity) getActivity()).replaceQuoteFragment();
+                CountDownTimer cd = new CountDownTimer(2500,1) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        ((MainActivity) getActivity()).replaceQuoteFragment();
+                    }
+                };
+                cd.start();
+
             }
         });
         mMotivationView.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +192,19 @@ public class MenuFragment extends Fragment {
                 //Animate selection
                 animateSelection(mMotivationView,mMotivationText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
-                ((MainActivity) getActivity()).replaceQuoteFragment();
+                CountDownTimer cd = new CountDownTimer(2500,1) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        ((MainActivity) getActivity()).replaceQuoteFragment();
+                    }
+                };
+                cd.start();
+
             }
         });
     }
