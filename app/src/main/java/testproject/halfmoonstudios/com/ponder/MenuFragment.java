@@ -185,7 +185,7 @@ public class MenuFragment extends Fragment {
 
     public void animateViews() {
 
-
+        //Using new valueAnimator for fade in effects
         ValueAnimator fadeGrief = ObjectAnimator.ofFloat(mGriefView, "alpha", 0.0f, 1.0f);
         fadeGrief.setDuration(750);
         ValueAnimator fadeGriefTitle = ObjectAnimator.ofFloat(mGriefText, "alpha", 0.0f, 1.0f);
@@ -211,6 +211,7 @@ public class MenuFragment extends Fragment {
         ValueAnimator fadeMotivationTitle = ObjectAnimator.ofFloat(mMotivationText, "alpha", 0.0f, 1.0f);
         fadeMotivationTitle.setDuration(750);
 
+        //Using new AnimatorSet for choreographing the order of fading
         AnimatorSet fadeGroup = new AnimatorSet();
         fadeGroup.play(fadeGrief).after(1500);
         fadeGroup.play(fadeGriefTitle).after(1500);

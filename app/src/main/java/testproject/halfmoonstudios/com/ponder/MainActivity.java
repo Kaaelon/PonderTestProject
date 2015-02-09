@@ -103,6 +103,7 @@ public class MainActivity extends Activity {
 
     public void replaceOptionsFragment() {
 
+        //Using countdown timer for OptionsFragment for propper allignment with menu icon animation
         CountDownTimer cd = new CountDownTimer(4400, 1) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -118,7 +119,6 @@ public class MainActivity extends Activity {
                 FragmentTransaction transaction = fm.beginTransaction();
                 transaction.setCustomAnimations(R.animator.slide_up, R.animator.slide_down);
                 transaction.replace(R.id.optionsContainer, newFragment);
-                transaction.addToBackStack(null);
                 transaction.commit();
             }
 
