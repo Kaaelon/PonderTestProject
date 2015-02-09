@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +29,8 @@ public class MenuFragment extends Fragment {
     private TextView mMotivationText;
     private TextView mCenterText;
 
-    //Variables to be used in the centerText animation, declared at class level scope due to being needed in an inner class
-    private String mCharText = "";
-    private int mCountIndex = 0;
-
-
+    //Textview object for animation
+    private ImageView curView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +71,7 @@ public class MenuFragment extends Fragment {
         //Animate centerText
 
         animateTextView();
+        animateViews();
 
         //Set onclick listeners for textviews
         setListeners();
@@ -187,39 +186,114 @@ public class MenuFragment extends Fragment {
     public void animateViews(){
 
         CountDownTimer cd;
-        final Animation in = new AlphaAnimation(1.0f,0.0f);
 
-        for(int i = 0;i < 5;i++){
-            cd = new CountDownTimer(300,1000) {
+            final Animation in = new AlphaAnimation(0.0f,1.0f);
+            in.setDuration(1000);
+
+            cd = new CountDownTimer(1500,100) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                viewVisibility().startAnimation(in);
+
+
+
                 }
 
                 @Override
                 public void onFinish() {
+                    if(viewVisibility() != null){
+                    viewVisibility().startAnimation(in);}
+                    Log.v("TIMER ON FINISH", "ON FINISH");
+                    in.reset();
+                    this.start();
+
+
+
+                    in.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            Log.v("ANIMATION START","START");
+                            if(curView != null){
+                            curView.setVisibility(View.VISIBLE);
+                            if(!getTitle().isShown()){
+                                getTitle().setVisibility(View.VISIBLE);
+                                getTitle().startAnimation(in);
+                            }}
+
+
+
+
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+
+
+
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+
+                        }
+                    });
 
 
                 }
             };
+                cd.start();
+
         }
 
-    }
+
 
    private ImageView viewVisibility(){
 
-       if(mGriefView.isShown()){
-           return mWellbeingView;
-       }else if(mWellbeingView.isShown()){
-           return mHealthView;
-       }else if (mHealthView.isShown()){
-           return mIdeasView;
-       }else if (mIdeasView.isShown()){
-           return mMotivationView;
-       }else if (mMotivationView.isShown()){
+       if(mGriefView.getVisibility() == View.VISIBLE && mWellbeingView.getVisibility() == View.INVISIBLE){
+            curView = mWellbeingView;
+           return mWellbeingView;}
+
+       if(mGriefView.getVisibility() == View.VISIBLE && mWellbeingView.getVisibility() == View.VISIBLE && mHealthView.getVisibility() == View.INVISIBLE){
+           Log.v("WELL","RETURNING HEALTH");
+           curView = mHealthView;
+           return mHealthView;}
+
+       if (mGriefView.getVisibility() == View.VISIBLE && mHealthView.getVisibility() == View.VISIBLE){
+           Log.v("WELL","RETURNING IDEAS");
+           curView = mIdeasView;
+           return mIdeasView;}
+
+       if (mGriefView.getVisibility() == View.VISIBLE && mIdeasView.getVisibility() == View.VISIBLE){
+           Log.v("WELL","RETURNING MOTIVATION");
+           curView = mMotivationView;
+           return mMotivationView;}
+
+        if (mGriefView.getVisibility() == View.VISIBLE && mMotivationView.getVisibility() == View.VISIBLE){
+           Log.v("NULL","JERE");
            return null;
        }
+       Log.v("GREIF","JERE");
+       curView = mGriefView;
     return mGriefView;
    }
+
+   private TextView getTitle(){
+       if(curView == mGriefView){
+           return mGriefText;
+       }else if(curView == mWellbeingView){
+           return mWellbeingText;
+       }else if(curView == mHealthView){
+           return mHealthText;
+       }else if (curView == mIdeasView){
+           return mIdeasText;
+       }else if (curView == mMotivationView){
+           return mMotivationText;
+       }
+      return null;
+
+   };
+
 
 }
