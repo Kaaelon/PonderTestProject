@@ -13,6 +13,8 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.ArrayList;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -88,6 +90,17 @@ public class QuoteList {
         try {
             status = jsonData.getString("status");
             Log.v(TAG, status);
+
+            JSONObject jsonQuote;
+            String author;
+
+            JSONArray jsonQuotes = jsonData.getJSONArray("quotes");
+            Log.v(TAG, "Number of quotes in array " + jsonQuotes.length());
+            for (int i=0; i<10; i++) {
+                jsonQuote = jsonQuotes.getJSONObject(i);
+                author = jsonQuote.getString("author");
+                Log.v(TAG, "Author " + i + ": " + author);
+            }
         } catch (JSONException e) {
             Log.e(TAG, "Unhandled exception while trying to read from JSONObject", e);
         }
