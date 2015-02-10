@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 /**
  * Singleton object that stores quotes
  * Contains three methods:
@@ -84,6 +83,15 @@ public class QuoteList {
     private ArrayList<Quote> populateList(){
         ArrayList<Quote> mRetList = new ArrayList<>();
 
+        JSONObject jsonData = parseJSONData();
+        String status = null;
+        try {
+            status = jsonData.getString("status");
+            Log.v(TAG, status);
+        } catch (JSONException e) {
+            Log.e(TAG, "Unhandled exception while trying to read from JSONObject", e);
+        }
+
         mRetList.add(new Quote(R.string.idea_quote_1,R.string.idea_author_1,R.drawable.ideas_white));
         mRetList.add(new Quote(R.string.idea_quote_2,R.string.idea_author_2,R.drawable.ideas_white));
         mRetList.add(new Quote(R.string.idea_quote_3,R.string.idea_author_3,R.drawable.ideas_white));
@@ -134,6 +142,7 @@ public class QuoteList {
         mRetList.add(new Quote(R.string.wellbeing_quote_8,R.string.wellbeing_author_8,R.drawable.wellbeing_white));
         mRetList.add(new Quote(R.string.wellbeing_quote_9,R.string.wellbeing_author_9,R.drawable.wellbeing_white));
         mRetList.add(new Quote(R.string.wellbeing_quote_10,R.string.wellbeing_author_10,R.drawable.wellbeing_white));
+
         return mRetList;
     }
 
