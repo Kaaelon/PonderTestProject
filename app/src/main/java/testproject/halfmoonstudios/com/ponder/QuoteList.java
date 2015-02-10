@@ -1,17 +1,21 @@
 package testproject.halfmoonstudios.com.ponder;
 
 import android.content.Context;
-import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.util.Log;
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static java.security.AccessController.getContext;
 
 /**
  * Singleton object that stores quotes
@@ -24,6 +28,8 @@ public class QuoteList {
     private static QuoteList mQuoteList;
     private static ArrayList<Quote> mQuoteArray = new ArrayList<>();
     private Context mAppContext;
+
+    public static final String TAG = QuoteList.class.getSimpleName();
 
     private QuoteList(Context mAppContext){
         this.mAppContext = mAppContext;
@@ -40,33 +46,38 @@ public class QuoteList {
 
     //Method that will parse the JSON file and will return a JSONObject
     public JSONObject parseJSONData() {
-        String jsonString = null;
+
         JSONObject jsonData = null;
+
+        Resources resources = mAppContext.getResources();
+        InputStream resourceReader = resources.openRawResource(R.raw.quotes);
+        Writer writer = new StringWriter();
+
         try {
-            //open the inputStream to the file
-            InputStream content = mAppContext.getAssets().open("quotes.json");
-            int sizeOfData = content.available();
-
-            //array that will store all the data
-            byte[] data = new byte[sizeOfData];
-
-            //reading data into the array from the file
-            content.read(data);
-
-            //close the input stream
-            content.close();
-
-            jsonString = new String(data, "UTF-8");
-            jsonData = new JSONObject(jsonString);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resourceReader, "UTF-8"));
+            String line = reader.readLine();
+            while (line != null) {
+                writer.write(line);
+                line = reader.readLine();
+            }
+        } catch (UnsupportedEncodingException e) {
+            Log.e(TAG, "Unhandled exception while trying to parse data from JSON file", e);
+        } catch (IOException e) {
+            Log.e(TAG, "Unhandled exception while trying to parse data from JSON file", e);
+        } finally {
+            try {
+                resourceReader.close();
+            } catch (Exception e) {
+                Log.e(TAG, "Unhandled exception while trying to parse data from JSON file", e);
+            }
         }
-        catch (JSONException x) {
-            x.printStackTrace();
-            return null;
+
+        try {
+            jsonData = new JSONObject(writer.toString());
+        } catch (JSONException e) {
+            Log.e(TAG, "Unhandled exception while trying to create JSONObject from string", e);
         }
+
         return jsonData;
     }
 
