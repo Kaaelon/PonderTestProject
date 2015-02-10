@@ -88,7 +88,7 @@ public class QuoteList {
     public static ArrayList<Quote> getArray(int stringRes){
         ArrayList<Quote> retList = new ArrayList<>();
         for(Quote q : mQuoteArray){
-            if(q.getmCategory().get(0)== stringRes){
+            if(q.getCategory().get(0)== stringRes){
 
                 retList.add(q);
             }

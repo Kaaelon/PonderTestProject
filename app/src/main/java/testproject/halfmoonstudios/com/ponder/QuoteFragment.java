@@ -1,11 +1,8 @@
 package testproject.halfmoonstudios.com.ponder;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -118,7 +115,7 @@ public class QuoteFragment extends Fragment {
     }
 
     public int generateAuthor() {
-        return mQuoteList.get(curNumber).getmAuthor();
+        return mQuoteList.get(curNumber).getAuthor();
     }
 
     public int generateQuote() {
@@ -129,7 +126,7 @@ public class QuoteFragment extends Fragment {
             randomNum = random.nextInt(mQuoteList.size());
         }
         curNumber = randomNum;
-        return mQuoteList.get(randomNum).getmQoute();
+        return mQuoteList.get(randomNum).getQuote();
     }
 
     public void populateList() {
@@ -169,11 +166,11 @@ public class QuoteFragment extends Fragment {
     public void setFont(){
         //Sets font for mQuoteView and mAuthorView
 
-        Typeface mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
-        mQuoteView.setTypeface(mtypeFace);
+        Typeface mTypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
+        mQuoteView.setTypeface(mTypeFace);
 
-        mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
-        mAuthorView.setTypeface(mtypeFace);
+        mTypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
+        mAuthorView.setTypeface(mTypeFace);
     }
 
 

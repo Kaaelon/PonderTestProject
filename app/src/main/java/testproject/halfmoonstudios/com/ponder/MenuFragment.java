@@ -64,15 +64,15 @@ public class MenuFragment extends Fragment {
         mCenterText = (TextView) v.findViewById(R.id.centerText);
 
         //Create TypeFaceObject and assign font
-        Typeface mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(), "futuralight.ttf");
+        Typeface mTypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(), "futuralight.ttf");
 
         //Sets text of TextViews
-        mWellbeingText.setTypeface(mtypeFace);
-        mGriefText.setTypeface(mtypeFace);
-        mHealthText.setTypeface(mtypeFace);
-        mIdeasText.setTypeface(mtypeFace);
-        mMotivationText.setTypeface(mtypeFace);
-        mCenterText.setTypeface(mtypeFace);
+        mWellbeingText.setTypeface(mTypeFace);
+        mGriefText.setTypeface(mTypeFace);
+        mHealthText.setTypeface(mTypeFace);
+        mIdeasText.setTypeface(mTypeFace);
+        mMotivationText.setTypeface(mTypeFace);
+        mCenterText.setTypeface(mTypeFace);
 
         //Animate centerText
 
@@ -331,7 +331,6 @@ public class MenuFragment extends Fragment {
 
         fadeGroup.play(fadeWellbeing).after(fadeGrief);
         fadeGroup.play(fadeWellbeingTitle).after(fadeGrief);
-        ;
 
         fadeGroup.play(fadeHealth).after(fadeWellbeing);
         fadeGroup.play(fadeHealthTitle).after(fadeWellbeing);
