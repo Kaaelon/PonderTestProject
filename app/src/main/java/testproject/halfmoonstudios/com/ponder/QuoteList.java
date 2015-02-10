@@ -1,14 +1,23 @@
 package testproject.halfmoonstudios.com.ponder;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static java.security.AccessController.getContext;
 
 /**
  * Singleton object that stores quotes
  * Contains three methods:
  * Get() Checks if the object has been instantiated if not creates QuoteList object
- * getArray(int stringRes) Returns an arraylist of all quotes that have a matching category string resource
+ * getArray(int stringRes) Returns an ArrayList of all quotes that have a matching category string resource
  * populateList() populates mQuoteList with quotes
  */
 public class QuoteList {
@@ -27,6 +36,38 @@ public class QuoteList {
             mQuoteList = new QuoteList(c);
         }
         return mQuoteList;
+    }
+
+    //Method that will parse the JSON file and will return a JSONObject
+    public JSONObject parseJSONData() {
+        String jsonString = null;
+        JSONObject jsonData = null;
+        try {
+            //open the inputStream to the file
+            InputStream content = mAppContext.getAssets().open("quotes.json");
+            int sizeOfData = content.available();
+
+            //array that will store all the data
+            byte[] data = new byte[sizeOfData];
+
+            //reading data into the array from the file
+            content.read(data);
+
+            //close the input stream
+            content.close();
+
+            jsonString = new String(data, "UTF-8");
+            jsonData = new JSONObject(jsonString);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        catch (JSONException x) {
+            x.printStackTrace();
+            return null;
+        }
+        return jsonData;
     }
 
     private ArrayList<Quote> populateList(){
