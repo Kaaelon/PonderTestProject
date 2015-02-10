@@ -1,5 +1,7 @@
 package testproject.halfmoonstudios.com.ponder;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -43,7 +45,36 @@ public class InfoFragment extends Fragment {
     infoBody.setTypeface(mTypeFace);
     infoHeading.setTypeface(mTypeFace);
     infoBodyEnd.setTypeface(mTypeFace);
+
+
+        animateInfo();
         return v;
+    }
+
+    public void animateInfo(){
+
+        //Set Y co-ordinates of heading for transition
+        infoHeading.setY(-3000f);
+        infoHeading.setVisibility(View.VISIBLE);
+
+
+
+        ValueAnimator mTitleSlide = ObjectAnimator.ofFloat(infoHeading, "y", 350f);
+        mTitleSlide.setDuration(1500);
+        mTitleSlide.start();
+
+        ValueAnimator  mBodyFade = ObjectAnimator.ofFloat(infoBody,"alpha",0.0f,1.0f);
+        mBodyFade.setDuration(1500);
+        mBodyFade.setStartDelay(1500);
+        mBodyFade.start();
+
+        infoBodyEnd.setY(1800);
+
+        ValueAnimator mBottomSlide = ObjectAnimator.ofFloat(infoBodyEnd,"y",1300f);
+        mBottomSlide.setDuration(1500);
+        mBottomSlide.setStartDelay(1500);
+        mBottomSlide.start();
+
     }
 
 }

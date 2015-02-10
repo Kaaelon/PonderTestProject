@@ -14,7 +14,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="105dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +33,9 @@
         android:paddingLeft="40dp"
         android:paddingRight="30dp"
         android:maxLines="12"
-        android:minLines="12"/>
+        android:minLines="12"
+        android:visibility="visible"
+        android:alpha="0.0"/>
 
     <TextView
         android:layout_width="wrap_content"

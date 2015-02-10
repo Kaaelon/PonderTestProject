@@ -1,3 +1,5 @@
 TODO ANDROID 
 - Menu fade in first time 
 - If views touched when loading in, it is buggy 
+- Transition between menu and info 
+- Clicking info button multiple time creates multiple fragments 

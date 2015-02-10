@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ public class MenuFragment extends Fragment {
     private ImageView mHealthView;
     private ImageView mIdeasView;
     private ImageView mMotivationView;
+    private ImageView mInfoView;
     //Declares textviews
     private TextView mWellbeingText;
     private TextView mGriefText;
@@ -51,6 +53,7 @@ public class MenuFragment extends Fragment {
         mHealthView = (ImageView) v.findViewById(R.id.healthView);
         mIdeasView = (ImageView) v.findViewById(R.id.ideasView);
         mMotivationView = (ImageView) v.findViewById(R.id.motivationView);
+        mInfoView = (ImageView)v.findViewById(R.id.infoView);
 
         //Assigns values to TextViews
         mWellbeingText = (TextView) v.findViewById(R.id.wellbeingText);
@@ -82,6 +85,22 @@ public class MenuFragment extends Fragment {
     }
 
     public void setListeners() {
+
+        if(mInfoView != null){
+        mInfoView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+        public void onClick(View v){
+                Log.v("INFO","INFO");
+            animateInfo();
+            }
+        });}
+
+
+
+
+
+
         mWellbeingView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -403,5 +422,66 @@ public class MenuFragment extends Fragment {
 
 
 
+    }
+
+    public void animateInfo(){
+
+        //Create valueAnimator objects for Imageview objects
+        ValueAnimator slideViewGrief = ObjectAnimator.ofFloat(mGriefView,"y",2000f);
+        slideViewGrief.setDuration(900);
+
+        ValueAnimator slideViewWellbeing = ObjectAnimator.ofFloat(mWellbeingView, "y", 2000f);
+        slideViewWellbeing.setDuration(900);
+
+        ValueAnimator slideViewHealth = ObjectAnimator.ofFloat(mHealthView,"y",2000f);
+        slideViewHealth.setDuration(900);
+
+        ValueAnimator slideViewIdeas = ObjectAnimator.ofFloat(mIdeasView,"y",2000f);
+        slideViewIdeas.setDuration(900);
+
+        ValueAnimator slideViewMotivation = ObjectAnimator.ofFloat(mMotivationView,"y",2000f);
+        slideViewMotivation.setDuration(900);
+
+        //Create valueAnimator objects for textView objects
+        ValueAnimator slideTextGrief = ObjectAnimator.ofFloat(mGriefText,"y",2000f);
+        slideTextGrief.setDuration(1000);
+
+        ValueAnimator slideTextWellbeing = ObjectAnimator.ofFloat(mWellbeingText,"y",2000f);
+        slideTextWellbeing.setDuration(1000);
+
+        ValueAnimator slideTextHealth = ObjectAnimator.ofFloat(mHealthText,"y",2000f);
+        slideTextHealth.setDuration(1000);
+
+        ValueAnimator slideTextIdeas = ObjectAnimator.ofFloat(mIdeasText,"y",2000f);
+        slideTextIdeas.setDuration(1000);
+
+        ValueAnimator slideTextMotivation = ObjectAnimator.ofFloat(mMotivationText,"y",2000f);
+        slideTextMotivation.setDuration(1000);
+
+        ValueAnimator slideTextCenter = ObjectAnimator.ofFloat(mCenterText,"y",2000f);
+        slideTextCenter.setDuration(800);
+
+
+        //Create animation set for sliding animation
+
+        AnimatorSet slideSet = new AnimatorSet();
+
+        //Set animation playtimes
+
+        slideSet.play(slideViewGrief).after(100);
+        slideSet.play(slideViewHealth).after(100);
+        slideSet.play(slideViewIdeas).after(100);
+        slideSet.play(slideViewWellbeing).after(100);
+        slideSet.play(slideViewMotivation).after(100);
+
+        slideSet.play(slideTextGrief).after(100);
+        slideSet.play(slideTextHealth).after(100);
+        slideSet.play(slideTextIdeas).after(100);
+        slideSet.play(slideTextMotivation).after(100);
+        slideSet.play(slideTextWellbeing).after(100);
+
+        slideSet.play(slideTextCenter).after(100);
+
+        slideSet.start();
     }
 }

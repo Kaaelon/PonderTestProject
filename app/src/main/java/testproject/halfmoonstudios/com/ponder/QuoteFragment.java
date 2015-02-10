@@ -1,8 +1,11 @@
 package testproject.halfmoonstudios.com.ponder;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -172,4 +175,6 @@ public class QuoteFragment extends Fragment {
         mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
         mAuthorView.setTypeface(mtypeFace);
     }
+
+
 }
