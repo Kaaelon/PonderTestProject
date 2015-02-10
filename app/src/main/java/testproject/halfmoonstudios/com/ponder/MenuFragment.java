@@ -32,9 +32,12 @@ public class MenuFragment extends Fragment {
     private TextView mIdeasText;
     private TextView mMotivationText;
     private TextView mCenterText;
-
-    //Textview object for animation
-    private ImageView curView;
+    //Constants for categories
+    public static final String WELLBEING = "wellbeing";
+    public static final String MOTIVATION = "motivation";
+    public static final String HEALTH = "health";
+    public static final String GRIEF = "grief";
+    public static final String IDEA = "idea";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -106,7 +109,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Passes menu choice id to menuSelection variable in main activity
-                ((MainActivity) getActivity()).setSelection(R.drawable.wellbeing_white);
+                ((MainActivity) getActivity()).setSelection(WELLBEING);
                 //Animate selection
                 animateSelection(mWellbeingView,mWellbeingText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
@@ -132,7 +135,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Passes menu choice id to menuSelection variable in main activity
-                ((MainActivity) getActivity()).setSelection(R.drawable.grief_white);
+                ((MainActivity) getActivity()).setSelection(GRIEF);
                 //Animate selection
                 animateSelection(mGriefView,mGriefText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
@@ -158,7 +161,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Passes menu choice id to menuSelection variable in main activity
-                ((MainActivity) getActivity()).setSelection(R.drawable.health_white);
+                ((MainActivity) getActivity()).setSelection(HEALTH);
                 //Animate selection
                 animateSelection(mHealthView,mHealthText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
@@ -183,7 +186,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Passes menu choice id to menuSelection variable in main activity
-                ((MainActivity) getActivity()).setSelection(R.drawable.ideas_white);
+                ((MainActivity) getActivity()).setSelection(IDEA);
                 //Animate selection
                 animateSelection(mIdeasView,mIdeasText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
@@ -207,7 +210,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Passes menu choice id to menuSelection variable in main activity
-                ((MainActivity) getActivity()).setSelection(R.drawable.motivation_white);
+                ((MainActivity) getActivity()).setSelection(MOTIVATION);
                 //Animate selection
                 animateSelection(mMotivationView,mMotivationText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
@@ -265,7 +268,6 @@ public class MenuFragment extends Fragment {
 
 
     private Runnable characterAdder = new Runnable() {
-        View v = getView();
 
         @Override
         public void run() {

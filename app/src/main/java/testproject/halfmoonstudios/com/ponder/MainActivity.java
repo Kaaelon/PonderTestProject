@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 
     private CountDownTimer cd;
     private FragmentManager fm = getFragmentManager();
-    private int menuSelection;
+    private String menuSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,20 +121,16 @@ public class MainActivity extends Activity {
                 transaction.replace(R.id.optionsContainer, newFragment);
                 transaction.commit();
             }
-
-            ;
-
-
         };
         cd.start();
     }
 
-   public void setSelection(int selection){
+   public void setSelection(String selection){
        //Sets menuSelection variables (must reference int id of menu view) this allows for flexible manipulation
        this.menuSelection = selection;
    }
 
-  public int getSelection(){
+  public String getSelection(){
      //Allows for the retrieval of the current menuSelection
       return this.menuSelection;
   }
