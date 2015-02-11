@@ -16,14 +16,19 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 /**
@@ -191,10 +196,26 @@ public class MainActivity extends Activity {
                 responseCode = statusLine.getStatusCode();
                 Log.v(TAG, "Code: " + responseCode);
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    Log.v(TAG, "Success!");
+                    HttpEntity entity = response.getEntity();
+                    InputStream content = entity.getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+                    String line;
+                    while((line = reader.readLine()) != null){
+                        builder.append(line);
+                    }
+                    jsonResponse = new JSONObject(builder.toString());
+
+                    // try to get data from the JsonObject created
+                    String status = jsonResponse.getString("status");
+                    Log.v(TAG, status);
+                }
+                else {
+                    Log.i(TAG, "Unsuccessful Http Request Code: " + responseCode);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(TAG, "IO Exception caught: ", e);
+            } catch (JSONException e) {
+                Log.e(TAG, "JSON Exception caught: ", e);
             }
             return "Code: " + responseCode;
         }
