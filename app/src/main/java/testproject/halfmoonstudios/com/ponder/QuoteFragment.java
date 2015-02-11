@@ -2,7 +2,6 @@ package testproject.halfmoonstudios.com.ponder;
 
 import android.app.Fragment;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -68,9 +67,7 @@ public class QuoteFragment extends Fragment {
         /*Assigns category icon in relation to menu item chosen, through casting the main activity
          * we are able to access the member variable  */
         String typeChosen = ((MainActivity) getActivity()).getSelection();
-        Drawable drawable = getResources().getDrawable(getImageID(typeChosen));
-        mCategoryView.setImageDrawable(drawable);
-         //mCategoryView.setImageResource();
+        mCategoryView.setImageResource(getImageID(typeChosen));
     }
 
     public int getImageID (String type) {
