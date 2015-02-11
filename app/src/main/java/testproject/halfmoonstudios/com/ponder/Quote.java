@@ -8,38 +8,29 @@ import java.util.ArrayList;
  */
 public class Quote {
 
-    private int mQoute;
-    private int mAuthor;
-    private ArrayList<Integer> mCategory = new ArrayList<>();
+    private String mQuote;
+    private String mAuthor;
+    private ArrayList<String> mCategory = new ArrayList<>();
 
-    public Quote(int mQoute,int mAuthor,int mCategory) {
-        this.mQoute = mQoute;
+    public Quote(String mQuote,String mAuthor,String mCategory) {
+        this.mQuote = mQuote;
         this.mAuthor = mAuthor;
-        addmCategory(mCategory);
+        addCategory(mCategory);
     }
 
-    public int getmQoute() {
-        return mQoute;
+    public String getQuote() {
+        return mQuote;
     }
 
-    public int getmAuthor(){ return mAuthor;}
+    public String getAuthor(){ return mAuthor;}
 
-    public ArrayList<Integer> getmCategory(){
+    public ArrayList<String> getCategory(){
         return mCategory;
     }
 
-    public void addmCategory(int mCategory){
-        if(this.mCategory.contains(mCategory) == false){
+    public void addCategory(String mCategory){
+        if(!this.mCategory.contains(mCategory)){
         this.mCategory.add(mCategory);}
     }
-
-    public void setmQoute(int mQoute) {
-        this.mQoute = mQoute;
-    }
-
-    public void setmAuthor(int mAuthor){
-        this.mAuthor = mAuthor;
-    }
-
 
 }

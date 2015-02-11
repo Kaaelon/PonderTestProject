@@ -2,6 +2,7 @@ package testproject.halfmoonstudios.com.ponder;
 
 import android.app.Fragment;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,7 +67,27 @@ public class QuoteFragment extends Fragment {
     public void assignCategory() {
         /*Assigns category icon in relation to menu item chosen, through casting the main activity
          * we are able to access the member variable  */
-        mCategoryView.setImageResource(((MainActivity) getActivity()).getSelection());
+        String typeChosen = ((MainActivity) getActivity()).getSelection();
+        Drawable drawable = getResources().getDrawable(getImageID(typeChosen));
+        mCategoryView.setImageDrawable(drawable);
+         //mCategoryView.setImageResource();
+    }
+
+    public int getImageID (String type) {
+        int imageID = -1;
+        switch (type) {
+            case MenuFragment.WELLBEING:  imageID = R.drawable.wellbeing_white;
+                break;
+            case MenuFragment.MOTIVATION:  imageID = R.drawable.motivation_white;
+                break;
+            case MenuFragment.IDEA:  imageID = R.drawable.ideas_white;
+                break;
+            case MenuFragment.HEALTH:  imageID = R.drawable.health_white;
+                break;
+            case MenuFragment.GRIEF:  imageID = R.drawable.grief_white;
+                break;
+        }
+        return imageID;
     }
 
     public void setUpAnimation(View v) {
@@ -115,11 +136,11 @@ public class QuoteFragment extends Fragment {
         });
     }
 
-    public int generateAuthor() {
-        return mQuoteList.get(curNumber).getmAuthor();
+    public String generateAuthor() {
+        return mQuoteList.get(curNumber).getAuthor();
     }
 
-    public int generateQuote() {
+    public String generateQuote() {
         int randomNum = 0;
         Random random = new Random();
         while (randomNum == curNumber) {
@@ -127,14 +148,14 @@ public class QuoteFragment extends Fragment {
             randomNum = random.nextInt(mQuoteList.size());
         }
         curNumber = randomNum;
-        return mQuoteList.get(randomNum).getmQoute();
+        return mQuoteList.get(randomNum).getQuote();
     }
 
     public void populateList() {
         //Populates mQuoteList with quotes that match menu/category choice
-        QuoteList.get(((MainActivity) getActivity()));
+        QuoteList.get(getActivity());
         Log.v("Main", "" + ((MainActivity) getActivity()).getSelection());
-        mQuoteList = QuoteList.getArray(((MainActivity) getActivity()).getSelection());
+        mQuoteList = QuoteList.getQuotesByType(((MainActivity) getActivity()).getSelection());
     }
 
 
@@ -167,11 +188,11 @@ public class QuoteFragment extends Fragment {
     public void setFont(){
         //Sets font for mQuoteView and mAuthorView
 
-        Typeface mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
-        mQuoteView.setTypeface(mtypeFace);
+        Typeface mTypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
+        mQuoteView.setTypeface(mTypeFace);
 
-        mtypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
-        mAuthorView.setTypeface(mtypeFace);
+        mTypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
+        mAuthorView.setTypeface(mTypeFace);
     }
 
 
