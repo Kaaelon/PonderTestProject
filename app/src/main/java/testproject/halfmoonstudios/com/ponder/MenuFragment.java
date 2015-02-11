@@ -8,11 +8,13 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -348,7 +350,7 @@ public class MenuFragment extends Fragment {
 
     }
 
-    public void animateSelection(ImageView v,TextView vText){
+    public void animateSelection(ImageView imageSelect,TextView vText){
 
         //Populate arraylist with ImageView objects
         ArrayList<ImageView> imageViewList = new ArrayList<>();
@@ -368,7 +370,7 @@ public class MenuFragment extends Fragment {
 
 
         //Remove passed in imageView
-        imageViewList.remove(v);
+        imageViewList.remove(imageSelect);
         textViewList.remove(vText);
 
         //Create animators from imageViews
@@ -392,25 +394,66 @@ public class MenuFragment extends Fragment {
         AnimatorSet fadeGroup = new AnimatorSet();
 
         fadeGroup.play(fade1).after(100);
-        fadeGroup.play(fade2).with(fade1);
-        fadeGroup.play(fade3).with(fade1);
-        fadeGroup.play(fade4).with(fade1);
-        fadeGroup.play(textFade1).with(fade1);
-        fadeGroup.play(textFade2).with(fade1);
-        fadeGroup.play(textFade3).with(fade1);
-        fadeGroup.play(textFade4).with(fade1);
+        fadeGroup.play(fade2).after(100);
+        fadeGroup.play(fade3).after(100);
+        fadeGroup.play(fade4).after(100);
+        fadeGroup.play(textFade1).after(100);
+        fadeGroup.play(textFade2).after(100);
+        fadeGroup.play(textFade3).after(100);
+        fadeGroup.play(textFade4).after(100);
 
         fadeGroup.start();
+
+        //Start animation to move view to center, if anyone can think of a better way to dynamically decide which layout is selected feel free to implement
+        LinearLayout mSlideLayout = null;
+
+        if(imageSelect == getActivity().findViewById(R.id.griefView)){
+           mSlideLayout = (LinearLayout)getActivity().findViewById(R.id.griefLayout);
+        }else if (imageSelect == getActivity().findViewById(R.id.wellbeingView)){
+           mSlideLayout = (LinearLayout)getActivity().findViewById(R.id.wellbeingLayout);
+        }else if (imageSelect == getActivity().findViewById(R.id.healthView)){
+           mSlideLayout = (LinearLayout)getActivity().findViewById(R.id.healthLayout);
+        }else if (imageSelect == getActivity().findViewById(R.id.ideasView)){
+            mSlideLayout = (LinearLayout)getActivity().findViewById(R.id.ideasLayout);
+        }else if ( imageSelect == getActivity().findViewById(R.id.motivationView)){
+            mSlideLayout = (LinearLayout)getActivity().findViewById(R.id.motivationLayout);
+        }
+
+        //Attemptiong algorithm to calculate position of view
+        int[] location = new int[2];
+        mSlideLayout.getLocationOnScreen(location);
+
+        DisplayMetrics display = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(display);
+        int mWindowWidth = display.widthPixels/2;
+        int mViewLocation = location[0];
+        int mDifference = 0;
+
+
+        if(mViewLocation > mWindowWidth){
+        mDifference = mWindowWidth - mViewLocation;}
+        else if(mViewLocation < mWindowWidth){
+            mDifference = mWindowWidth - mViewLocation;
+        }
+
+
+
+
+            ValueAnimator slideAcrossView = ObjectAnimator.ofFloat(mSlideLayout,"translationX",mDifference - 60);
+            slideAcrossView.setDuration(800);
+            slideAcrossView.setStartDelay(1100);
+            slideAcrossView.start();
+
 
         //Starts animation for slide down
 
 
-        ValueAnimator slideImage = ObjectAnimator.ofFloat(v, "y", 2000f);
-        slideImage.setDuration(1000);
+        ValueAnimator slideImage = ObjectAnimator.ofFloat(imageSelect, "y", 2000f);
+        slideImage.setDuration(900);
         ValueAnimator slideText = ObjectAnimator.ofFloat(vText,"y",2000f);
-        slideText.setDuration(1000);
+        slideText.setDuration(900);
         ValueAnimator slideCenterText = ObjectAnimator.ofFloat(mCenterText,"y",2000f);
-        slideCenterText.setDuration(1000);
+        slideCenterText.setDuration(900);
 
 
         AnimatorSet slideSet = new AnimatorSet();
