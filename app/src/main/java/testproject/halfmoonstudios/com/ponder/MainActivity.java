@@ -89,6 +89,7 @@ public class MainActivity extends Activity implements OptionsFragment.onInfoClic
         Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
         newFragment = new MenuFragment();
         FragmentTransaction transaction = fm.beginTransaction();
+        transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
         transaction.replace(R.id.fragmentContainer,newFragment);
         transaction.addToBackStack(null);
         transaction.commit();}
