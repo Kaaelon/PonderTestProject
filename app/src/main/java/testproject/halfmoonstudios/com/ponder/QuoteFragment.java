@@ -141,7 +141,6 @@ public class QuoteFragment extends Fragment {
         int randomNum = 0;
         Random random = new Random();
         while (randomNum == curNumber) {
-            Log.v("HERE", ""+mQuoteList.size());
             randomNum = random.nextInt(mQuoteList.size());
         }
         curNumber = randomNum;

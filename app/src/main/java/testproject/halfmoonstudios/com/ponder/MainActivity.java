@@ -16,7 +16,7 @@ import android.view.WindowManager;
  * Might be a better way of managing fragments - lots of repeated code
  */
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OptionsFragment.onInfoClickedListener {
 
     private CountDownTimer cd;
     private FragmentManager fm = getFragmentManager();
@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
                 menuFragment = new MenuFragment();
                 FragmentTransaction transaction = fm.beginTransaction();
                 transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
-                transaction.replace(R.id.fragmentContainer,menuFragment);
+                transaction.replace(R.id.fragmentContainer, menuFragment);
                 transaction.commit();
                 replaceOptionsFragment();
 
@@ -86,7 +86,6 @@ public class MainActivity extends Activity {
         Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
         newFragment = new MenuFragment();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
         transaction.replace(R.id.fragmentContainer,newFragment);
         transaction.addToBackStack(null);
         transaction.commit();}
@@ -97,7 +96,7 @@ public class MainActivity extends Activity {
         newFragment = new InfoFragment();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
-        transaction.replace(R.id.fragmentContainer,newFragment);
+        transaction.replace(R.id.fragmentContainer, newFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -134,6 +133,27 @@ public class MainActivity extends Activity {
     public String getSelection(){
      //Allows for the retrieval of the current menuSelection
       return this.menuSelection;
+    }
+
+    public void onInfoSelected(boolean selected){
+
+
+     try {
+         MenuFragment menuFrag = (MenuFragment) getFragmentManager().findFragmentById(R.id.fragmentContainer);
+         if(menuFrag != null && selected){
+
+             menuFrag.animateInfo();
+         }
+
+     }catch(Exception e){
+
+
+
+     }
+
+
+
+
     }
 
 }

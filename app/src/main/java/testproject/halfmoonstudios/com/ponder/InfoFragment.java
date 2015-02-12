@@ -54,7 +54,7 @@ public class InfoFragment extends Fragment {
     public void animateInfo(){
 
         //Set Y co-ordinates of heading for transition
-        infoHeading.setY(-3000f);
+        infoHeading.setY(-1000f);
         infoHeading.setVisibility(View.VISIBLE);
 
 

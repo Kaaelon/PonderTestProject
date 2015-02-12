@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MenuFragment extends Fragment {
+public class MenuFragment extends Fragment  {
     //Declares imageviews
     private ImageView mWellbeingView;
     private ImageView mGriefView;
@@ -90,21 +89,6 @@ public class MenuFragment extends Fragment {
     }
 
     public void setListeners() {
-
-        if(mInfoView != null){
-        mInfoView.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-        public void onClick(View v){
-                Log.v("INFO","INFO");
-            animateInfo();
-            }
-        });}
-
-
-
-
-
 
         mWellbeingView.setOnClickListener(new View.OnClickListener() {
 
@@ -420,7 +404,7 @@ public class MenuFragment extends Fragment {
             mSlideLayout = (LinearLayout)getActivity().findViewById(R.id.motivationLayout);
         }
 
-        //Attemptiong algorithm to calculate position of view
+        //Calculates distance to center of screen relative to where the views layout currently is
         int[] location = new int[2];
         mSlideLayout.getLocationOnScreen(location);
 
@@ -429,21 +413,17 @@ public class MenuFragment extends Fragment {
         int mWindowWidth = display.widthPixels/2;
         int mViewLocation = location[0];
         int mDifference = 0;
-
-
-        if(mViewLocation > mWindowWidth){
-        mDifference = mWindowWidth - mViewLocation;}
-        else if(mViewLocation < mWindowWidth){
-            mDifference = mWindowWidth - mViewLocation;
-        }
+        mDifference = mWindowWidth - mViewLocation;
 
 
 
 
-            ValueAnimator slideAcrossView = ObjectAnimator.ofFloat(mSlideLayout,"translationX",mDifference - 60);
+
+        if(mDifference - 73 != 0){
+            ValueAnimator slideAcrossView = ObjectAnimator.ofFloat(mSlideLayout,"translationX",mDifference - 73);
             slideAcrossView.setDuration(800);
             slideAcrossView.setStartDelay(1100);
-            slideAcrossView.start();
+            slideAcrossView.start();}
 
 
         //Starts animation for slide down
@@ -452,7 +432,7 @@ public class MenuFragment extends Fragment {
         ValueAnimator slideImage = ObjectAnimator.ofFloat(imageSelect, "y", 2000f);
         slideImage.setDuration(900);
         ValueAnimator slideText = ObjectAnimator.ofFloat(vText,"y",2000f);
-        slideText.setDuration(900);
+        slideText.setDuration(800);
         ValueAnimator slideCenterText = ObjectAnimator.ofFloat(mCenterText,"y",2000f);
         slideCenterText.setDuration(900);
 
@@ -470,40 +450,41 @@ public class MenuFragment extends Fragment {
 
     public void animateInfo(){
 
+
         //Create valueAnimator objects for Imageview objects
-        ValueAnimator slideViewGrief = ObjectAnimator.ofFloat(mGriefView,"y",2000f);
-        slideViewGrief.setDuration(900);
+        ValueAnimator slideViewGrief = ObjectAnimator.ofFloat(mGriefView,"y",1600f);
+        slideViewGrief.setDuration(850);
 
-        ValueAnimator slideViewWellbeing = ObjectAnimator.ofFloat(mWellbeingView, "y", 2000f);
-        slideViewWellbeing.setDuration(900);
+        ValueAnimator slideViewWellbeing = ObjectAnimator.ofFloat(mWellbeingView, "y", 1600f);
+        slideViewWellbeing.setDuration(850);
 
-        ValueAnimator slideViewHealth = ObjectAnimator.ofFloat(mHealthView,"y",2000f);
-        slideViewHealth.setDuration(900);
+        ValueAnimator slideViewHealth = ObjectAnimator.ofFloat(mHealthView,"y",1600f);
+        slideViewHealth.setDuration(850);
 
-        ValueAnimator slideViewIdeas = ObjectAnimator.ofFloat(mIdeasView,"y",2000f);
-        slideViewIdeas.setDuration(900);
+        ValueAnimator slideViewIdeas = ObjectAnimator.ofFloat(mIdeasView,"y",1600f);
+        slideViewIdeas.setDuration(850);
 
-        ValueAnimator slideViewMotivation = ObjectAnimator.ofFloat(mMotivationView,"y",2000f);
-        slideViewMotivation.setDuration(900);
+        ValueAnimator slideViewMotivation = ObjectAnimator.ofFloat(mMotivationView,"y",1600f);
+        slideViewMotivation.setDuration(850);
 
         //Create valueAnimator objects for textView objects
-        ValueAnimator slideTextGrief = ObjectAnimator.ofFloat(mGriefText,"y",2000f);
-        slideTextGrief.setDuration(1000);
+        ValueAnimator slideTextGrief = ObjectAnimator.ofFloat(mGriefText,"y",1600f);
+        slideTextGrief.setDuration(800);
 
-        ValueAnimator slideTextWellbeing = ObjectAnimator.ofFloat(mWellbeingText,"y",2000f);
-        slideTextWellbeing.setDuration(1000);
+        ValueAnimator slideTextWellbeing = ObjectAnimator.ofFloat(mWellbeingText,"y",1600f);
+        slideTextWellbeing.setDuration(800);
 
-        ValueAnimator slideTextHealth = ObjectAnimator.ofFloat(mHealthText,"y",2000f);
-        slideTextHealth.setDuration(1000);
+        ValueAnimator slideTextHealth = ObjectAnimator.ofFloat(mHealthText,"y",1600f);
+        slideTextHealth.setDuration(800);
 
-        ValueAnimator slideTextIdeas = ObjectAnimator.ofFloat(mIdeasText,"y",2000f);
-        slideTextIdeas.setDuration(1000);
+        ValueAnimator slideTextIdeas = ObjectAnimator.ofFloat(mIdeasText,"y",1600f);
+        slideTextIdeas.setDuration(800);
 
-        ValueAnimator slideTextMotivation = ObjectAnimator.ofFloat(mMotivationText,"y",2000f);
-        slideTextMotivation.setDuration(1000);
+        ValueAnimator slideTextMotivation = ObjectAnimator.ofFloat(mMotivationText,"y",1600f);
+        slideTextMotivation.setDuration(800);
 
-        ValueAnimator slideTextCenter = ObjectAnimator.ofFloat(mCenterText,"y",2000f);
-        slideTextCenter.setDuration(800);
+        ValueAnimator slideTextCenter = ObjectAnimator.ofFloat(mCenterText,"y",1600f);
+        slideTextCenter.setDuration(825);
 
 
         //Create animation set for sliding animation
@@ -528,4 +509,6 @@ public class MenuFragment extends Fragment {
 
         slideSet.start();
     }
+
+
 }

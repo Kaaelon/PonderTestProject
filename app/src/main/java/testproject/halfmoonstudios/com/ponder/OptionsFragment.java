@@ -1,8 +1,8 @@
 package testproject.halfmoonstudios.com.ponder;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +19,7 @@ public class OptionsFragment extends Fragment {
     private ImageView mMenuView;
     private ImageView mInfoView;
     private String type;
+    private onInfoClickedListener mCallback;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,12 @@ public class OptionsFragment extends Fragment {
         setupMenuView();
         setupInfoButton();
         return view;
+    }
+
+    public interface onInfoClickedListener{
+
+        public void onInfoSelected(boolean selected);
+
     }
 
     public void setupMenuView(){
@@ -56,6 +63,8 @@ public class OptionsFragment extends Fragment {
       mInfoView.setOnClickListener(new View.OnClickListener(){
           @Override
           public void onClick(View v){
+              //Callback to interface
+              mCallback.onInfoSelected(true);
               //adjust type to check current fragment
               type = "InfoFragment";
               //check if already on InfoFragment
@@ -77,5 +86,19 @@ public class OptionsFragment extends Fragment {
       }
       return isCurrent;
   }
+
+ public void onAttach(Activity activity){
+     super.onAttach(activity);
+
+     //Makes sure that the container activity has implemented the callback interface
+     try{
+         mCallback = (onInfoClickedListener) activity;
+
+     }catch(ClassCastException e){
+         throw new ClassCastException(activity.toString()+ " must implement onInfoClickedListener");
+
+     }
+
+ }
 }
 
