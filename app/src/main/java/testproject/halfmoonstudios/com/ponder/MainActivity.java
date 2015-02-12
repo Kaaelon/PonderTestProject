@@ -20,7 +20,10 @@ public class MainActivity extends Activity implements OptionsFragment.onInfoClic
 
     private CountDownTimer cd;
     private FragmentManager fm = getFragmentManager();
+    //String to communicate what selections have been made from the menuFragment to the quote fragment
     private String menuSelection;
+    //Boolean to signify whether it is the first time the user has accessed menuFragment previously
+    private boolean firstAccess = true;
     public static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
@@ -133,6 +136,14 @@ public class MainActivity extends Activity implements OptionsFragment.onInfoClic
     public String getSelection(){
      //Allows for the retrieval of the current menuSelection
       return this.menuSelection;
+    }
+
+    public boolean getFirstAccess(){
+        return this.firstAccess;
+    }
+
+    public void setFirstAccess(boolean firstAccess){
+        this.firstAccess = firstAccess;
     }
 
     public void onInfoSelected(boolean selected){

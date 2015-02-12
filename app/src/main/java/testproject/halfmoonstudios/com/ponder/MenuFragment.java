@@ -39,6 +39,8 @@ public class MenuFragment extends Fragment  {
     public static final String HEALTH = "health";
     public static final String GRIEF = "grief";
     public static final String IDEA = "idea";
+    //Declare boolean to check if first access
+    private boolean firstAccess;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,10 +80,14 @@ public class MenuFragment extends Fragment  {
         mMotivationText.setTypeface(mTypeFace);
         mCenterText.setTypeface(mTypeFace);
 
-        //Animate centerText
+        //Set value of first access through invoking getFirstAccess() from mainActivity
+        firstAccess = ((MainActivity)getActivity()).getFirstAccess();
 
+        //Animate centerText and views, checks if it is users first time accessing menu within this use
         animateTextView();
-        animateViews();
+        animateViewsFirst();
+
+
 
         //Set onclick listeners for textviews
         setListeners();
@@ -240,8 +246,6 @@ public class MenuFragment extends Fragment  {
         };
         cd.start();
 
-        //setCharacterDelay(40);
-        //animateText(mCenterText.getText());
 
     }
 
@@ -283,9 +287,8 @@ public class MenuFragment extends Fragment  {
         mDelay = millis;
     }
 
-
-    public void animateViews() {
-
+    public void animateViewsFirst() {
+        //Method animates views on the first time the user enters the menu screen
         //Using new valueAnimator for fade in effects
         ValueAnimator fadeGrief = ObjectAnimator.ofFloat(mGriefView, "alpha", 0.0f, 1.0f);
         fadeGrief.setDuration(750);
@@ -314,6 +317,9 @@ public class MenuFragment extends Fragment  {
 
         //Using new AnimatorSet for choreographing the order of fading
         AnimatorSet fadeGroup = new AnimatorSet();
+
+        if(firstAccess){
+
         fadeGroup.play(fadeGrief).after(1500);
         fadeGroup.play(fadeGriefTitle).after(1500);
 
@@ -329,8 +335,30 @@ public class MenuFragment extends Fragment  {
         fadeGroup.play(fadeIdeas).after(fadeMotivation);
         fadeGroup.play(fadeIdeasTitle).after(fadeMotivation);
 
+            //Sets first access to false
+        ((MainActivity)getActivity()).setFirstAccess(false);
+
+        }else{
+
+            fadeGroup.play(fadeGrief).after(1500);
+            fadeGroup.play(fadeGriefTitle).after(1500);
+
+            fadeGroup.play(fadeWellbeing).after(1500);
+            fadeGroup.play(fadeWellbeingTitle).after(1500);
+
+            fadeGroup.play(fadeHealth).after(1500);
+            fadeGroup.play(fadeHealthTitle).after(1500);
+
+            fadeGroup.play(fadeMotivation).after(1500);
+            fadeGroup.play(fadeMotivationTitle).after(1500);
+
+            fadeGroup.play(fadeIdeas).after(1500);
+            fadeGroup.play(fadeIdeasTitle).after(1500);
+
+        }
 
         fadeGroup.start();
+
 
 
     }
