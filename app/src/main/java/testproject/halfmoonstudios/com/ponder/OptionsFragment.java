@@ -2,11 +2,13 @@ package testproject.halfmoonstudios.com.ponder;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * Fragment holds the menu button and the info button to be displayed on menu, quote and info pages
@@ -51,10 +53,16 @@ public class OptionsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //adjust type to check current fragment
-                type = "MenuFragment";
-                if (!isCurrentFragment(type)) {
+                FragmentManager fm = getFragmentManager();
+                Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
+
+                if (curFragment.getClass().getName() != MenuFragment.class.getName()) {
                     ((MainActivity) getActivity()).replaceMenuFragment();
-                }
+                }else{
+
+                    Toast.makeText(getActivity(),"You're already on the menu screen!",Toast.LENGTH_SHORT).show();
+
+                                    }
             }
         });
     }
@@ -65,11 +73,14 @@ public class OptionsFragment extends Fragment {
           public void onClick(View v){
               //Callback to interface
               mCallback.onInfoSelected(true);
-              //adjust type to check current fragment
-              type = "InfoFragment";
-              //check if already on InfoFragment
-              if (!isCurrentFragment(type)) {
+              FragmentManager fm = getFragmentManager();
+              Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
+
+              if (curFragment.getClass().getName() != InfoFragment.class.getName()) {
                   ((MainActivity) getActivity()).replaceInfoFragment();
+              }else{
+
+                  Toast.makeText(getActivity(),"You're already on the info screen!",Toast.LENGTH_SHORT).show();
               }
           }
       });

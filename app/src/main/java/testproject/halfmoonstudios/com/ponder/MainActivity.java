@@ -55,14 +55,8 @@ public class MainActivity extends Activity implements OptionsFragment.onInfoClic
             @Override
             public void onFinish() {
 
-            FragmentManager fm = getFragmentManager();
-                Fragment menuFragment = fm.findFragmentById(R.id.fragmentContainer);
-                menuFragment = new MenuFragment();
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
-                transaction.replace(R.id.fragmentContainer, menuFragment);
-                transaction.commit();
-                replaceOptionsFragment();
+            replaceMenuFragment();
+            replaceOptionsFragment();
 
 
             }
@@ -74,13 +68,18 @@ public class MainActivity extends Activity implements OptionsFragment.onInfoClic
 
     public void replaceQuoteFragment(){
         //Allows fragment replacements calls from within other fragments (must cast activity object)
+        Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
         FragmentManager fm = getFragmentManager();
         Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
         newFragment = new QuoteFragment();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
         transaction.replace(R.id.fragmentContainer,newFragment);
-        transaction.addToBackStack(null);
+
+        if(curFragment.getClass().getName() == MenuFragment.class.getName()){
+            transaction.addToBackStack(null);
+        }
+
         transaction.commit();
     }
     public void replaceMenuFragment(){
@@ -91,7 +90,6 @@ public class MainActivity extends Activity implements OptionsFragment.onInfoClic
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
         transaction.replace(R.id.fragmentContainer,newFragment);
-        transaction.addToBackStack(null);
         transaction.commit();}
 
     public void replaceInfoFragment(){
