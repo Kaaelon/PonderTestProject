@@ -23,7 +23,7 @@
     <string name="infoTitle">What is Ponder ?</string>
     <string name="ponderInfoPt1">Ponder is your mobile source of written inspiration. Designed for moments where you need a change in mood, our team at</string>
     <string name="halfmoonStudios"> Halfmoon Studios</string>
-    <string name="ponderInfoPt2"> has sourced powerful quotes from notable figures, literary and texts. Whether it be finding inner peace or motivating yourself, Ponder is an app designed for the human condition.</string>
+    <string name="ponderInfoPt2"> has sourced powerful quotes from notable figures, literature and texts. Whether it be finding inner peace or motivating yourself, Ponder is an app designed for the human condition.</string>
     <string name="ponderInfoPt3">What will you ponder today?</string>
     <!--Quote string resources, please follow format quote_# -> author_# -->
     <!--Wellbeing -->
