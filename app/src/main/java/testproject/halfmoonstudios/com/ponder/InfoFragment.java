@@ -72,7 +72,7 @@ public class InfoFragment extends Fragment {
 
         ValueAnimator mBottomSlide = ObjectAnimator.ofFloat(infoBodyEnd,"y",1300f);
         mBottomSlide.setDuration(1500);
-        mBottomSlide.setStartDelay(1500);
+        mBottomSlide.setStartDelay(1100);
         mBottomSlide.start();
 
     }

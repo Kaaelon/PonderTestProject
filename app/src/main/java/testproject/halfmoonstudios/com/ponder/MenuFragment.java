@@ -1,5 +1,6 @@
 package testproject.halfmoonstudios.com.ponder;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -45,6 +46,7 @@ public class MenuFragment extends Fragment  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -83,14 +85,16 @@ public class MenuFragment extends Fragment  {
         //Set value of first access through invoking getFirstAccess() from mainActivity
         firstAccess = ((MainActivity)getActivity()).getFirstAccess();
 
-        //Animate centerText and views, checks if it is users first time accessing menu within this use
-        animateTextView();
-        animateViewsFirst();
 
 
 
         //Set onclick listeners for textviews
         setListeners();
+
+        //Animate centerText and views, checks if it is users first time accessing menu within this use
+        animateTextView();
+        animateViewsFirst();
+
         return v;
     }
 
@@ -288,6 +292,7 @@ public class MenuFragment extends Fragment  {
     }
 
     public void animateViewsFirst() {
+
         //Method animates views on the first time the user enters the menu screen
         //Using new valueAnimator for fade in effects
         ValueAnimator fadeGrief = ObjectAnimator.ofFloat(mGriefView, "alpha", 0.0f, 1.0f);
@@ -315,8 +320,13 @@ public class MenuFragment extends Fragment  {
         ValueAnimator fadeMotivationTitle = ObjectAnimator.ofFloat(mMotivationText, "alpha", 0.0f, 1.0f);
         fadeMotivationTitle.setDuration(750);
 
+
         //Using new AnimatorSet for choreographing the order of fading
         AnimatorSet fadeGroup = new AnimatorSet();
+
+        //Sets menuTextLayout clickable to false to stop the animation from bugging when users click animation
+        setLayoutClickable(false);
+
 
         if(firstAccess){
 
@@ -358,7 +368,48 @@ public class MenuFragment extends Fragment  {
         }
 
         fadeGroup.start();
+        fadeGroup.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
 
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+                setLayoutClickable(true);
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+
+
+
+
+    }
+    public void setLayoutClickable(boolean clickable){
+    //Sets clickable status for all layouts, this is used to prevent user from clicking layours prior to finishing their animation
+
+
+        mGriefView.setClickable(clickable);
+
+        mHealthView.setClickable(clickable);
+
+        mWellbeingView.setClickable(clickable);
+
+        mMotivationView.setClickable(clickable);
+
+        mIdeasView.setClickable(clickable);
 
 
     }

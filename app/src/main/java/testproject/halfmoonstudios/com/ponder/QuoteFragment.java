@@ -130,23 +130,23 @@ public class QuoteFragment extends Fragment {
 
         if(text.length() < 30){
 
-            return 28;
+            return 25;
 
         }else if(text.length() < 90){
 
-            return 26;
+            return 24;
 
         }else if (text.length() < 150){
 
-            return 24;
+            return 23;
 
 
         }else if (text.length() < 240){
 
-            return 21;
+            return 22;
 
         }
-        return 20;
+        return 21;
         }
 
     public void setFont(){

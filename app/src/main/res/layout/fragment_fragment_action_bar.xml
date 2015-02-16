@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/backgroundbar"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:alpha="0.5">
+   >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:alpha="0.5"
+        android:background="@drawable/backgroundbar">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:weightSum="4"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="60dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/menuView"
+                android:src="@drawable/menuicon"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/shareView"
+                android:src="@drawable/shareicon"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profileView"
+                android:src="@drawable/usericon2"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/infoView"
+                android:src="@drawable/aboutpage"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </RelativeLayout>
+
     <ImageView
         android:layout_width="55dp"
         android:layout_height="55dp"
@@ -11,46 +58,5 @@
         android:alpha="1.0"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="25dp"
-        android:weightSum="4"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:layout_below="@+id/categoryView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/menuView"
-            android:src="@drawable/menuicon"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/shareView"
-            android:src="@drawable/shareicon"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/profileView"
-            android:src="@drawable/usericon2"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/infoView"
-            android:src="@drawable/aboutpage"
-            android:layout_weight="1" />
-    </LinearLayout>
 
 </RelativeLayout>

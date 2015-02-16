@@ -118,8 +118,12 @@ public class FragmentActionBar extends Fragment {
             @Override
         public void onClick(View v){
 
-                ((MainActivity)getActivity()).onQuoteSelected(true);
+                FragmentManager fm = getFragmentManager();
+                Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
 
+                if(curFragment.getClass().getName() == QuoteFragment.class.getName()) {
+                    ((MainActivity) getActivity()).onQuoteSelected(true);
+                }
             }
         });
 
