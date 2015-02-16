@@ -16,13 +16,13 @@
         android:layout_above="@+id/menuTextLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="54dp"
-        android:alpha="0"/>
+        android:alpha="0" />
 
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="260dp"
         android:weightSum="0"
         android:baselineAligned="false"
         android:layout_alignParentBottom="true"

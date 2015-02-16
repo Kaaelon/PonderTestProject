@@ -18,10 +18,11 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="120dp"
         android:id="@+id/optionsContainer"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"></LinearLayout>
+        android:layout_alignParentStart="true"
+        android:visibility="visible"></LinearLayout>
 
 </RelativeLayout>

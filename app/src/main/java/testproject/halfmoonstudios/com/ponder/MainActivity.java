@@ -81,6 +81,8 @@ public class MainActivity extends Activity implements OptionsFragment.onInfoClic
         }
 
         transaction.commit();
+
+        replaceOptionsFragment();
     }
     public void replaceMenuFragment(){
         //Allows fragment replacements calls from within other fragments (must cast activity object)
@@ -106,26 +108,42 @@ public class MainActivity extends Activity implements OptionsFragment.onInfoClic
     public void replaceOptionsFragment() {
 
         //Using countdown timer for OptionsFragment for propper allignment with menu icon animation
-        CountDownTimer cd = new CountDownTimer(4400, 1) {
-            @Override
-            public void onTick(long millisUntilFinished) {
+        FragmentManager fm = getFragmentManager();
+        Fragment curFrag = fm.findFragmentById(R.id.fragmentContainer);
 
-            }
 
-            @Override
-            public void onFinish() {
+        if(curFrag.getClass().getName() == LogoFragment.class.getName()) {
 
-                FragmentManager fm = getFragmentManager();
-                Fragment newFragment = fm.findFragmentById(R.id.optionsContainer);
-                newFragment = new OptionsFragment();
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.setCustomAnimations(R.animator.slide_up, R.animator.slide_down);
-                transaction.replace(R.id.optionsContainer, newFragment);
-                transaction.commit();
-            }
-        };
-        cd.start();
+            CountDownTimer cd = new CountDownTimer(4400, 1) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                    FragmentManager fm = getFragmentManager();
+                    Fragment newFragment = fm.findFragmentById(R.id.optionsContainer);
+                    newFragment = new FragmentActionBar();
+                    FragmentTransaction transaction = fm.beginTransaction();
+                    transaction.setCustomAnimations(R.animator.slide_up, R.animator.slide_down);
+                    transaction.replace(R.id.optionsContainer, newFragment);
+                    transaction.commit();
+                }
+            };
+            cd.start();
+        }else{
+
+           FragmentActionBar actionFrag =(FragmentActionBar) fm.findFragmentById(R.id.optionsContainer);
+           actionFrag.getCategory(true);
+
+
+
+        }
     }
+
+
 
    public void setSelection(String selection){
        //Sets menuSelection variables (must reference int id of menu view) this allows for flexible manipulation

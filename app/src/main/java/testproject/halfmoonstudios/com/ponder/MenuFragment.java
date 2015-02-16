@@ -458,11 +458,11 @@ public class MenuFragment extends Fragment  {
 
 
         ValueAnimator slideImage = ObjectAnimator.ofFloat(imageSelect, "y", 2000f);
-        slideImage.setDuration(900);
+        slideImage.setDuration(1100);
         ValueAnimator slideText = ObjectAnimator.ofFloat(vText,"y",2000f);
-        slideText.setDuration(800);
+        slideText.setDuration(1000);
         ValueAnimator slideCenterText = ObjectAnimator.ofFloat(mCenterText,"y",2000f);
-        slideCenterText.setDuration(900);
+        slideCenterText.setDuration(1100);
 
 
         AnimatorSet slideSet = new AnimatorSet();

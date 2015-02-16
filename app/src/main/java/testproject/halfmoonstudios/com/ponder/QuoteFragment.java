@@ -45,9 +45,7 @@ public class QuoteFragment extends Fragment {
         //Assign values to views
         mQuoteView = (TextView) v.findViewById(R.id.quote_text);
         mAuthorView = (TextView) v.findViewById(R.id.quote_author);
-        mCategoryView = (ImageView) v.findViewById(R.id.categoryView);
-        //Call to assign category method
-        assignCategory();
+;
         //Call to populateList() method
         populateList();
         //Call to setUpAnimation() method
@@ -63,29 +61,6 @@ public class QuoteFragment extends Fragment {
         return v;
     }
 
-    public void assignCategory() {
-        /*Assigns category icon in relation to menu item chosen, through casting the main activity
-         * we are able to access the member variable  */
-        String typeChosen = ((MainActivity) getActivity()).getSelection();
-        mCategoryView.setImageResource(getImageID(typeChosen));
-    }
-
-    public int getImageID (String type) {
-        int imageID = -1;
-        switch (type) {
-            case MenuFragment.WELLBEING:  imageID = R.drawable.wellbeing_white;
-                break;
-            case MenuFragment.MOTIVATION:  imageID = R.drawable.motivation_white;
-                break;
-            case MenuFragment.IDEA:  imageID = R.drawable.ideas_white;
-                break;
-            case MenuFragment.HEALTH:  imageID = R.drawable.health_white;
-                break;
-            case MenuFragment.GRIEF:  imageID = R.drawable.grief_white;
-                break;
-        }
-        return imageID;
-    }
 
     public void setUpAnimation(View v) {
 
@@ -95,7 +70,7 @@ public class QuoteFragment extends Fragment {
         final Animation out = new AlphaAnimation(1.0f, 0.0f);
         out.setDuration(2250);
 
-        mCategoryView.setOnClickListener(new View.OnClickListener() {
+       /* mCategoryView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
 
@@ -103,7 +78,7 @@ public class QuoteFragment extends Fragment {
                 mQuoteView.startAnimation(out);
                 mAuthorView.startAnimation(out);}
             }
-        });
+        });*/
 
         out.setAnimationListener(new Animation.AnimationListener() {
             @Override
