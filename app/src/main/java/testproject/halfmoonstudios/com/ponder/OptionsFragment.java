@@ -86,7 +86,17 @@ public class OptionsFragment extends Fragment {
       });
   }
 
-
+  public boolean isCurrentFragment(String type) {
+      boolean isCurrent = false;
+      Fragment f = getActivity().getFragmentManager().findFragmentByTag(type);
+      if (f instanceof InfoFragment && type.equals("InfoFragment")) {
+         isCurrent = true;
+      }
+      if (f instanceof MenuFragment && type.equals("MenuFragment")) {
+          isCurrent = true;
+      }
+      return isCurrent;
+  }
 
  public void onAttach(Activity activity){
      super.onAttach(activity);

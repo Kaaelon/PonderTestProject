@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -16,7 +17,7 @@ import android.view.WindowManager;
  * Might be a better way of managing fragments - lots of repeated code
  */
 
-public class MainActivity extends Activity implements OptionsFragment.onInfoClickedListener {
+public class MainActivity extends Activity implements FragmentActionBar.onQuoteClickedListener {
 
     private CountDownTimer cd;
     private FragmentManager fm = getFragmentManager();
@@ -163,17 +164,15 @@ public class MainActivity extends Activity implements OptionsFragment.onInfoClic
         this.firstAccess = firstAccess;
     }
 
-    public void onInfoSelected(boolean selected){
+    public void onQuoteSelected(boolean selected){
+    //Method from implemented interface to provide communication between FragmentActionBar and Quote fragment, to trigger quote changes
 
+    if(selected){
 
-     try {
-         MenuFragment menuFrag = (MenuFragment) getFragmentManager().findFragmentById(R.id.fragmentContainer);
-         if(menuFrag != null && selected){
-
-             menuFrag.animateInfo();
-         }
-
-     }catch(Exception e){
+        Log.v("HERE","ERE");
+        FragmentManager fm = getFragmentManager();
+        QuoteFragment quoteFrag = (QuoteFragment)fm.findFragmentById(R.id.fragmentContainer);
+        quoteFrag.setQuoteText();
 
 
 

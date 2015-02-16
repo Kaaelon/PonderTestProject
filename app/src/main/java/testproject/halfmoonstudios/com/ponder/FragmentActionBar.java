@@ -1,5 +1,6 @@
 package testproject.halfmoonstudios.com.ponder;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -8,11 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class FragmentActionBar extends Fragment {
 
     private ImageView mCategoryView;
+    private ImageView mInfoView;
+    private ImageView mProfileView;
+    private ImageView mShareView;
+    private ImageView mMenuView;
+    private onQuoteClickedListener mCallback;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
@@ -21,8 +28,13 @@ public class FragmentActionBar extends Fragment {
 
         //Call to assign variables
         mCategoryView = (ImageView)v.findViewById(R.id.categoryView);
+        mInfoView = (ImageView)v.findViewById(R.id.infoView);
+        mProfileView = (ImageView)v.findViewById(R.id.profileView);
+        mShareView = (ImageView)v.findViewById(R.id.shareView);
+        mMenuView = (ImageView)v.findViewById(R.id.menuView);
 
-
+        //Call set listeners method to set actionListeners for views
+        setListeners();
 
 
         return v;}
@@ -39,8 +51,8 @@ public class FragmentActionBar extends Fragment {
         FragmentManager fm = getFragmentManager();
         Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
 
+        //Paramater for accessing method at appropriate time
         if(onQuote){
-            Log.v("HERE", "HERE");
            mCategoryView.setImageResource(getImageID(id));
         }
 
@@ -61,6 +73,74 @@ public class FragmentActionBar extends Fragment {
                 break;
         }
         return imageID;
+    }
+
+
+    public void setListeners(){
+
+        mMenuView.setOnClickListener( new View.OnClickListener(){
+            @Override
+        public void onClick(View v){
+                //adjust type to check current fragment
+                FragmentManager fm = getFragmentManager();
+                Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
+
+                if (curFragment.getClass().getName() != MenuFragment.class.getName()) {
+                    ((MainActivity) getActivity()).replaceMenuFragment();
+                }else{
+
+                    Toast.makeText(getActivity(), "You're already on the menu screen!", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
+
+        mInfoView.setOnClickListener(new View.OnClickListener(){
+            @Override
+        public void onClick(View v){
+                //Callback to interface
+                //mCallback.onInfoSelected(true);
+                FragmentManager fm = getFragmentManager();
+                Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
+
+                if (curFragment.getClass().getName() != InfoFragment.class.getName()) {
+                    ((MainActivity) getActivity()).replaceInfoFragment();
+                }else{
+
+                    Toast.makeText(getActivity(),"You're already on the info screen!",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        mCategoryView.setOnClickListener(new View.OnClickListener(){
+            @Override
+        public void onClick(View v){
+
+                ((MainActivity)getActivity()).onQuoteSelected(true);
+
+            }
+        });
+
+    }
+
+    public interface onQuoteClickedListener{
+
+        public void onQuoteSelected(boolean selected);
+
+    }
+
+    public void onAttach(Activity activity){
+        super.onAttach(activity);
+
+        //Make sure the container activity has implemented to appropriate interface, assigns mCallBack variable value of assigned interface
+        try{
+            Log.v("got here","got here");
+           mCallback = (onQuoteClickedListener)activity;
+        }catch(ClassCastException e){
+            throw new ClassCastException(activity.toString() + " must implement onQuoteClickedListener");
+        }
     }
 
 

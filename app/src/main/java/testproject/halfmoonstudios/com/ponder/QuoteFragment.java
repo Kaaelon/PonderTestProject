@@ -31,6 +31,8 @@ public class QuoteFragment extends Fragment {
     private ArrayList<Quote> mQuoteList = new ArrayList<>();
     private int curNumber = 0;
     private boolean mIsCreated = false;
+    final Animation out = new AlphaAnimation(1.0f, 0.0f);
+    final Animation in = new AlphaAnimation(0.0f, 1.0f);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,34 +53,26 @@ public class QuoteFragment extends Fragment {
         //Call to setUpAnimation() method
         setUpAnimation(v);
         //Sets initial value of quoteFragment
-
-        setFont();
         mQuoteView.setText(generateQuote());
-        clunkyTextFormat();
         mAuthorView.setText(generateAuthor());
+        setFont();
 
 
         return v;
     }
+    public void setQuoteText(){
+        clunkyTextFormat();
+        mQuoteView.startAnimation(out);
+        mAuthorView.startAnimation(out);
 
+    }
 
     public void setUpAnimation(View v) {
 
-        final Animation in = new AlphaAnimation(0.0f, 1.0f);
         in.setDuration(2250);
 
-        final Animation out = new AlphaAnimation(1.0f, 0.0f);
+        //Sets duration of
         out.setDuration(2250);
-
-       /* mCategoryView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-
-                if(out.hasEnded() || !out.hasStarted()){
-                mQuoteView.startAnimation(out);
-                mAuthorView.startAnimation(out);}
-            }
-        });*/
 
         out.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -96,9 +90,8 @@ public class QuoteFragment extends Fragment {
                 //mQuoteView.setTextSize(formatTextSize());
 
                 mAuthorView.setText((generateAuthor()));
-                if(!in.hasStarted()){
                 mQuoteView.startAnimation(in);
-                mAuthorView.startAnimation(in);}
+                mAuthorView.startAnimation(in);
             }
 
             @Override
