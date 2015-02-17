@@ -1,5 +1,9 @@
 package testproject.halfmoonstudios.com.ponder;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -18,9 +22,6 @@ import java.util.Random;
 /**
 * Quote Fragment
  * Populates an arrayList of quotes through accessing QuoteList singleton and cycles through quotes
- * TODO
- * generate author
- * onclick listener to change quote
  * */
 
 public class QuoteFragment extends Fragment {
@@ -50,8 +51,6 @@ public class QuoteFragment extends Fragment {
 ;
         //Call to populateList() method
         populateList();
-        //Call to setUpAnimation() method
-        setUpAnimation(v);
         //Sets initial value of quoteFragment
         mQuoteView.setText(generateQuote());
         mAuthorView.setText(generateAuthor());
@@ -62,8 +61,7 @@ public class QuoteFragment extends Fragment {
     }
     public void setQuoteText(){
         clunkyTextFormat();
-        mQuoteView.startAnimation(out);
-        mAuthorView.startAnimation(out);
+        playOutAnimation();
 
     }
 
@@ -75,21 +73,27 @@ public class QuoteFragment extends Fragment {
         return mQuoteList.get(curNumber).getAuthor();
     }
 
-    public void setUpAnimation(View v) {
+    public void playOutAnimation(){
 
-        in.setDuration(2250);
+        ValueAnimator textOut = ObjectAnimator.ofFloat(mQuoteView, "alpha", 0.0f);
+        textOut.setDuration(1500);
+        ValueAnimator authorOut = ObjectAnimator.ofFloat(mAuthorView,"alpha",0.0f);
+        authorOut.setDuration(1500);
 
-        //Sets duration of
-        out.setDuration(2250);
+        AnimatorSet outSet = new AnimatorSet();
+        outSet.play(textOut);
+        outSet.play(authorOut).with(textOut);
 
-        out.setAnimationListener(new Animation.AnimationListener() {
+        outSet.start();
+
+        outSet.addListener( new Animator.AnimatorListener() {
             @Override
-            public void onAnimationStart(Animation animation) {
+            public void onAnimationStart(Animator animation) {
 
             }
 
             @Override
-            public void onAnimationEnd(Animation animation) {
+            public void onAnimationEnd(Animator animation) {
                 setFont();
                 mQuoteView.setText(generateQuote());
                 mQuoteView.setTextSize(clunkyTextFormat());
@@ -98,12 +102,55 @@ public class QuoteFragment extends Fragment {
                 //mQuoteView.setTextSize(formatTextSize());
 
                 mAuthorView.setText((generateAuthor()));
-                mQuoteView.startAnimation(in);
-                mAuthorView.startAnimation(in);
+                playInAnimation();
+
             }
 
             @Override
-            public void onAnimationRepeat(Animation animation) {
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+    }
+
+    public void playInAnimation(){
+
+        ValueAnimator quoteIn = ObjectAnimator.ofFloat(mQuoteView,"alpha",1.0f);
+        quoteIn.setDuration(1500);
+
+        ValueAnimator authorIn = ObjectAnimator.ofFloat(mAuthorView,"alpha",1.0f);
+        authorIn.setDuration(1500);
+
+        AnimatorSet inSet = new AnimatorSet();
+        inSet.play(quoteIn);
+        inSet.play(authorIn).with(quoteIn);
+
+        inSet.start();
+
+        inSet.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
 
             }
         });
