@@ -3,6 +3,7 @@ package testproject.halfmoonstudios.com.ponder;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -114,6 +115,21 @@ public class FragmentActionBar extends Fragment {
             }
         });
 
+        mShareView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                FragmentManager fm = getFragmentManager();
+                Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
+                // get the quote shown
+                QuoteFragment quoteFrag = (QuoteFragment)fm.findFragmentById(R.id.fragmentContainer);
+                String quoteText = quoteFrag.getQuoteText();
+                String quoteAuthor = quoteFrag.getQuoteAuthor();
+                // share the quote
+                sharePost(quoteText, quoteAuthor);
+            }
+        });
+
         mCategoryView.setOnClickListener(new View.OnClickListener(){
             @Override
         public void onClick(View v){
@@ -145,6 +161,15 @@ public class FragmentActionBar extends Fragment {
         }catch(ClassCastException e){
             throw new ClassCastException(activity.toString() + " must implement onQuoteClickedListener");
         }
+    }
+
+    private void sharePost(String sharedQuote, String sharedAuthor) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        // TODO: replace to chosen content to share & extras
+        shareIntent.setType("text/plain");
+        String textToShare = "\"" + sharedQuote + "\" (" + sharedAuthor + ")";
+        shareIntent.putExtra(Intent.EXTRA_TEXT, textToShare);
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_chooser_title)));
     }
 
 

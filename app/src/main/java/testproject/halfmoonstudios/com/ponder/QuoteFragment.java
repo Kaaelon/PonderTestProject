@@ -67,6 +67,14 @@ public class QuoteFragment extends Fragment {
 
     }
 
+    public String getQuoteText(){
+        return mQuoteList.get(curNumber).getQuote();
+    }
+
+    public String getQuoteAuthor(){
+        return mQuoteList.get(curNumber).getAuthor();
+    }
+
     public void setUpAnimation(View v) {
 
         in.setDuration(2250);
