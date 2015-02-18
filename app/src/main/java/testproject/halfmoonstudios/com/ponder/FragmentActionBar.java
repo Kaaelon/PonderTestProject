@@ -1,11 +1,9 @@
 package testproject.halfmoonstudios.com.ponder;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +18,7 @@ public class FragmentActionBar extends Fragment {
     private ImageView mProfileView;
     private ImageView mShareView;
     private ImageView mMenuView;
-    private onQuoteClickedListener mCallback;
+
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
@@ -145,22 +143,9 @@ public class FragmentActionBar extends Fragment {
 
     }
 
-    public interface onQuoteClickedListener{
-
-        public void onQuoteSelected(boolean selected);
-
-    }
-
-    public void onAttach(Activity activity){
-        super.onAttach(activity);
-
-        //Make sure the container activity has implemented to appropriate interface, assigns mCallBack variable value of assigned interface
-        try{
-            Log.v("got here","got here");
-           mCallback = (onQuoteClickedListener)activity;
-        }catch(ClassCastException e){
-            throw new ClassCastException(activity.toString() + " must implement onQuoteClickedListener");
-        }
+    public void setCategoryClickable(boolean clickable){
+        //Sets the clickable status of mCategoryView
+        mCategoryView.setClickable(clickable);
     }
 
     private void sharePost(String sharedQuote, String sharedAuthor) {

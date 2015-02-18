@@ -17,7 +17,7 @@ import android.view.WindowManager;
  * Might be a better way of managing fragments - lots of repeated code
  */
 
-public class MainActivity extends Activity implements FragmentActionBar.onQuoteClickedListener {
+public class MainActivity extends Activity {
 
     private CountDownTimer cd;
     private FragmentManager fm = getFragmentManager();
@@ -164,23 +164,34 @@ public class MainActivity extends Activity implements FragmentActionBar.onQuoteC
         this.firstAccess = firstAccess;
     }
 
-    public void onQuoteSelected(boolean selected){
-    //Method from implemented interface to provide communication between FragmentActionBar and Quote fragment, to trigger quote changes
+    public void onQuoteSelected(boolean selected) {
+        //Method from implemented interface to provide communication between FragmentActionBar and Quote fragment, to trigger quote changes
 
-    if(selected){
+        if (selected) {
 
-        Log.v("HERE","ERE");
+            FragmentManager fm = getFragmentManager();
+            QuoteFragment quoteFrag = (QuoteFragment) fm.findFragmentById(R.id.fragmentContainer);
+            quoteFrag.setQuoteText();
+
+
+        }
+    }
+
+    public void setCategoryClickable(boolean clickable){
+        //Allows communication between quoteFragment and FragmentActionBar
+
         FragmentManager fm = getFragmentManager();
-        QuoteFragment quoteFrag = (QuoteFragment)fm.findFragmentById(R.id.fragmentContainer);
-        quoteFrag.setQuoteText();
+        FragmentActionBar actionFragment = (FragmentActionBar)fm.findFragmentById(R.id.optionsContainer);
 
+        if(actionFragment != null){
+            Log.v("HERE", clickable + "");
+            actionFragment.setCategoryClickable(clickable);
+        }
 
-
-     }
+    }
 
 
 
 
     }
 
-}

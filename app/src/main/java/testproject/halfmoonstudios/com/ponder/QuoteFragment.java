@@ -75,6 +75,7 @@ public class QuoteFragment extends Fragment {
 
     public void playOutAnimation(){
 
+        //Creates animation object and playset for out animation
         ValueAnimator textOut = ObjectAnimator.ofFloat(mQuoteView, "alpha", 0.0f);
         textOut.setDuration(1500);
         ValueAnimator authorOut = ObjectAnimator.ofFloat(mAuthorView,"alpha",0.0f);
@@ -84,11 +85,14 @@ public class QuoteFragment extends Fragment {
         outSet.play(textOut);
         outSet.play(authorOut).with(textOut);
 
-        outSet.start();
-
+        //Creates AnimatorListener to allow for event manipulation, this will be primarily used to set
+        //the clickickable of the ActionBars categoryView to false or true to limit the users ability to spam animations
         outSet.addListener( new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
+                //Calls setCategoryClickable and sets it to false to disable the CategoryView on the action bar (stops animation spam)
+                Log.v("IN","FALSE");
+                ((MainActivity)getActivity()).setCategoryClickable(false);
 
             }
 
@@ -117,6 +121,10 @@ public class QuoteFragment extends Fragment {
             }
         });
 
+        outSet.start();
+
+
+
     }
 
     public void playInAnimation(){
@@ -131,8 +139,6 @@ public class QuoteFragment extends Fragment {
         inSet.play(quoteIn);
         inSet.play(authorIn).with(quoteIn);
 
-        inSet.start();
-
         inSet.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -141,6 +147,9 @@ public class QuoteFragment extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+                //Calls setCategoryClickable from mainActivity to set clickable of actionBars mCategory to true
+                Log.v("OUT", "ANIM");
+                ((MainActivity)getActivity()).setCategoryClickable(true);
 
             }
 
@@ -154,6 +163,10 @@ public class QuoteFragment extends Fragment {
 
             }
         });
+
+        inSet.start();
+
+
     }
 
     public String generateAuthor() {
