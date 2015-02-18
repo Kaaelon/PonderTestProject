@@ -41,7 +41,6 @@ public class MainActivity extends Activity {
     }
 
     private void setupLogo(){
-        FragmentManager fm = getFragmentManager();
         Fragment fragmentLogo = fm.findFragmentById(R.id.fragmentContainer);
         if(fragmentLogo == null){
             fragmentLogo = new LogoFragment();
@@ -70,7 +69,6 @@ public class MainActivity extends Activity {
     public void replaceQuoteFragment(){
         //Allows fragment replacements calls from within other fragments (must cast activity object)
         Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
-        FragmentManager fm = getFragmentManager();
         Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
         newFragment = new QuoteFragment();
         FragmentTransaction transaction = fm.beginTransaction();
@@ -87,7 +85,6 @@ public class MainActivity extends Activity {
     }
     public void replaceMenuFragment(){
         //Allows fragment replacements calls from within other fragments (must cast activity object)
-        FragmentManager fm = getFragmentManager();
         Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
         newFragment = new MenuFragment();
         FragmentTransaction transaction = fm.beginTransaction();
@@ -96,7 +93,6 @@ public class MainActivity extends Activity {
         transaction.commit();}
 
     public void replaceInfoFragment(){
-        FragmentManager fm = getFragmentManager();
         Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
         newFragment = new InfoFragment();
         FragmentTransaction transaction = fm.beginTransaction();
@@ -109,7 +105,7 @@ public class MainActivity extends Activity {
     public void replaceOptionsFragment() {
 
         //Using countdown timer for OptionsFragment for propper allignment with menu icon animation
-        FragmentManager fm = getFragmentManager();
+
         Fragment curFrag = fm.findFragmentById(R.id.fragmentContainer);
 
 
@@ -169,7 +165,6 @@ public class MainActivity extends Activity {
 
         if (selected) {
 
-            FragmentManager fm = getFragmentManager();
             QuoteFragment quoteFrag = (QuoteFragment) fm.findFragmentById(R.id.fragmentContainer);
             quoteFrag.setQuoteText();
 
@@ -180,13 +175,24 @@ public class MainActivity extends Activity {
     public void setCategoryClickable(boolean clickable){
         //Allows communication between quoteFragment and FragmentActionBar
 
-        FragmentManager fm = getFragmentManager();
+
         FragmentActionBar actionFragment = (FragmentActionBar)fm.findFragmentById(R.id.optionsContainer);
 
         if(actionFragment != null){
             Log.v("HERE", clickable + "");
             actionFragment.setCategoryClickable(clickable);
         }
+
+    }
+
+    public void actionBarItemSelected(String selected){
+       //Method passes value to ActionBars setSelectedItem() method, to highlight current menu Icon
+      FragmentActionBar actionFragment = (FragmentActionBar)fm.findFragmentById(R.id.optionsContainer);
+
+        if(actionFragment != null) {
+            actionFragment.setSelectedItem(selected);
+        }
+
 
     }
 

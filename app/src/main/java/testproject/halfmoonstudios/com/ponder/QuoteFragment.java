@@ -37,8 +37,14 @@ public class QuoteFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        //Call to main Activity to set appropriate item selected in the action bar
+        actionBarItemHighlighted();
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
@@ -225,6 +231,13 @@ public class QuoteFragment extends Fragment {
 
         mTypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
         mAuthorView.setTypeface(mTypeFace);
+    }
+
+    public void actionBarItemHighlighted(){
+
+        //Call actionBarItemSelected from mainActivity and passes in the name of this current class
+        ((MainActivity)getActivity()).actionBarItemSelected(this.getClass().getName());
+
     }
 
 

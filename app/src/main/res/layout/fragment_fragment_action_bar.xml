@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/menuView"
-                android:src="@drawable/menuicon"
+                android:src="@drawable/menupressed"
                 android:layout_weight="1" />
 
             <ImageView
@@ -54,25 +54,15 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="320dp"
-            android:layout_height="20dp"
-            android:id="@+id/lineView"
-            android:src="@drawable/whiteline"
-            android:layout_marginLeft="9dp"
-            android:layout_marginStart="9dp"
-            android:layout_alignBottom="@+id/linearLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="64dp" />
     </RelativeLayout>
 
     <ImageView
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
         android:id="@+id/categoryView"
         android:alpha="1.0"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

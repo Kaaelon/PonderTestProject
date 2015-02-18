@@ -23,6 +23,8 @@ public class InfoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Call to main Activity to set appropriate item selected in the action bar
+        actionBarItemHighlighted();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
@@ -76,5 +78,20 @@ public class InfoFragment extends Fragment {
         mBottomSlide.start();
 
     }
+
+    public void onResume(){
+        super.onResume();
+        //Call to main Activity to set appropriate item selected in the action bar
+        actionBarItemHighlighted();
+
+    }
+
+    public void actionBarItemHighlighted(){
+
+        //Call actionBarItemSelected from mainActivity and passes in the name of this current class
+        ((MainActivity)getActivity()).actionBarItemSelected(this.getClass().getName());
+
+    }
+
 
 }

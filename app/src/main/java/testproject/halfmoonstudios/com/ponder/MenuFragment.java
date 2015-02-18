@@ -8,7 +8,6 @@ import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +46,8 @@ public class MenuFragment extends Fragment  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Call to main Activity to set appropriate item selected in the action bar
+        actionBarItemHighlighted();
     }
 
     @Override
@@ -85,9 +86,6 @@ public class MenuFragment extends Fragment  {
         //Set value of first access through invoking getFirstAccess() from mainActivity
         firstAccess = ((MainActivity)getActivity()).getFirstAccess();
 
-
-
-
         //Set onclick listeners for textviews
         setListeners();
 
@@ -97,6 +95,17 @@ public class MenuFragment extends Fragment  {
 
         return v;
     }
+
+    public void onResume(){
+        super.onResume();
+
+     //Call to main Activity to set appropriate item selected in the action bar
+        actionBarItemHighlighted();
+
+
+
+    }
+
 
     public void setListeners() {
 
@@ -251,44 +260,6 @@ public class MenuFragment extends Fragment  {
         cd.start();
 
 
-    }
-
-
-    //The following code declares a handler object that adds and displays chars one at at a time to the textview
-    private Handler mHandler = new Handler();
-    int mIndex = 0;
-    CharSequence mText;
-    long mDelay;
-
-
-    private Runnable characterAdder = new Runnable() {
-
-        @Override
-        public void run() {
-
-
-            mCenterText.setText(mText.subSequence(0, mIndex++));
-            if (mIndex <= mText.length()) {
-                mHandler.postDelayed(characterAdder, mDelay);
-
-            }
-        }
-    };
-
-    //animateText, setsUp mHandler through assign required values to mText and mIndex, also flushed mHandler through the use of removeCallBacks
-    public void animateText(CharSequence text) {
-
-        mText = text;
-        mIndex = 0;
-
-        mCenterText.setText("");
-        mHandler.removeCallbacks(characterAdder);
-        mHandler.postDelayed(characterAdder, mDelay);
-    }
-
-    //Sets delay between each characters appearance
-    public void setCharacterDelay(long millis) {
-        mDelay = millis;
     }
 
     public void animateViewsFirst() {
@@ -588,6 +559,15 @@ public class MenuFragment extends Fragment  {
 
         slideSet.start();
     }
+
+    public void actionBarItemHighlighted(){
+
+        //Call actionBarItemSelected from mainActivity and passes in the name of this current class
+        ((MainActivity)getActivity()).actionBarItemSelected(this.getClass().getName());
+
+    }
+
+
 
 
 }

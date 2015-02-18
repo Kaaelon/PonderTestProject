@@ -60,15 +60,15 @@ public class FragmentActionBar extends Fragment {
     public int getImageID (String type) {
         int imageID = -1;
         switch (type) {
-            case MenuFragment.WELLBEING:  imageID = R.drawable.wellbeing_white;
+            case MenuFragment.WELLBEING:  imageID = R.drawable.wellbeing_line;
                 break;
-            case MenuFragment.MOTIVATION:  imageID = R.drawable.motivation_white;
+            case MenuFragment.MOTIVATION:  imageID = R.drawable.motivation_line;
                 break;
-            case MenuFragment.IDEA:  imageID = R.drawable.ideas_white;
+            case MenuFragment.IDEA:  imageID = R.drawable.ideas_line;
                 break;
-            case MenuFragment.HEALTH:  imageID = R.drawable.health_white;
+            case MenuFragment.HEALTH:  imageID = R.drawable.health_line;
                 break;
-            case MenuFragment.GRIEF:  imageID = R.drawable.grief_white;
+            case MenuFragment.GRIEF:  imageID = R.drawable.grief_line;
                 break;
         }
         return imageID;
@@ -155,6 +155,23 @@ public class FragmentActionBar extends Fragment {
         String textToShare = "\"" + sharedQuote + "\" (" + sharedAuthor + ")";
         shareIntent.putExtra(Intent.EXTRA_TEXT, textToShare);
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_chooser_title)));
+    }
+
+    public void setSelectedItem(String selected){
+
+        if(selected == MenuFragment.class.getName()){
+            mMenuView.setImageResource(R.drawable.menupressed);
+            mInfoView.setImageResource(R.drawable.aboutpage);
+
+        }else if(selected == InfoFragment.class.getName()){
+            mInfoView.setImageResource(R.drawable.aboutpressed);
+            mMenuView.setImageResource(R.drawable.menuicon);
+        }else if(selected == QuoteFragment.class.getName()){
+            mInfoView.setImageResource(R.drawable.aboutpage);
+            mMenuView.setImageResource(R.drawable.menuicon);
+        }
+
+
     }
 
 
