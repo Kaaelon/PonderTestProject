@@ -6,9 +6,12 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="120dp"
+        android:layout_height="95dp"
         android:alpha="0.5"
-        android:background="@drawable/backgroundbar">
+        android:background="@drawable/backgroundbar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -19,7 +22,8 @@
             android:paddingRight="50dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="60dp">
+            android:layout_marginTop="40dp"
+            android:id="@+id/linearLayout">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -49,6 +53,18 @@
                 android:src="@drawable/aboutpage"
                 android:layout_weight="1" />
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="320dp"
+            android:layout_height="20dp"
+            android:id="@+id/lineView"
+            android:src="@drawable/whiteline"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp"
+            android:layout_alignBottom="@+id/linearLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="64dp" />
     </RelativeLayout>
 
     <ImageView
