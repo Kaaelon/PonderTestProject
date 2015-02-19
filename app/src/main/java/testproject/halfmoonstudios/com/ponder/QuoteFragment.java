@@ -40,8 +40,10 @@ public class QuoteFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
 
-        //Call to main Activity to set appropriate item selected in the action bar
+        //Call to method to set appropriate item selected in the action bar
         actionBarItemHighlighted();
+        //Call to method to set the alpha visibility of ActionBars Category view
+        setCategoryVisibilty();
 
     }
 
@@ -69,6 +71,12 @@ public class QuoteFragment extends Fragment {
         clunkyTextFormat();
         playOutAnimation();
 
+    }
+
+    public void onResume(){
+        super.onResume();
+       //Call to method to set the alpha visibility of ActionBars Category view
+        setCategoryVisibilty();
     }
 
     public String getQuoteText(){
@@ -196,10 +204,7 @@ public class QuoteFragment extends Fragment {
         mQuoteList = QuoteList.getQuotesByType(((MainActivity) getActivity()).getSelection());
     }
 
-
-
-
-    public float clunkyTextFormat(){
+     public float clunkyTextFormat(){
         String text = mQuoteView.getText().toString();
 
         if(text.length() < 30){
@@ -235,9 +240,14 @@ public class QuoteFragment extends Fragment {
 
     public void actionBarItemHighlighted(){
 
-        //Call actionBarItemSelected from mainActivity and passes in the name of this current class
+        //Call actionBarItemSelected from mainActivity and passes in the name of this current class *Method used in more than one class possibly worth using inheritence
         ((MainActivity)getActivity()).actionBarItemSelected(this.getClass().getName());
 
+    }
+
+    public void setCategoryVisibilty(){
+        //Calls mainActivity activities setCategoryVisibilty() method which calls FragmentActionBar to set the visibility of CategoryView *used in more than one class
+        ((MainActivity)getActivity()).setCategoryVisibility(1);
     }
 
 

@@ -23,8 +23,11 @@ public class InfoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Call to main Activity to set appropriate item selected in the action bar
+        //Call to method to set appropriate item selected in the action bar
         actionBarItemHighlighted();
+        //Call to method to set mCategoryViews alpha visibility to 0
+        setCategoryVisible();
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
@@ -93,5 +96,10 @@ public class InfoFragment extends Fragment {
 
     }
 
+    public void setCategoryVisible(){
+        //Method to communicate with main activity to set mCategory views alpha visibility to 0
+        ((MainActivity)getActivity()).setCategoryVisibility(0);
+
+    }
 
 }

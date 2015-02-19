@@ -1,5 +1,7 @@
 package testproject.halfmoonstudios.com.ponder;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -47,14 +49,10 @@ public class FragmentActionBar extends Fragment {
 
         String id = ((MainActivity)getActivity()).getSelection();
 
-        FragmentManager fm = getFragmentManager();
-        Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
-
         //Paramater for accessing method at appropriate time
         if(onQuote){
            mCategoryView.setImageResource(getImageID(id));
         }
-
     }
 
     public int getImageID (String type) {
@@ -72,6 +70,15 @@ public class FragmentActionBar extends Fragment {
                 break;
         }
         return imageID;
+    }
+
+    public void setCategoryViewVisible(float alpha){
+    //Creates ValueAnimator that sets the alpha value of the mCategory view with an animation, pass in 1 for visible 0 for invisible
+        ValueAnimator mCategoryFade = ObjectAnimator.ofFloat(mCategoryView,"alpha",alpha);
+        mCategoryFade.setDuration(1000);
+        mCategoryFade.start();
+
+
     }
 
 

@@ -6,7 +6,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -80,7 +79,7 @@ public class MainActivity extends Activity {
         }
 
         transaction.commit();
-
+    //Calls replace option Fragment to update mCategoryView with quoteFragment
         replaceOptionsFragment();
     }
     public void replaceMenuFragment(){
@@ -108,7 +107,7 @@ public class MainActivity extends Activity {
 
         Fragment curFrag = fm.findFragmentById(R.id.fragmentContainer);
 
-
+        //If the current fragment is the logoFragment class then actionBar is created after timer
         if(curFrag.getClass().getName() == LogoFragment.class.getName()) {
 
             CountDownTimer cd = new CountDownTimer(4400, 1) {
@@ -173,25 +172,32 @@ public class MainActivity extends Activity {
     }
 
     public void setCategoryClickable(boolean clickable){
-        //Allows communication between quoteFragment and FragmentActionBar
+        //Allows communication between quoteFragment and FragmentActionBar call actions fragments setCategoryClickable to clickable
 
 
         FragmentActionBar actionFragment = (FragmentActionBar)fm.findFragmentById(R.id.optionsContainer);
 
         if(actionFragment != null){
-            Log.v("HERE", clickable + "");
             actionFragment.setCategoryClickable(clickable);
         }
 
     }
 
-    public void actionBarItemSelected(String selected){
-       //Method passes value to ActionBars setSelectedItem() method, to highlight current menu Icon
-      FragmentActionBar actionFragment = (FragmentActionBar)fm.findFragmentById(R.id.optionsContainer);
+    public void actionBarItemSelected(String selected) {
+        //Method passes value to ActionBars setSelectedItem() method, to highlight current menu Icon
+        FragmentActionBar actionFragment = (FragmentActionBar) fm.findFragmentById(R.id.optionsContainer);
 
-        if(actionFragment != null) {
+        if (actionFragment != null) {
             actionFragment.setSelectedItem(selected);
         }
+    }
+
+    public void setCategoryVisibility(float alpha){
+    //Method sets alpha visibility of mCategoryView in FragmentActionBar
+       FragmentActionBar actionFrag = (FragmentActionBar)fm.findFragmentById(R.id.optionsContainer);
+        if(actionFrag != null){
+       actionFrag.setCategoryViewVisible(alpha);
+    }}
 
 
     }
@@ -199,5 +205,5 @@ public class MainActivity extends Activity {
 
 
 
-    }
+
 
