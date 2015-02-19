@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -18,7 +17,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MenuFragment extends Fragment  {
+public class MenuFragment extends BaseFragment  {
     //Declares imageviews
     private ImageView mWellbeingView;
     private ImageView mGriefView;
@@ -102,7 +101,7 @@ public class MenuFragment extends Fragment  {
      //Call to main Activity to set appropriate item selected in the action bar
         actionBarItemHighlighted();
      //Call to method to set the alpha visibility of ActionBars Category view
-        setCategoryVisibilty();
+        setCategoryVisibilty(0);
 
 
 
@@ -562,17 +561,6 @@ public class MenuFragment extends Fragment  {
         slideSet.start();
     }
 
-    public void actionBarItemHighlighted(){
-
-        //Call actionBarItemSelected from mainActivity and passes in the name of this current class *used in more than one class possibly worth implementing inheritance
-        ((MainActivity)getActivity()).actionBarItemSelected(this.getClass().getName());
-
-    }
-
-    public void setCategoryVisibilty(){
-        //Calls mainActivity activities setCategoryVisibilty() method which calls FragmentActionBar to set the visibility of CategoryView *used in more than one class
-        ((MainActivity)getActivity()).setCategoryVisibility(0);
-    }
 
 
 

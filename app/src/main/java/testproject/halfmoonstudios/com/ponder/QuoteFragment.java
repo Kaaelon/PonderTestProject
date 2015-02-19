@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +23,7 @@ import java.util.Random;
  * Populates an arrayList of quotes through accessing QuoteList singleton and cycles through quotes
  * */
 
-public class QuoteFragment extends Fragment {
+public class QuoteFragment extends BaseFragment {
     //Create Views for quote fragment
     private TextView mQuoteView;
     private TextView mAuthorView;
@@ -43,7 +42,7 @@ public class QuoteFragment extends Fragment {
         //Call to method to set appropriate item selected in the action bar
         actionBarItemHighlighted();
         //Call to method to set the alpha visibility of ActionBars Category view
-        setCategoryVisibilty();
+        setCategoryVisibilty(1);
 
     }
 
@@ -76,7 +75,7 @@ public class QuoteFragment extends Fragment {
     public void onResume(){
         super.onResume();
        //Call to method to set the alpha visibility of ActionBars Category view
-        setCategoryVisibilty();
+        setCategoryVisibilty(1);
     }
 
     public String getQuoteText(){
@@ -238,17 +237,6 @@ public class QuoteFragment extends Fragment {
         mAuthorView.setTypeface(mTypeFace);
     }
 
-    public void actionBarItemHighlighted(){
-
-        //Call actionBarItemSelected from mainActivity and passes in the name of this current class *Method used in more than one class possibly worth using inheritence
-        ((MainActivity)getActivity()).actionBarItemSelected(this.getClass().getName());
-
-    }
-
-    public void setCategoryVisibilty(){
-        //Calls mainActivity activities setCategoryVisibilty() method which calls FragmentActionBar to set the visibility of CategoryView *used in more than one class
-        ((MainActivity)getActivity()).setCategoryVisibility(1);
-    }
 
 
 

@@ -2,7 +2,6 @@ package testproject.halfmoonstudios.com.ponder;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 /**
  * InfoFragment - displays information about app/studio
  */
-public class InfoFragment extends Fragment {
+public class InfoFragment extends BaseFragment {
     //Create textView variables
     private TextView infoBody;
     private TextView infoHeading;
@@ -26,7 +25,7 @@ public class InfoFragment extends Fragment {
         //Call to method to set appropriate item selected in the action bar
         actionBarItemHighlighted();
         //Call to method to set mCategoryViews alpha visibility to 0
-        setCategoryVisible();
+        setCategoryVisibilty(0);
 
     }
     @Override
@@ -89,17 +88,6 @@ public class InfoFragment extends Fragment {
 
     }
 
-    public void actionBarItemHighlighted(){
 
-        //Call actionBarItemSelected from mainActivity and passes in the name of this current class
-        ((MainActivity)getActivity()).actionBarItemSelected(this.getClass().getName());
-
-    }
-
-    public void setCategoryVisible(){
-        //Method to communicate with main activity to set mCategory views alpha visibility to 0
-        ((MainActivity)getActivity()).setCategoryVisibility(0);
-
-    }
 
 }
