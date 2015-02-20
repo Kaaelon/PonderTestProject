@@ -6,16 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
-import java.net.HttpURLConnection;
-import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -26,6 +16,17 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Singleton object that stores quotes
@@ -164,8 +165,11 @@ public class QuoteList {
     //TODO: figure out where exactly should async task be called, here or in MainActivity
     private class GetQuotesTask extends AsyncTask<Object, Void, JSONObject> {
 
+
+
         @Override
         protected JSONObject doInBackground(Object... params) {
+
             int responseCode = -1;
             JSONObject jsonResponse = null;
             StringBuilder builder = new StringBuilder();
@@ -198,4 +202,6 @@ public class QuoteList {
             return jsonResponse;
         }
     }
+
+
 }

@@ -119,7 +119,7 @@ public class MenuFragment extends BaseFragment  {
                 //Animate selection
                 animateSelection(mWellbeingView,mWellbeingText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
-                CountDownTimer cd = new CountDownTimer(2500,1) {
+                CountDownTimer cd = new CountDownTimer(2750,1) {
                     @Override
                     public void onTick(long millisUntilFinished) {
 
@@ -145,7 +145,7 @@ public class MenuFragment extends BaseFragment  {
                 //Animate selection
                 animateSelection(mGriefView,mGriefText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
-                CountDownTimer cd = new CountDownTimer(2500,1) {
+                CountDownTimer cd = new CountDownTimer(2750,1) {
                     @Override
                     public void onTick(long millisUntilFinished) {
 
@@ -171,7 +171,7 @@ public class MenuFragment extends BaseFragment  {
                 //Animate selection
                 animateSelection(mHealthView,mHealthText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
-                CountDownTimer cd = new CountDownTimer(2500,1) {
+                CountDownTimer cd = new CountDownTimer(2750,1) {
                     @Override
                     public void onTick(long millisUntilFinished) {
 
@@ -196,7 +196,7 @@ public class MenuFragment extends BaseFragment  {
                 //Animate selection
                 animateSelection(mIdeasView,mIdeasText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
-                CountDownTimer cd = new CountDownTimer(2500,1) {
+                CountDownTimer cd = new CountDownTimer(2750,1) {
                     @Override
                     public void onTick(long millisUntilFinished) {
 
@@ -220,7 +220,7 @@ public class MenuFragment extends BaseFragment  {
                 //Animate selection
                 animateSelection(mMotivationView,mMotivationText);
                 //Calls fragmentReplace() method from mainActivity to transition fragments
-                CountDownTimer cd = new CountDownTimer(2500,1) {
+                CountDownTimer cd = new CountDownTimer(2750,1) {
                     @Override
                     public void onTick(long millisUntilFinished) {
 
@@ -477,91 +477,19 @@ public class MenuFragment extends BaseFragment  {
             slideAcrossView.start();}
 
 
-        //Starts animation for slide down
+        //Create Object for fade out
 
-
-        ValueAnimator slideImage = ObjectAnimator.ofFloat(imageSelect, "y", 2000f);
-        slideImage.setDuration(1100);
-        ValueAnimator slideText = ObjectAnimator.ofFloat(vText,"y",2000f);
-        slideText.setDuration(1000);
-        ValueAnimator slideCenterText = ObjectAnimator.ofFloat(mCenterText,"y",2000f);
-        slideCenterText.setDuration(1100);
-
-
-        AnimatorSet slideSet = new AnimatorSet();
-        slideSet.play(slideImage).after(1800);
-        slideSet.play(slideText).after(1800);
-        slideSet.play(slideCenterText).after(1800);
-
-        slideSet.start();
-
+        ValueAnimator layoutFade = ObjectAnimator.ofFloat(mSlideLayout,"alpha",0.0f);
+        layoutFade.setDuration(1000);
+        layoutFade.setStartDelay(1600);
+        ValueAnimator centerTextFade = ObjectAnimator.ofFloat(mCenterText,"alpha",0.0f);
+        centerTextFade.setDuration(1000);
+        centerTextFade.setStartDelay(1600);
+        layoutFade.start();
+        centerTextFade.start();
 
 
     }
-
-    public void animateInfo(){
-
-
-        //Create valueAnimator objects for Imageview objects
-        ValueAnimator slideViewGrief = ObjectAnimator.ofFloat(mGriefView,"y",1600f);
-        slideViewGrief.setDuration(850);
-
-        ValueAnimator slideViewWellbeing = ObjectAnimator.ofFloat(mWellbeingView, "y", 1600f);
-        slideViewWellbeing.setDuration(850);
-
-        ValueAnimator slideViewHealth = ObjectAnimator.ofFloat(mHealthView,"y",1600f);
-        slideViewHealth.setDuration(850);
-
-        ValueAnimator slideViewIdeas = ObjectAnimator.ofFloat(mIdeasView,"y",1600f);
-        slideViewIdeas.setDuration(850);
-
-        ValueAnimator slideViewMotivation = ObjectAnimator.ofFloat(mMotivationView,"y",1600f);
-        slideViewMotivation.setDuration(850);
-
-        //Create valueAnimator objects for textView objects
-        ValueAnimator slideTextGrief = ObjectAnimator.ofFloat(mGriefText,"y",1600f);
-        slideTextGrief.setDuration(800);
-
-        ValueAnimator slideTextWellbeing = ObjectAnimator.ofFloat(mWellbeingText,"y",1600f);
-        slideTextWellbeing.setDuration(800);
-
-        ValueAnimator slideTextHealth = ObjectAnimator.ofFloat(mHealthText,"y",1600f);
-        slideTextHealth.setDuration(800);
-
-        ValueAnimator slideTextIdeas = ObjectAnimator.ofFloat(mIdeasText,"y",1600f);
-        slideTextIdeas.setDuration(800);
-
-        ValueAnimator slideTextMotivation = ObjectAnimator.ofFloat(mMotivationText,"y",1600f);
-        slideTextMotivation.setDuration(800);
-
-        ValueAnimator slideTextCenter = ObjectAnimator.ofFloat(mCenterText,"y",1600f);
-        slideTextCenter.setDuration(825);
-
-
-        //Create animation set for sliding animation
-
-        AnimatorSet slideSet = new AnimatorSet();
-
-        //Set animation playtimes
-
-        slideSet.play(slideViewGrief).after(100);
-        slideSet.play(slideViewHealth).after(100);
-        slideSet.play(slideViewIdeas).after(100);
-        slideSet.play(slideViewWellbeing).after(100);
-        slideSet.play(slideViewMotivation).after(100);
-
-        slideSet.play(slideTextGrief).after(100);
-        slideSet.play(slideTextHealth).after(100);
-        slideSet.play(slideTextIdeas).after(100);
-        slideSet.play(slideTextMotivation).after(100);
-        slideSet.play(slideTextWellbeing).after(100);
-
-        slideSet.play(slideTextCenter).after(100);
-
-        slideSet.start();
-    }
-
-
 
 
 

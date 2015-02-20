@@ -62,10 +62,13 @@ public class QuoteFragment extends BaseFragment {
         mQuoteView.setText(generateQuote());
         mAuthorView.setText(generateAuthor());
         setFont();
+        playInAnimation();
 
 
         return v;
     }
+
+
     public void setQuoteText(){
         clunkyTextFormat();
         playOutAnimation();

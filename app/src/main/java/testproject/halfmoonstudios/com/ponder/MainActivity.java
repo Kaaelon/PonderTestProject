@@ -70,8 +70,8 @@ public class MainActivity extends Activity {
         Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
         Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
         newFragment = new QuoteFragment();
+
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
         transaction.replace(R.id.fragmentContainer,newFragment);
 
         if(curFragment.getClass().getName() == MenuFragment.class.getName()){
