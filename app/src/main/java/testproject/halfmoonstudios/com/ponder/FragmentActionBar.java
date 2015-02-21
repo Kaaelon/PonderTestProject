@@ -86,8 +86,6 @@ public class FragmentActionBar extends BaseFragment {
         ValueAnimator mCategoryFade = ObjectAnimator.ofFloat(mCategoryView,"alpha",alpha);
         mCategoryFade.setDuration(1000);
         mCategoryFade.start();
-
-
     }
 
 
@@ -135,12 +133,18 @@ public class FragmentActionBar extends BaseFragment {
 
                 FragmentManager fm = getFragmentManager();
                 Fragment curFragment = fm.findFragmentById(R.id.fragmentContainer);
-                // get the quote shown
-                QuoteFragment quoteFrag = (QuoteFragment)fm.findFragmentById(R.id.fragmentContainer);
-                String quoteText = quoteFrag.getQuoteText();
-                String quoteAuthor = quoteFrag.getQuoteAuthor();
-                // share the quote
-                sharePost(quoteText, quoteAuthor);
+
+                if (curFragment.getClass().getName() != QuoteFragment.class.getName()) {
+                    // if it's any other fragment except QuoteFragment
+                    Toast.makeText(getActivity(),"You're not able to share this screen",Toast.LENGTH_SHORT).show();
+                }else{
+                    // get the quote shown
+                    QuoteFragment quoteFrag = (QuoteFragment)fm.findFragmentById(R.id.fragmentContainer);
+                    String quoteText = quoteFrag.getQuoteText();
+                    String quoteAuthor = quoteFrag.getQuoteAuthor();
+                    // share the quote
+                    sharePost(quoteText, quoteAuthor);
+                }
             }
         });
 
