@@ -5,12 +5,18 @@ import android.animation.ValueAnimator;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FragmentActionBar extends BaseFragment {
@@ -120,7 +126,6 @@ public class FragmentActionBar extends BaseFragment {
                 if (curFragment.getClass().getName() != InfoFragment.class.getName()) {
                     ((MainActivity) getActivity()).replaceInfoFragment();
                 }else{
-
                     Toast.makeText(getActivity(),"You're already on the info screen!",Toast.LENGTH_SHORT).show();
                 }
 
@@ -136,7 +141,7 @@ public class FragmentActionBar extends BaseFragment {
 
                 if (curFragment.getClass().getName() != QuoteFragment.class.getName()) {
                     // if it's any other fragment except QuoteFragment
-                    Toast.makeText(getActivity(),"You're not able to share this screen",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Choose a quote you would like to share",Toast.LENGTH_SHORT).show();
                 }else{
                     // get the quote shown
                     QuoteFragment quoteFrag = (QuoteFragment)fm.findFragmentById(R.id.fragmentContainer);
@@ -169,12 +174,38 @@ public class FragmentActionBar extends BaseFragment {
     }
 
     private void sharePost(String sharedQuote, String sharedAuthor) {
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        // TODO: replace to chosen content to share & extras
-        shareIntent.setType("text/plain");
+        List<Intent> targetedShareIntents = new ArrayList<Intent>();
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
         String textToShare = "\"" + sharedQuote + "\" (" + sharedAuthor + ")";
-        shareIntent.putExtra(Intent.EXTRA_TEXT, textToShare);
-        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_chooser_title)));
+        intent.putExtra(Intent.EXTRA_TEXT, textToShare);
+
+        List<ResolveInfo> resInfo = getActivity().getPackageManager().queryIntentActivities(intent, 0);
+
+        for (ResolveInfo resolveInfo : resInfo) {
+            String packageName = resolveInfo.activityInfo.packageName;
+
+            Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+            targetedShareIntent.setType("text/plain");
+            targetedShareIntent.putExtra(Intent.EXTRA_TEXT, textToShare);
+            targetedShareIntent.setPackage(packageName);
+
+            if (!packageName.equals("com.facebook.katana") && // Remove Facebook Intent share
+                !packageName.equals("com.sec.android.app.FileShareClient") && //wi-fi
+                !packageName.equals("com.android.bluetooth")) // bluetooth
+            {
+                targetedShareIntents.add(targetedShareIntent);
+            }
+        }
+
+        Intent chooserIntent = Intent.createChooser(
+                targetedShareIntents.remove(0), getString(R.string.share_chooser_title));
+
+        chooserIntent.putExtra(
+                Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[]{}));
+
+        startActivity(chooserIntent);
     }
 
     public void setSelectedItem(String selected){
