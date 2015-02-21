@@ -17,7 +17,6 @@ public class InfoFragment extends BaseFragment {
     //Create textView variables
     private TextView infoBody;
     private TextView infoHeading;
-    //Info body end is used due to the fact that when using the HTML object to change the words in the text you are unable to add line breaks
     private TextView infoBodyEnd;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,25 +33,41 @@ public class InfoFragment extends BaseFragment {
         View v = inflater.inflate(R.layout.fragment_info, parent, false);
 
      //Assign textviews resources
-       infoBody = (TextView)v.findViewById(R.id.info_body);
-       infoHeading = (TextView)v.findViewById(R.id.info_title);
-       infoBodyEnd = (TextView)v.findViewById(R.id.info_Body_End);
+       assignVariables(v);
      //Create string to append to textview
-       String infoPt1 = getResources().getString(R.string.ponderInfoPt1);
-       String colorStudioName = "<font color='#fb911e'>" +getResources().getString(R.string.halfmoonStudios) + "</font>";
-       String infoPt2 = getResources().getString(R.string.ponderInfoPt2);
-    //Sets text of infoBody
-        infoBody.setText(Html.fromHtml(infoPt1 + " " + colorStudioName + " " + infoPt2));
-    //Create typeface object for info page
-        Typeface mTypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
-    //Set typeFace of infoBody
-    infoBody.setTypeface(mTypeFace);
-    infoHeading.setTypeface(mTypeFace);
-    infoBodyEnd.setTypeface(mTypeFace);
-
-
+       formatString();
+     //Animate textView objects
         animateInfo();
+
         return v;
+    }
+    @Override
+    public void assignVariables(View v){
+
+        infoBody = (TextView)v.findViewById(R.id.info_body);
+        infoHeading = (TextView)v.findViewById(R.id.info_title);
+        infoBodyEnd = (TextView)v.findViewById(R.id.info_Body_End);
+
+    }
+
+    public void formatString(){
+
+        //Create string objects to concatenate string in infoBody
+        String infoPt1 = getResources().getString(R.string.ponderInfoPt1);
+        //Sets "Halfmoon studios to required color"
+        String colorStudioName = "<font color='#fb911e'>" +getResources().getString(R.string.halfmoonStudios) + "</font>";
+        //Creates final string object for infoPt2
+        String infoPt2 = getResources().getString(R.string.ponderInfoPt2);
+
+        //Sets info body to the concatenated string, use of HTML object to allow colorStudioName to be colored using HTML notation
+        infoBody.setText(Html.fromHtml(infoPt1 + " " + colorStudioName + " " + infoPt2));
+
+        //Create typeface object for info page
+        Typeface mTypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"futuralight.ttf");
+        //Set typeFace of infoBody
+        infoBody.setTypeface(mTypeFace);
+        infoHeading.setTypeface(mTypeFace);
+        infoBodyEnd.setTypeface(mTypeFace);
     }
 
     public void animateInfo(){

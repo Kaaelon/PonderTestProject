@@ -18,24 +18,38 @@ import android.view.WindowManager;
 
 public class MainActivity extends Activity {
 
+    //Countdown timer to be used for the appropriate timing of multiple fragment transitions
     private CountDownTimer cd;
-    private FragmentManager fm = getFragmentManager();
+    private FragmentManager fm;
     //String to communicate what selections have been made from the menuFragment to the quote fragment
     private String menuSelection;
     //Boolean to signify whether it is the first time the user has accessed menuFragment previously
-    private boolean firstAccess = true;
+    private boolean firstAccess;
     public static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //remove title bar from app
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         //flag as fullscreen for layout parameters
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        //Assign variable base values
+        assignVariables();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupLogo();
+
+    }
+
+    public void assignVariables(){
+
+        //Assigns base value of variables
+        fm  = getFragmentManager();
+
+        firstAccess = true;
 
     }
 
@@ -82,6 +96,7 @@ public class MainActivity extends Activity {
     //Calls replace option Fragment to update mCategoryView with quoteFragment
         replaceOptionsFragment();
     }
+
     public void replaceMenuFragment(){
         //Allows fragment replacements calls from within other fragments (must cast activity object)
         Fragment newFragment = fm.findFragmentById(R.id.fragmentContainer);
@@ -110,7 +125,7 @@ public class MainActivity extends Activity {
         //If the current fragment is the logoFragment class then actionBar is created after timer
         if(curFrag.getClass().getName() == LogoFragment.class.getName()) {
 
-            CountDownTimer cd = new CountDownTimer(4400, 1) {
+            cd = new CountDownTimer(4400, 1) {
                 @Override
                 public void onTick(long millisUntilFinished) {
 
@@ -138,8 +153,6 @@ public class MainActivity extends Activity {
 
         }
     }
-
-
 
    public void setSelection(String selection){
        //Sets menuSelection variables (must reference int id of menu view) this allows for flexible manipulation

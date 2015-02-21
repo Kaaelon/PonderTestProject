@@ -53,7 +53,34 @@ public class MenuFragment extends BaseFragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_menu, parent, false);
-        //Could be a problem moving into seperate method
+
+        //Assign value to member variables
+        assignVariables(v);
+
+        //Format text typeFace
+        formatTextTypeface();
+
+        //Set value of first access variables
+        setFirstAccess();
+
+        //Set onclick listeners for textviews
+        setListeners();
+
+        //Animate centerText and views, checks if it is users first time accessing menu within this use
+        animateTextView();
+        animateViewsFirst();
+
+        return v;
+    }
+
+    public void setFirstAccess(){
+        //Set value of first access through invoking getFirstAccess() from mainActivity
+        firstAccess = ((MainActivity)getActivity()).getFirstAccess();
+    }
+
+    @Override
+    public void assignVariables(View v){
+        //Assigns values to member variables
 
         //Assigns values to ImageViews
         mWellbeingView = (ImageView) v.findViewById(R.id.wellbeingView);
@@ -71,6 +98,10 @@ public class MenuFragment extends BaseFragment  {
         mMotivationText = (TextView) v.findViewById(R.id.motivationText);
         mCenterText = (TextView) v.findViewById(R.id.centerText);
 
+    }
+
+    public void formatTextTypeface(){
+
         //Create TypeFaceObject and assign font
         Typeface mTypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(), "futuralight.ttf");
 
@@ -82,17 +113,6 @@ public class MenuFragment extends BaseFragment  {
         mMotivationText.setTypeface(mTypeFace);
         mCenterText.setTypeface(mTypeFace);
 
-        //Set value of first access through invoking getFirstAccess() from mainActivity
-        firstAccess = ((MainActivity)getActivity()).getFirstAccess();
-
-        //Set onclick listeners for textviews
-        setListeners();
-
-        //Animate centerText and views, checks if it is users first time accessing menu within this use
-        animateTextView();
-        animateViewsFirst();
-
-        return v;
     }
 
     public void onResume(){
@@ -106,7 +126,6 @@ public class MenuFragment extends BaseFragment  {
 
 
     }
-
 
     public void setListeners() {
 
@@ -369,6 +388,7 @@ public class MenuFragment extends BaseFragment  {
 
 
     }
+
     public void setLayoutClickable(boolean clickable){
     //Sets clickable status for all layouts, this is used to prevent user from clicking layours prior to finishing their animation
 

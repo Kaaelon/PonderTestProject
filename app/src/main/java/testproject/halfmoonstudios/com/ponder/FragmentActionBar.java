@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
-public class FragmentActionBar extends Fragment {
+public class FragmentActionBar extends BaseFragment {
 
     private ImageView mCategoryView;
     private ImageView mInfoView;
@@ -27,12 +27,8 @@ public class FragmentActionBar extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_fragment_action_bar, parent, false);
 
-        //Call to assign variables
-        mCategoryView = (ImageView)v.findViewById(R.id.categoryView);
-        mInfoView = (ImageView)v.findViewById(R.id.infoView);
-        mProfileView = (ImageView)v.findViewById(R.id.profileView);
-        mShareView = (ImageView)v.findViewById(R.id.shareView);
-        mMenuView = (ImageView)v.findViewById(R.id.menuView);
+        //Assign variables
+        assignVariables(v);
 
         //Call set listeners method to set actionListeners for views
         setListeners();
@@ -42,6 +38,19 @@ public class FragmentActionBar extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void assignVariables(View v){
+
+        //Call to assign variables
+        mCategoryView = (ImageView)v.findViewById(R.id.categoryView);
+        mInfoView = (ImageView)v.findViewById(R.id.infoView);
+        mProfileView = (ImageView)v.findViewById(R.id.profileView);
+        mShareView = (ImageView)v.findViewById(R.id.shareView);
+        mMenuView = (ImageView)v.findViewById(R.id.menuView);
+
+
     }
 
 

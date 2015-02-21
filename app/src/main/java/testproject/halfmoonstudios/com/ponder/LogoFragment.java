@@ -1,6 +1,5 @@
 package testproject.halfmoonstudios.com.ponder;
 
-import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import testproject.halfmoonstudios.com.ponder.R;
 
-
-public class LogoFragment extends Fragment {
+public class LogoFragment extends BaseFragment {
 
     private TextView mPonderText;
     private TextView mInspText;
@@ -24,11 +21,30 @@ public class LogoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_logo,parent,false);
+
+        //Assigns member variables
+        assignVariables(v);
+
+        //Format body text typeFace
+        formatTextTypeFace();
+
+
+        return v;
+    }
+
+    @Override
+    public void assignVariables(View v){
+
         //Assign value to text variables
         mPonderText = (TextView)v.findViewById(R.id.ponderText);
         mInspText = (TextView)v.findViewById(R.id.inspText);
         mLogoTop =(TextView)v.findViewById(R.id.logoTop);
         mLogoBottom = (TextView)v.findViewById(R.id.logoBottom);
+
+    }
+
+    public void formatTextTypeFace(){
+
         //Set typeface for ponder logo
         Typeface mTypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"sweetlybroken.ttf");
         mPonderText.setTypeface(mTypeFace);
@@ -41,6 +57,7 @@ public class LogoFragment extends Fragment {
 
         mTypeFace = Typeface.createFromAsset(getActivity().getResources().getAssets(),"dosisregular.otf");
         mLogoBottom.setTypeface(mTypeFace);
-        return v;
+
+
     }
 }

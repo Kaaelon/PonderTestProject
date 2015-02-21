@@ -1,6 +1,7 @@
 package testproject.halfmoonstudios.com.ponder;
 
 import android.app.Fragment;
+import android.view.View;
 
 /**
  * Created by Michae on 2/19/2015.
@@ -18,5 +19,7 @@ public class BaseFragment extends Fragment {
         //Calls mainActivity activities setCategoryVisibilty() method which calls FragmentActionBar to set the visibility of CategoryView, pass 1 for visible 0 for invisible
         ((MainActivity)getActivity()).setCategoryVisibility(visibilty);
     }
+
+    public void assignVariables(View v){};
 
 }

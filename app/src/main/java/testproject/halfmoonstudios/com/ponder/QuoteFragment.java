@@ -53,8 +53,7 @@ public class QuoteFragment extends BaseFragment {
         View v = inflater.inflate(R.layout.fragment_quote, parent, false);
 
         //Assign values to views
-        mQuoteView = (TextView) v.findViewById(R.id.quote_text);
-        mAuthorView = (TextView) v.findViewById(R.id.quote_author);
+        assignVariables(v);
 ;
         //Call to populateList() method
         populateList();
@@ -66,6 +65,13 @@ public class QuoteFragment extends BaseFragment {
 
 
         return v;
+    }
+
+    @Override
+    public void assignVariables(View v){
+        //Assign values to views
+        mQuoteView = (TextView) v.findViewById(R.id.quote_text);
+        mAuthorView = (TextView) v.findViewById(R.id.quote_author);
     }
 
 
