@@ -4,10 +4,31 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 
 /**
  * MainActivity - default activity containing setup information for the app, plus management of fragments
@@ -26,6 +47,7 @@ public class MainActivity extends Activity {
     //Boolean to signify whether it is the first time the user has accessed menuFragment previously
     private boolean firstAccess;
     public static final String TAG = MainActivity.class.getSimpleName();
+    protected JSONObject mQuotesData = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +63,15 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupLogo();
+
+        if (isNetworkAvailable()) {
+            GetQuotesTask getQuotesTask = new GetQuotesTask();
+            getQuotesTask.execute();
+        }
+        else {
+            Toast.makeText(this, "Network is unavailable", Toast.LENGTH_LONG).show();
+            mQuotesData = null;
+        }
 
     }
 
@@ -212,8 +243,68 @@ public class MainActivity extends Activity {
        actionFrag.setCategoryViewVisible(alpha);
     }}
 
+    private boolean isNetworkAvailable() {
+        boolean isAvailable = false;
 
+        ConnectivityManager manager = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            isAvailable = true;
+        }
+
+        return isAvailable;
     }
+
+    public JSONObject getQuotesData() {
+        return mQuotesData;
+    }
+
+    private class GetQuotesTask extends AsyncTask<Object, Void, JSONObject> {
+
+        @Override
+        protected JSONObject doInBackground(Object... params) {
+
+            int responseCode = -1;
+            JSONObject jsonResponse = null;
+            StringBuilder builder = new StringBuilder();
+            HttpClient client = new DefaultHttpClient();
+            HttpGet httpget = new HttpGet("http://halfmoonstudios.com.au/ponder/quotes.json");
+
+            try {
+                HttpResponse response = client.execute(httpget);
+                StatusLine statusLine = response.getStatusLine();
+                responseCode = statusLine.getStatusCode();
+                Log.v(TAG, "Code: " + responseCode);
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    HttpEntity entity = response.getEntity();
+                    InputStream content = entity.getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+                    String line;
+                    while((line = reader.readLine()) != null){
+                        builder.append(line);
+                    }
+                    jsonResponse = new JSONObject(builder.toString());
+                }
+                else {
+                    Log.i(TAG, "Unsuccessful Http Request Code: " + responseCode);
+                }
+            } catch (IOException e) {
+                Log.e(TAG, "IO Exception caught: ", e);
+            } catch (JSONException e) {
+                Log.e(TAG, "JSON Exception caught: ", e);
+            }
+            return jsonResponse;
+        }
+
+        @Override
+        protected void onPostExecute (JSONObject result) {
+            mQuotesData = result;
+            Log.v(TAG, "Got data from internet successfully!");
+        }
+    }
+}
 
 
 

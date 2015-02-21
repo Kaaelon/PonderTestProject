@@ -15,6 +15,8 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,6 +29,7 @@ public class QuoteFragment extends BaseFragment {
     //Create Views for quote fragment
     private TextView mQuoteView;
     private TextView mAuthorView;
+    private JSONObject mQuotesData = null;
     private ImageView mCategoryView;
     private ArrayList<Quote> mQuoteList = new ArrayList<>();
     private int curNumber = 0;
@@ -54,7 +57,11 @@ public class QuoteFragment extends BaseFragment {
 
         //Assign values to views
         assignVariables(v);
-;
+
+        //Get JSON data if available to populate list, otherwise will stay null
+        MainActivity activity = (MainActivity) getActivity();
+        mQuotesData = activity.getQuotesData();
+
         //Call to populateList() method
         populateList();
         //Sets initial value of quoteFragment
@@ -207,7 +214,7 @@ public class QuoteFragment extends BaseFragment {
 
     public void populateList() {
         //Populates mQuoteList with quotes that match menu/category choice
-        QuoteList.get(getActivity());
+        QuoteList.get(getActivity(), mQuotesData);
         Log.v("Main", "" + ((MainActivity) getActivity()).getSelection());
         mQuoteList = QuoteList.getQuotesByType(((MainActivity) getActivity()).getSelection());
     }
