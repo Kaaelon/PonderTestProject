@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -141,7 +140,7 @@ public class FragmentActionBar extends BaseFragment {
 
                 if (curFragment.getClass().getName() != QuoteFragment.class.getName()) {
                     // if it's any other fragment except QuoteFragment
-                    Toast.makeText(getActivity(),"Choose a quote you would like to share",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Select a quote category to find a quote to share!",Toast.LENGTH_SHORT).show();
                 }else{
                     // get the quote shown
                     QuoteFragment quoteFrag = (QuoteFragment)fm.findFragmentById(R.id.fragmentContainer);

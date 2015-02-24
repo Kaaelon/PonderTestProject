@@ -42,6 +42,7 @@
         android:layout_height="40dp"
         android:id="@+id/info_Body_End"
         android:text="@string/ponderInfoPt3"
+        android:alpha="0.0"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:layout_gravity="center_horizontal"

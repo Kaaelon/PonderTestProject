@@ -79,19 +79,18 @@ public class InfoFragment extends BaseFragment {
 
 
         ValueAnimator mTitleSlide = ObjectAnimator.ofFloat(infoHeading, "y", 350f);
-        mTitleSlide.setDuration(1500);
+        mTitleSlide.setDuration(1800);
         mTitleSlide.start();
 
         ValueAnimator  mBodyFade = ObjectAnimator.ofFloat(infoBody,"alpha",0.0f,1.0f);
         mBodyFade.setDuration(1500);
-        mBodyFade.setStartDelay(1500);
+        mBodyFade.setStartDelay(1800);
         mBodyFade.start();
 
-        infoBodyEnd.setY(1800);
 
-        ValueAnimator mBottomSlide = ObjectAnimator.ofFloat(infoBodyEnd,"y",1300f);
+        ValueAnimator mBottomSlide = ObjectAnimator.ofFloat(infoBodyEnd,"alpha",0.0f,1.0f);
         mBottomSlide.setDuration(1500);
-        mBottomSlide.setStartDelay(1100);
+        mBottomSlide.setStartDelay(1800);
         mBottomSlide.start();
 
     }
