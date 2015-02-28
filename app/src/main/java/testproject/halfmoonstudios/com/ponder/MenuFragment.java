@@ -38,8 +38,6 @@ public class MenuFragment extends BaseFragment  {
     public static final String HEALTH = "health";
     public static final String GRIEF = "grief";
     public static final String IDEA = "idea";
-    //Declare boolean to check if first access
-    private boolean firstAccess;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,8 +58,6 @@ public class MenuFragment extends BaseFragment  {
         //Format text typeFace
         formatTextTypeface();
 
-        //Set value of first access variables
-        setFirstAccess();
 
         //Set onclick listeners for textviews
         setListeners();
@@ -71,11 +67,6 @@ public class MenuFragment extends BaseFragment  {
         animateViewsFirst();
 
         return v;
-    }
-
-    public void setFirstAccess(){
-        //Set value of first access through invoking getFirstAccess() from mainActivity
-        firstAccess = ((MainActivity)getActivity()).getFirstAccess();
     }
 
     @Override
@@ -319,28 +310,6 @@ public class MenuFragment extends BaseFragment  {
         setLayoutClickable(false);
 
 
-        if(firstAccess){
-
-        fadeGroup.play(fadeGrief).after(1500);
-        fadeGroup.play(fadeGriefTitle).after(1500);
-
-        fadeGroup.play(fadeWellbeing).after(fadeGrief);
-        fadeGroup.play(fadeWellbeingTitle).after(fadeGrief);
-
-        fadeGroup.play(fadeHealth).after(fadeWellbeing);
-        fadeGroup.play(fadeHealthTitle).after(fadeWellbeing);
-
-        fadeGroup.play(fadeMotivation).after(fadeHealth);
-        fadeGroup.play(fadeMotivationTitle).after(fadeHealth);
-
-        fadeGroup.play(fadeIdeas).after(fadeMotivation);
-        fadeGroup.play(fadeIdeasTitle).after(fadeMotivation);
-
-            //Sets first access to false
-        ((MainActivity)getActivity()).setFirstAccess(false);
-
-        }else{
-
             fadeGroup.play(fadeGrief).after(1500);
             fadeGroup.play(fadeGriefTitle).after(1500);
 
@@ -356,7 +325,7 @@ public class MenuFragment extends BaseFragment  {
             fadeGroup.play(fadeIdeas).after(1500);
             fadeGroup.play(fadeIdeasTitle).after(1500);
 
-        }
+
 
         fadeGroup.start();
         fadeGroup.addListener(new Animator.AnimatorListener() {

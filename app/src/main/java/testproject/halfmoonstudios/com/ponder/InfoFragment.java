@@ -3,11 +3,14 @@ package testproject.halfmoonstudios.com.ponder;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
 /**
@@ -18,6 +21,8 @@ public class InfoFragment extends BaseFragment {
     private TextView infoBody;
     private TextView infoHeading;
     private TextView infoBodyEnd;
+    //Int array to pass location variables
+    int[] location = new int[2];
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +41,7 @@ public class InfoFragment extends BaseFragment {
        assignVariables(v);
      //Create string to append to textview
        formatString();
-     //Animate textView objects
-        animateInfo();
+
 
         return v;
     }
@@ -49,6 +53,7 @@ public class InfoFragment extends BaseFragment {
         infoBodyEnd = (TextView)v.findViewById(R.id.info_Body_End);
 
     }
+
 
     public void formatString(){
 
@@ -73,24 +78,53 @@ public class InfoFragment extends BaseFragment {
     public void animateInfo(){
 
         //Set Y co-ordinates of heading for transition
-        infoHeading.setY(-1000f);
         infoHeading.setVisibility(View.VISIBLE);
+        //Create viewtreeObserver object and apply globalLayoutListener
+        ViewTreeObserver vto = infoHeading.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener( new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                //Create int array to be passed values through getLocationOnScreen()
+
+                infoHeading.getLocationInWindow(location);
+                Log.v("HERE","" + location[1]);
+                float position = (float)location[1];
+                infoHeading.setY(-position);
+
+                ValueAnimator mTitleSlide = ObjectAnimator.ofFloat(infoHeading, "y",position );
+                mTitleSlide.setDuration(1200);
+                mTitleSlide.setStartDelay(500);
+                mTitleSlide.start();
+
+                //Get viewTreeObserver to cancel listener
+                ViewTreeObserver vto = infoHeading.getViewTreeObserver();
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    vto.removeOnGlobalLayoutListener(this);
+                }else{
+                    vto.removeGlobalOnLayoutListener(this);
+                }
+            }
+        });
 
 
 
-        ValueAnimator mTitleSlide = ObjectAnimator.ofFloat(infoHeading, "y", 350f);
-        mTitleSlide.setDuration(1800);
-        mTitleSlide.start();
+
+
+
+
+
+
+
 
         ValueAnimator  mBodyFade = ObjectAnimator.ofFloat(infoBody,"alpha",0.0f,1.0f);
         mBodyFade.setDuration(1500);
-        mBodyFade.setStartDelay(1800);
+        mBodyFade.setStartDelay(1400);
         mBodyFade.start();
 
 
         ValueAnimator mBottomSlide = ObjectAnimator.ofFloat(infoBodyEnd,"alpha",0.0f,1.0f);
         mBottomSlide.setDuration(1500);
-        mBottomSlide.setStartDelay(1800);
+        mBottomSlide.setStartDelay(1400);
         mBottomSlide.start();
 
     }
@@ -100,7 +134,14 @@ public class InfoFragment extends BaseFragment {
         //Call to main Activity to set appropriate item selected in the action bar
         actionBarItemHighlighted();
 
-    }
+        animateInfo();
+
+
+
+}
+
+
+
 
 
 

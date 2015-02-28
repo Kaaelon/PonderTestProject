@@ -11,7 +11,7 @@
         android:id="@+id/centerText"
         android:text="How would you like to be inspired?"
         android:textColor="#FFFFFF"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:gravity="center"
         android:layout_above="@+id/menuTextLayout"
         android:layout_centerHorizontal="true"
@@ -61,7 +61,7 @@
                 android:contentDescription="@string/button_grief"
                 android:textColor="#FFFFFF"
                 android:visibility="visible"
-                android:alpha="0.0"/>
+                android:alpha="0.0" />
         </LinearLayout>
 
         <LinearLayout
