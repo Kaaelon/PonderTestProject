@@ -30,6 +30,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
+import com.facebook.AppEventsLogger;
+import com.facebook.Session;
+
 /**
  * MainActivity - default activity containing setup information for the app, plus management of fragments
  *
@@ -71,6 +74,22 @@ public class MainActivity extends Activity {
             mQuotesData = null;
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Logs 'install' and 'app activate' App Events.
+        AppEventsLogger.activateApp(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Logs 'app deactivate' App Event.
+        AppEventsLogger.deactivateApp(this);
     }
 
     public void assignVariables(){
